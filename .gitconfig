@@ -1,0 +1,10 @@
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[user]
+	name = interbattles
+	email = 88935519+interbattles@users.noreply.github.com
+[init]
+	defaultBranch = main
