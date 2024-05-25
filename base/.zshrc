@@ -8,12 +8,19 @@ POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
   zoxide
-  zsh-syntax-highlighting 
   zsh-autosuggestions
+  zsh-history-substring-search
+  zsh-syntax-highlighting 
 )
+
 
 export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
+
+ZSH_AUTOSUGGEST_STRATEGY=(completion history)
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 alias cd=z
 alias ls=eza
