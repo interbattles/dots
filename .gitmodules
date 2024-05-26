@@ -7,6 +7,12 @@
 [submodule "zsh/themes/powerlevel10k"]
 	path = zsh/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
-[submodule "zsh/plugins/zsh-history-substring-search"]
-	path = zsh/plugins/zsh-history-substring-search
-	url = https://github.com/zsh-users/zsh-history-substring-search.git
+[submodule "zsh/plugins/zsh-eza"]
+	path = zsh/plugins/zsh-eza
+	url = https://github.com/z-shell/zsh-eza.git
+[submodule "zsh/plugins/zzcomplete"]
+	path = zsh/plugins/zzcomplete
+	url = https://github.com/z-shell/zzcomplete.git
+[submodule "zsh/plugins/zui"]
+	path = zsh/plugins/zui
+	url = git@github.com:z-shell/zui.git

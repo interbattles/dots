@@ -5,13 +5,15 @@ POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
   zoxide
+  zsh-eza
+  zzcomplete
   zsh-autosuggestions
-  zsh-history-substring-search
   zsh-syntax-highlighting 
 )
 
 export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
+source $ZSH_CUSTOM/plugins/zui/zui.plugin.zsh
 
 # i'm not particularly sure what any of this does or how it works
 # but in my specific setup it duplicates everything when i paste
@@ -38,8 +40,8 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 alias cd=z
-alias ls=eza
 alias cat=bat
+# alias ls=eza # not needed anymore because of zsh-eza
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -36,11 +36,12 @@ ln -t ~/.themes/ -s ~/.local/share/themes/*
 ln -t ~/.icons/ -s ~/.local/share/icons/*
 
 echo "applying themes to flatpak"
-flatpak --user override --filesystem="$HOME/.themes"
+flatpak --user override --filesystem="$HOME/.themes" # compatability for some gnome apps
 flatpak --user override --filesystem="$HOME/.icons"
-flatpak --user override --filesystem=xdg-config/gtk-4.0
+flatpak --user override --filesystem="$HOME/.local/share/icons" # gnome seems to like this one more (vesktop) (￢_￢;)
+flatpak --user override --filesystem="$HOME/.local/share/themes"
 
-flatpak --user override --env=GTK_THEME=Gruvbox-Dark-BL-MOD
+flatpak --user override --env=GTK_THEME=Gruvbox-Dark-BL-MOD # dont know if this is needed ? but thats how i got mine to work
 flatpak --user override --env=ICON_THEME=Gruvbox-plus-icon-MOD
 
 echo "done!!!"
