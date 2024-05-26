@@ -1,3 +1,5 @@
+. "$HOME/.cargo/env"
+
 export ZSH_CUSTOM="$HOME/dots/zsh"
 
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
@@ -8,7 +10,6 @@ plugins=(
   zsh-history-substring-search
   zsh-syntax-highlighting 
 )
-
 
 export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
