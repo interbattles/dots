@@ -31,11 +31,17 @@ echo "symlinking themes"
 stow -d "$HOME/.local/share/themes/Gruvbox-Dark-BL-MOD" -t "$HOME/.config" -S gtk-4.0
 
 mkdir -p ~/.themes
+mkdir -p ~/.icons
 ln -t ~/.themes/ -s ~/.local/share/themes/*
+ln -t ~/.icons/ -s ~/.local/share/icons/*
 
 echo "applying themes to flatpak"
 flatpak --user override --filesystem="$HOME/.themes"
+flatpak --user override --filesystem="$HOME/.icons"
 flatpak --user override --filesystem=xdg-config/gtk-4.0
 
+flatpak --user override --env=GTK_THEME=Gruvbox-Dark-BL-MOD
+flatpak --user override --env=ICON_THEME=Gruvbox-plus-icon-MOD
+
 echo "done!!!"
-echo " >you may have to log out for some changes to apply"
+echo " > you may have to log out for some changes to apply"
