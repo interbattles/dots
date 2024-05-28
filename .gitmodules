@@ -15,4 +15,4 @@
 	url = https://github.com/z-shell/zzcomplete.git
 [submodule "zsh/plugins/zui"]
 	path = zsh/plugins/zui
-	url = git@github.com:z-shell/zui.git
+	url = https://github.com/z-shell/zui.git
