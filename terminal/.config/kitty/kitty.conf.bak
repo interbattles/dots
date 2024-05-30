@@ -1,6 +1,6 @@
 # BEGIN_KITTY_THEME
-# Catppuccin-Macchiato
-include current-theme.conf
+# Catppuccin-Mocha
+include theme.conf
 # END_KITTY_THEME
 
 font_family      MesloLGS NF
