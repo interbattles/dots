@@ -8,7 +8,8 @@ plugins=(
   zsh-eza
   zzcomplete
   zsh-autosuggestions
-  zsh-syntax-highlighting 
+  zsh-syntax-highlighting
+  zsh-history-substring-search
 )
 
 export ZSH="$HOME/.oh-my-zsh"
@@ -36,8 +37,12 @@ zstyle :bracketed-paste-magic paste-finish paste_finish
 # https://github.com/zsh-users/zsh-autosuggestions/issues/351
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
 
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 alias cd=z
 alias cat=bat
+alias whatrepo='grep -E "^\[.*]" /etc/yum.repos.d/*'
 # alias ls=eza # not needed anymore because of zsh-eza
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
