@@ -36,9 +36,6 @@ zstyle :bracketed-paste-magic paste-finish paste_finish
 # https://github.com/zsh-users/zsh-autosuggestions/issues/351
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
 
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
 alias cd=z
 alias cat=bat
 # alias ls=eza # not needed anymore because of zsh-eza
