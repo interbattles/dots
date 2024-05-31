@@ -14,7 +14,7 @@ then
 fi
 
 echo "symlinking configurations"
-stow base terminal ohmyzsh
+stow base terminal ohmyzsh nvim
 
 mkdir -p ~/.themes
 mkdir -p ~/.icons
