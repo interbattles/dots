@@ -1,9 +1,7 @@
-. "$HOME/.cargo/env"
-
-export ZSH_CUSTOM="$HOME/dots/zsh"
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
+  fzf
   zoxide
   zsh-eza
   zzcomplete
@@ -36,6 +34,7 @@ zstyle :bracketed-paste-magic paste-finish paste_finish
 
 # https://github.com/zsh-users/zsh-autosuggestions/issues/351
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
