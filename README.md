@@ -7,7 +7,7 @@
 - `git-lfs`
 - `fzf`
 
-### optional:
+### optional (dont use gnome anymore):
 - `gnome-tweaks` (extensions & themes)
 
 ![car](https://c.tenor.com/0PPg0pxcY7kAAAAC/tenor.gif)
