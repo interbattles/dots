@@ -1,3 +1,8 @@
+if [[ $SUDO_USER != '' && $SUDO_USER != 'root' ]] then    
+    HOME=/home/$SUDO_USER;
+fi
+
+ZSH_DISABLE_COMPFIX=true
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
