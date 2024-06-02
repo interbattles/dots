@@ -1,17 +1,18 @@
 return {
-	"williamboman/mason.nvim",
 	{
-		"williamboman/mason-lspconfig.nvim",
-		opts = {
-			ensure_installed = { "lua_ls", "rust_analyzer" },
-			automatic_installation = true,
+    		"williamboman/mason.nvim",
+		{
+			"williamboman/mason-lspconfig.nvim",
+			opts = {
+				automatic_installation = true
+			}
 		},
-	},
-	{
-		"neovim/nvim-lspconfig",
-		config = function()
-			require "configs.lspconfig"
-		end,
+		{
+			"neovim/nvim-lspconfig",
+			config = function()
+				require "configs.lspconfig"
+			end,
+		},
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
