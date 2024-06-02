@@ -9,3 +9,5 @@
 
 ### optional:
 - `gnome-tweaks` (extensions & themes)
+
+![car](https://c.tenor.com/0PPg0pxcY7kAAAAC/tenor.gif)
