@@ -68,9 +68,6 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion match_prev_cmd)
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-bindkey '^I' menu-complete
-bindkey "$terminfo[kcbt]" reverse-menu-complete
-
 alias cd=z
 alias cat=bat
 alias whatrepo='grep -E "^\[.*]" /etc/yum.repos.d/*'
