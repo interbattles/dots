@@ -13,6 +13,7 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-history-substring-search
+  zsh-completions
 )
 
 export ZSH="$HOME/.oh-my-zsh"
