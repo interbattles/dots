@@ -65,8 +65,17 @@ zstyle :bracketed-paste-magic paste-finish paste_finish
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
 ZSH_AUTOSUGGEST_STRATEGY=(history completion match_prev_cmd)
 
+# fish-like autocomplete :>
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+bindkey '^I' menu-select
+bindkey "$terminfo[kcbt]" menu-select
+
+bindkey -M menuselect '^I' menu-complete
+bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
+
+bindkey -M menuselect '\r' .accept-line
 
 alias cd=z
 alias cat=bat
