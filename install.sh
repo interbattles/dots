@@ -14,4 +14,4 @@ then
 fi
 
 echo "symlinking configurations"
-stow git terminal zsh nvim
+stow git terminal zsh nvim editor sway editor
