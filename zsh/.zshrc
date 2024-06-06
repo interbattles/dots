@@ -2,12 +2,6 @@ if [[ $SUDO_USER != '' && $SUDO_USER != 'root' ]] then
     HOME=/home/$SUDO_USER;
 fi
 
-#idk why i have to do this but it literally broke randomly
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=1000
-
-setopt SHARE_HISTORY
 ZSH_DISABLE_COMPFIX=true
 zmodload -u zsh/compctl zsh/complete
 
@@ -87,5 +81,3 @@ alias cd=z
 alias cat=bat
 alias whatrepo='grep -E "^\[.*]" /etc/yum.repos.d/*'
 # alias ls=eza # not needed anymore because of zsh-eza
-
-eval "$(zellij setup --generate-auto-start zsh)"

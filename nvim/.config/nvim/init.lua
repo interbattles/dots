@@ -23,6 +23,3 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins')
 vim.cmd('NvimTreeOpen')
-
-local map = vim.api.nvim_set_keymap
-map('n', '<leader>cs', ':lua require("hex2rgba").hex2rgba()<cr>', { noremap = true })
