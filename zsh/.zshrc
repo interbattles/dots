@@ -3,7 +3,6 @@ if [[ $SUDO_USER != '' && $SUDO_USER != 'root' ]] then
 fi
 
 ZSH_DISABLE_COMPFIX=true
-ZSH_TMUX_CONFIG="$HOME/.tmux.conf"
 zmodload -u zsh/compctl zsh/complete
 
 _fix-omz-plugin() {
@@ -76,6 +75,7 @@ zinit light marlonrichert/zsh-autocomplete
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting
 
+zinit light wintermi/zsh-mise
 # i'm not particularly sure what any of this does or how it works
 # but in my specific setup it duplicates everything when i paste
 # highlighting doesn't work after i paste now but oh well
@@ -110,4 +110,12 @@ bindkey -M menuselect '\r' .accept-line
 alias cd=z
 alias cat=bat
 alias whatrepo='grep -E "^\[.*]" /etc/yum.repos.d/*'
+alias sudop='sudo env PATH=$PATH'
 # alias ls=eza # not needed anymore because of zsh-eza
+
+# bun completions
+[ -s "/home/devin/.bun/_bun" ] && source "/home/devin/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -1,5 +1,5 @@
 //
-// ██╗    ██╗ █████╗ ██╗   ██╗██████╗  █████╗ ██████╗ 
+// ██╗    ██╗ █████╗ ██╗   ██╗██████╗  █████╗ ██████╗
 // ██║    ██║██╔══██╗╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
 // ██║ █╗ ██║███████║ ╚████╔╝ ██████╔╝███████║██████╔╝
 // ██║███╗██║██╔══██║  ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
@@ -9,39 +9,32 @@
 // Waybar Config File by Arfan Zubi
 
 {
-    "layer": "top",
-    "height": 40,
+  "layer": "top",
+  "height": 40,
 
-    "include": ["$HOME/.config/waybar/modules.jsonc"],
+  "include": ["$HOME/.config/waybar/modules.jsonc"],
 
-    "modules-left": ["custom/launcher", "sway/workspaces", "sway/mode", "sway/window"],
-    "modules-center": ["clock"],
-    "modules-right": ["group/system", "group/hardware", "custom/wlogout"],
+  "modules-left": [
+    "custom/launcher",
+    "sway/workspaces",
+    "sway/mode",
+    "sway/window",
+  ],
+  "modules-center": ["clock"],
+  "modules-right": ["group/system", "group/hardware", "tray", "custom/wlogout"],
 
-    "group/system": {
-        "orientation": "horizontal",
-        "modules": [
-		"battery",
-            "backlight",
-            "wireplumber",
-            "network"
-        ]
-    },
+  "group/system": {
+    "orientation": "horizontal",
+    "modules": ["battery", "backlight", "wireplumber", "network"],
+  },
 
-    "group/keyboard": {
-        "orientation": "horizontal",
-        "modules": [
-            "sway/language",
-            "keyboard-state"
-        ]
-    },
+  "group/keyboard": {
+    "orientation": "horizontal",
+    "modules": ["sway/language", "keyboard-state"],
+  },
 
-    "group/hardware": {
-        "orientation": "horizontal",
-        "modules": [
-            "disk",
-            "cpu",
-            "memory"
-        ]
-    }
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": ["disk", "cpu", "memory"],
+  },
 }

@@ -1,93 +1,93 @@
 {
-  "custom/launcher":{
-        "format": "󱢗 ",
-	"tooltip": "Launcher",
-        "on-click": "fuzzel",
-        "on-click-right": "killall fuzzel"
+  "custom/launcher": {
+    "format": "󱢗 ",
+    "tooltip": "Launcher",
+    "on-click": "fuzzel",
+    "on-click-right": "killall fuzzel",
+  },
+  "sway/workspaces": {
+    "on-click": "activate",
+    "sort-by-number": true,
+    "active-only": false,
+  },
+  "sway/window": {
+    "format": "  {}",
+    "max-length": 20,
+  },
+  "tray": {
+    "icon-size": 21,
+  },
+  "clock": {
+    "format": " {:%r}",
+    "format-alt": "{:%a, %d. %b %Y - %r}",
+  },
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-alt": "{icon} {time}",
+    "format-icons": {
+      "default": ["", "", "", "", ""],
+      "charging": "",
     },
-    "sway/workspaces": {
-       "on-click": "activate",
-        "sort-by-number": true,
-        "active-only": false
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["󱩎", "󱩐", "󱩒", "󱩔", "󱩖"],
+    "tooltip-format": "Brightness",
+  },
+  "backlight/slider": {
+    "min": 1,
+    "max": 100,
+  },
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-icons": {
+      "headphone": "",
+      "bluetooth": "",
+      "default": ["", ""],
     },
-    "sway/window": {
-        "format": "  {}",
-        "max-length": 20
+    "scroll-step": 1,
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+  },
+  "network": {
+    "format": "{icon} {ifname}",
+    "format-icons": {
+      "wifi": "",
+      "disconnected": "󰲛",
+      "ethernet": "",
     },
-    "clock": {
-        "format": " {:%r}",
-        "format-alt": "{:%a, %d. %b %Y - %r}"
+    "format-wifi": "{icon} {signalStrength}%",
+    "format-ethernet": "{ipaddr}/{cidr}",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "{ifname}",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50,
+  },
+  "sway/language": {
+    "format": "󰌌 {short}",
+  },
+  "keyboard-state": {
+    "capslock": true,
+    "format": " 󰪛 {icon}",
+    "format-icons": {
+      "locked": "",
+      "unlocked": "",
     },
-    "battery": {
-        "format": "{icon} {capacity}%",
-        "format-alt": "{icon} {time}",
-        "format-icons": {
-		"default": ["", "", "", "", ""],
-		"charging": ""
-	}
-    },
-    "backlight": {
-        "format": "{icon} {percent}%",
-        "format-icons": ["󱩎","󱩐","󱩒","󱩔","󱩖"],
-        "tooltip-format": "Brightness",
-    },
-    "backlight/slider": {
-        "min": 1,
-        "max": 100,
-    },
-    "wireplumber": {
-        "format": "{icon} {volume}%",
-        "format-icons": {
-            "headphone": "",
-	    "bluetooth": "",
-            "default": [
-                "",
-                ""
-            ]
-        },
-        "scroll-step": 1,
-        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    },
-    "network": {
-        "format": "{icon} {ifname}",
-	"format-icons": {
-		"wifi": "",
-		"disconnected": "󰲛",
-		"ethernet": ""
-	},
-        "format-wifi": "{icon} {signalStrength}%", 
-        "format-ethernet": "{ipaddr}/{cidr}",
-        "tooltip-format": "{ifname} via {gwaddr}",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
-        "tooltip-format-ethernet": "{ifname}",
-        "tooltip-format-disconnected": "Disconnected",
-        "max-length": 50
-    },
-    "sway/language": {
-        "format": "󰌌 {short}"
-    },
-    "keyboard-state": {
-        "capslock": true,
-        "format": " 󰪛 {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
-    "disk": {
-        "interval": 30,
-        "format": " {percentage_used}%",
-        "path": "/"
-    },
-    "cpu": {
-        "format": " {usage}%"
-    },
-    "memory": {
-        "format": " {percentage}%"
-    },
-    "custom/wlogout": {
-        "format": "⏻",
-        "on-click": "wlogout",
-        "tooltip": false
-    }
+  },
+  "disk": {
+    "interval": 30,
+    "format": " {percentage_used}%",
+    "path": "/",
+  },
+  "cpu": {
+    "format": " {usage}%",
+  },
+  "memory": {
+    "format": " {percentage}%",
+  },
+  "custom/wlogout": {
+    "format": "⏻",
+    "on-click": "wlogout",
+    "tooltip": false,
+  },
 }
