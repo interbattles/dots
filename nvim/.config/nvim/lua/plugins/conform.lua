@@ -2,7 +2,6 @@ return {
   'stevearc/conform.nvim',
   event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
-
   config = function()
     require('conform').setup({
       formatters_by_ft = {
@@ -16,7 +15,6 @@ return {
       ['_'] = { 'trim_whitespace' },
       format_on_save = { timeout_ms = 500, lsp_fallback = true },
     })
-
     vim.api.nvim_create_user_command('Format', function(args)
       local range = nil
       if args.count ~= -1 then
