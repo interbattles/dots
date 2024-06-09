@@ -1,0 +1,9 @@
+layout {
+    tab name="terminal" {
+        pane
+        pane size="30%"
+        pane size=1 borderless=true {
+            plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm"
+        }
+    }
+}

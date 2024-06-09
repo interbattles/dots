@@ -3,7 +3,27 @@ if [[ $SUDO_USER != '' && $SUDO_USER != 'root' ]] then
 fi
 
 ZSH_DISABLE_COMPFIX=true
+ZSH_TMUX_CONFIG="$HOME/.tmux.conf"
 zmodload -u zsh/compctl zsh/complete
+
+_fix-omz-plugin() {
+  if [[ ! -f ._zinit/teleid ]] then return 0; fi
+  if [[ ! $(cat ._zinit/teleid) =~ "^OMZP::.*" ]] then return 0; fi
+  local OMZP_NAME=$(cat ._zinit/teleid | sed -n 's/OMZP:://p')
+  git clone --quiet --no-checkout --depth=1 --filter=tree:0 https://github.com/ohmyzsh/ohmyzsh
+  cd ohmyzsh
+  git sparse-checkout set --no-cone plugins/$OMZP_NAME
+  git checkout --quiet
+  cd ..
+  local OMZP_PATH="ohmyzsh/plugins/$OMZP_NAME"
+  for file in ohmyzsh/plugins/$OMZP_NAME/*~(.gitignore|*.plugin.zsh)(D); do
+    local filename="${file:t}"
+    echo "Copying $file to $(pwd)/$filename..."
+    cp $file $filename
+  done
+  local file
+  rm -rf ohmyzsh
+}
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -27,6 +47,16 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
+#  atpull"%atclone" atclone"_fix-omz-plugin" \
+#    OMZP::tmux \
+
+zinit wait lucid for \
+  atpull"%atclone" atclone"_fix-omz-plugin" \
+    OMZP::colored-man-pages \
+  blockf \
+    zsh-users/zsh-completions \
+  atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
 
 # Load starship theme
 zinit ice as"command" from"gh-r" \
