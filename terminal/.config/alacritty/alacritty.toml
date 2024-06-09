@@ -34,5 +34,5 @@ italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
 bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
 
 [window]
-opacity = 0.8
 decorations = "None"
+opacity = 0.9
