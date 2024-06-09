@@ -13,5 +13,4 @@ if ! command -v eza &>/dev/null; then
 fi
 
 echo "symlinking configurations"
-stow git terminal zsh nvim tmux
-
+stow editor git nvim sway terminal tmux zsh

@@ -27,5 +27,6 @@
   "themer.lua": { "branch": "main", "commit": "625510cfec70b55fe42d04b1256c5f93c92a4202" },
   "tmux.nvim": { "branch": "main", "commit": "53ea7eab504730e7e8397fd2ae0133053d56afc8" },
   "vim-fugitive": { "branch": "master", "commit": "4f59455d2388e113bd510e85b310d15b9228ca0d" },
+  "vim-suda": { "branch": "master", "commit": "b97fab52f9cdeabe2bbb5eb98d82356899f30829" },
   "which-key.nvim": { "branch": "main", "commit": "0099511294f16b81c696004fa6a403b0ae61f7a0" }
 }
