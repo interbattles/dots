@@ -2,8 +2,8 @@
   "custom/launcher": {
     "format": "󱢗 ",
     "tooltip": "Launcher",
-    "on-click": "fuzzel",
-    "on-click-right": "killall fuzzel",
+    "on-click": "rofi -show drun",
+    "on-click-right": "killall rofi",
   },
   "sway/workspaces": {
     "on-click": "activate",
