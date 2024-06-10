@@ -1,3 +1,7 @@
+if [[ $SUDO_USER != '' && $SUDO_USER != 'root' ]] then    
+    HOME=/home/$SUDO_USER;
+fi
+
 . "$HOME/.cargo/env"
 
 export PATH="$HOME/.local/bin:$PATH"

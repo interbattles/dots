@@ -59,6 +59,8 @@ input "7805:11730:ROCCAT_ROCCAT_Kone_Pure_Ultra" {
 	natural_scroll disabled
 }
 
+exec dex-autostart -a -s $HOME/.config/autostart -e Sway
+
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.

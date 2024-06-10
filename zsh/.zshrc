@@ -1,9 +1,7 @@
-if [[ $SUDO_USER != '' && $SUDO_USER != 'root' ]] then    
-    HOME=/home/$SUDO_USER;
-fi
-
 ZSH_DISABLE_COMPFIX=true
-zmodload -u zsh/compctl zsh/complete
+# zmodload -u zsh/compctl zsh/complete
+
+HISTFILE=~/.zsh_history
 
 _fix-omz-plugin() {
   if [[ ! -f ._zinit/teleid ]] then return 0; fi
@@ -52,6 +50,8 @@ zinit light-mode for \
 zinit wait lucid for \
   atpull"%atclone" atclone"_fix-omz-plugin" \
     OMZP::colored-man-pages \
+  atpull"%atclone" atclone"_fix-omz-plugin" \
+    OMZP::fzf \
   blockf \
     zsh-users/zsh-completions \
   atload"!_zsh_autosuggest_start" \
@@ -69,9 +69,10 @@ zinit has'zoxide' light-mode for \
   z-shell/zsh-zoxide
 zinit light z-shell/zsh-zoxide
 
+# zinit light marlonrichert/zsh-autocomplete
 zinit light zsh-users/zsh-history-substring-search
 zinit light zsh-users/zsh-completions
-zinit light marlonrichert/zsh-autocomplete
+zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting
 
@@ -91,21 +92,24 @@ paste_finish() {
 }
 zstyle :bracketed-paste-magic paste-init paste_init
 zstyle :bracketed-paste-magic paste-finish paste_finish
+# zstyle ':autocomplete:*' delay 0.1
+# bindkey '^R' .history-incremental-search-backward
+# bindkey '^S' .history-incremental-search-forward
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
 ZSH_AUTOSUGGEST_STRATEGY=(history completion match_prev_cmd)
 
-# fish-like autocomplete :>
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+## fish-like autocomplete :>
+# bindkey '^[[A' history-substring-search-up
+# bindkey '^[[B' history-substring-search-down
+# 
+# bindkey '^I' menu-select
+# bindkey "$terminfo[kcbt]" menu-select
 
-bindkey '^I' menu-select
-bindkey "$terminfo[kcbt]" menu-select
+# bindkey -M menuselect '^I' menu-complete
+# bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
 
-bindkey -M menuselect '^I' menu-complete
-bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
-
-bindkey -M menuselect '\r' .accept-line
+# bindkey -M menuselect '\r' .accept-line
 
 alias cd=z
 alias cat=bat
