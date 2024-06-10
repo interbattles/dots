@@ -1,11 +1,7 @@
 ZSH_DISABLE_COMPFIX=true
 # zmodload -u zsh/compctl zsh/complete
 
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=$HOME/.zsh_history
-setopt INC_APPEND_HISTORY
-setopt SHARE_HISTORY 
+HISTFILE=~/.zsh_history
 
 _fix-omz-plugin() {
   if [[ ! -f ._zinit/teleid ]] then return 0; fi
@@ -76,6 +72,7 @@ zinit light z-shell/zsh-zoxide
 # zinit light marlonrichert/zsh-autocomplete
 zinit light zsh-users/zsh-history-substring-search
 zinit light zsh-users/zsh-completions
+zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting
 
