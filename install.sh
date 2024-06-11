@@ -4,13 +4,27 @@ echo "downloading submodules"
 git submodule init
 git submodule update
 
-if ! command -v eza &>/dev/null; then
-	echo "installing cargo"
+if ! command -v cargo &>/dev/null; then
+	echo "installing rustup"
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile minimal -y
-	curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
-
-	cargo binstall bat eza fd-find mise
 fi
 
+dependencies=("bat" "eza" "fd-find" "mise" "zoxide" "ripgrep")
+for dep in ${dependencies[@]}; do
+	echo "checking $dep"
+	command=$dep
+
+	if [ "$dep" = "ripgrep" ]; then
+		command="rg"
+	elif [ "$dep" = "fd-find" ]; then
+		command="fd"
+	fi
+
+	if ! command -v $command &>/dev/null; then
+		echo "installing $dep"
+		cargo install $dep
+	fi
+done
+
 echo "symlinking configurations"
-stow editor git nvim sway terminal tmux zsh
+stow editor git hyprland nvim rice terminal tmux

@@ -19,3 +19,5 @@
     prompt = false
 [difftool "meld"]
     cmd = meld "$LOCAL" "$REMOTE"
+[core]
+	editor = /usr/bin/nvim
