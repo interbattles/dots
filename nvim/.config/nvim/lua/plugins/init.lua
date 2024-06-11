@@ -11,6 +11,17 @@ return {
   --    colorscheme = "dracula",
   --  },
   --},
+
+  {
+    "sindrets/diffview.nvim",  -- optional - Diff integration
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- required
+
+      -- Only one of these is needed, not both.
+      "nvim-telescope/telescope.nvim", -- optional
+    },
+    config = true
+  },
   {
     "kyazdani42/nvim-web-devicons",
   },

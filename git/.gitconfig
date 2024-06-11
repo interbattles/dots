@@ -15,8 +15,16 @@
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [diff]
-    tool = meld
+    tool = nvimdiff
 [difftool]
-    prompt = false
-[difftool "meld"]
-    cmd = meld "$LOCAL" "$REMOTE"
+	prompt = false
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+
+[merge]
+  tool = nvimdiff
+[mergetool]
+  prompt = false
+  keepBackup = false
+[mergetool "nvimdiff"]
+  cmd = nvim -n -c "DiffviewOpen" "$MERGE"
