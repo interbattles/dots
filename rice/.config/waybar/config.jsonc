@@ -13,6 +13,7 @@
     "hyprland/workspaces"
   ],
   "modules-right": [
+    "tray",
     "network",
     "wireplumber",
     "battery",
@@ -58,14 +59,14 @@
       "3": [],
       "4": [],
       "5": [],
-      "6": [],
+      "6": []
     },
     "format": "{icon}",
     "format-icons": {
       "active": "<span font='12'>󰮯</span>",
       "empty": "<span font='8'></span>",
-      "persistent": "󰊠",
-    },
+      "persistent": "󰊠"
+    }
   },
   "network": {
     "tooltip": false,
@@ -102,7 +103,7 @@
     "tooltip": true,
     "interval": 60,
     "format": "{:%H:%M}",
-    "tooltip-format": "{:%Y-%m-%d}",
+    "tooltip-format": "{:%Y-%m-%d}"
   },
   "cpu": {
     "interval": 15,
@@ -130,11 +131,11 @@
   "custom/launcher": {
     "format": " ",
     "on-click": "wofi --show drun",
-    "on-click-right": "killall wofi",
+    "on-click-right": "killall wofi"
   },
   "custom/power": {
     "format": " ",
-    "on-click": "bash ~/.config/rofi/leave/leave.sh",
+    "on-click": "bash ~/.config/rofi/leave/leave.sh"
   },
   "custom/updates": {
     "format": "{} Update(s)",
@@ -142,5 +143,5 @@
     "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
     "interval": 15,
     "on-click": "alacritty -e paru -Syu && notify-send 'The system has been updated' "
-  },
+  }
 }
