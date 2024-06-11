@@ -7,7 +7,7 @@ if status is-interactive
 end
 
 set fish_greeting
-$HOME/.local/bin/mise activate fish | source
+$HOME/.cargo/bin/mise activate fish | source
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
