@@ -5,6 +5,7 @@
 return {
   -- add dracula
   -- { "Mofiqul/dracula.nvim" },
+  { "lambdalisue/vim-suda" },
   {
     "catppuccin/nvim",
     lazy = true,
