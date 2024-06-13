@@ -136,4 +136,7 @@
     "interval": 3600,
     "on-click": "alacritty -e yay -Syu && notify-send 'The system has been updated' ",
   },
+  "tray": {
+    "spacing": 10,
+  },
 }
