@@ -1,27 +1,39 @@
 return {
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
-    },
+    'nvim-tree/nvim-tree.lua',
     keys = {
-      { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
+      { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle explorer" },
     },
-    opts = {
-      filesystem = {
-        filtered_items = {
-          hide_dotfiles = false
+    config = function()
+      local function on_attach(bufnr)
+        local api = require "nvim-tree.api"
+
+        local function change_root_to_global_cwd()
+          local global_cwd = vim.fn.getcwd(-1, -1)
+          api.tree.change_root(global_cwd)
+        end
+
+        local function opts(desc)
+          return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+        end
+
+        api.config.mappings.default_on_attach(bufnr)
+        vim.keymap.set('n', '<C-c>', change_root_to_global_cwd, opts('Change Root To Global CWD'))
+      end
+
+      require("nvim-tree").setup {
+        on_attach = on_attach,
+        sync_root_with_cwd = true,
+        update_focused_file = {
+          enable = false,
+          update_root = true,
         },
-      },
-      window = {
-        position = "right"
       }
-    },
-    config = function(_, opts)
-      require("neo-tree").setup(opts)
     end,
+    init = function()
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+    end
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -60,9 +72,6 @@ return {
     },
   },
   {
-    'tpope/vim-fugitive'
-  },
-  {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
@@ -92,4 +101,18 @@ return {
       wk.register(opts.defaults)
     end
   },
+  {
+    "NeogitOrg/neogit",
+    keys = {
+      { "<leader>gu", "<cmd>Neogit<cr>", "Neogit UI" }
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",  -- required
+      "sindrets/diffview.nvim", -- optional - Diff integration
+
+      -- Only one of these is needed, not both.
+      "nvim-telescope/telescope.nvim", -- optional
+    },
+    config = true
+  }
 }

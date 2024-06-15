@@ -14,6 +14,12 @@
 	helper = /usr/bin/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
 [diff]
     tool = nvimdiff
 [difftool]
@@ -30,9 +36,3 @@
   cmd = nvim -n -c "DiffviewOpen" "$MERGE"
 [core]
 	editor = nvim
-[credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
