@@ -4,14 +4,25 @@ return {
   },
   {
     'natecraddock/sessions.nvim',
-    opts = {
-      events = { "WinEnter" },
-      session_filepath = ".nvim/session",
-      absolute = true,
+    lazy = false,
+    keys = {
+      { "<leader>ss", "<cmd>SessionsSave<cr>", { desc = "Save session" } },
     },
+    opts = {
+      session_filepath = ".nvim/session",
+      absolute = false,
+    },
+    config = function(_, opts)
+      local sessions = require("sessions")
+      sessions.setup(opts)
+    end,
   },
   {
     'natecraddock/workspaces.nvim',
+    keys = {
+      { "<leader>we", "<cmd>Telescope workspaces<cr>", { desc = "Open Workspaces Explorer" } },
+      { "<leader>ws", "<cmd>WorkspacesSyncDirs<cr>",   { desc = "Sync Workspaces Dirs" } },
+    },
     config = function()
       require("workspaces").setup({
         hooks = {
@@ -26,6 +37,7 @@ return {
           }
         },
       })
+      require('telescope').load_extension("workspaces")
     end
   },
   {
