@@ -3,53 +3,56 @@ return {
     'lambdalisue/vim-suda',
   },
   {
-    'natecraddock/sessions.nvim',
-    lazy = false,
-    keys = {
-      { "<leader>ss", "<cmd>SessionsSave<cr>", { desc = "Save session" } },
-    },
-    opts = {
-      session_filepath = ".nvim/session",
-      absolute = false,
-    },
-    config = function(_, opts)
-      local sessions = require("sessions")
-      sessions.setup(opts)
-    end,
-  },
-  {
-    'natecraddock/workspaces.nvim',
-    keys = {
-      { "<leader>we", "<cmd>Telescope workspaces<cr>", { desc = "Open Workspaces Explorer" } },
-      { "<leader>ws", "<cmd>WorkspacesSyncDirs<cr>",   { desc = "Sync Workspaces Dirs" } },
-    },
-    config = function()
-      require("workspaces").setup({
-        hooks = {
-          open_pre = {
-            "SessionsStop",
-            "silent %bdelete!",
-          },
-          open = {
-            function()
-              require("sessions").load(nil, { silent = true })
-            end
-          }
-        },
-      })
-      require('telescope').load_extension("workspaces")
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.6',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    init = function()
+      vim.keymap.set("n", "<leader>tg", "<cmd>Telescope live_grep<cr>", { noremap = true, desc = "Live grep" })
+      vim.keymap.set("n", "<leader>tf", "<cmd>Telescope find_files<cr>", { noremap = true, desc = "Find files" })
+      vim.keymap.set("n", "<leader>tb", "<cmd>Telescope file_browser<cr>", { noremap = true, desc = "File Browser" })
     end
   },
   {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.6',
-    -- or                              , branch = '0.1.x',
-    dependencies = { 'nvim-lua/plenary.nvim' }
+    "tiagovla/scope.nvim",
+    lazy = false,
+    config = function()
+      require('scope').setup {
+        hooks = {
+          pre_tab_leave = function()
+            vim.api.nvim_exec_autocmds('User', { pattern = 'ScopeTabLeavePre' })
+          end,
+
+          post_tab_enter = function()
+            vim.api.nvim_exec_autocmds('User', { pattern = 'ScopeTabEnterPost' })
+          end,
+        },
+      }
+    end,
+    init = function()
+      require("telescope").load_extension("scope")
+    end
   },
   {
-    "nvim-telescope/telescope-frecency.nvim",
+    'rmagatti/auto-session',
     config = function()
-      require("telescope").load_extension "frecency"
+      require('auto-session').setup {
+        auto_session_last_session_dir = vim.fn.stdpath("data") .. "/sessions/",
+        auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/",
+        auto_session_enabled = true,
+        session_lens = {
+          buftypes_to_ignore = {},
+          load_on_setup = true,
+          theme_conf = { border = true },
+          previewer = false,
+        },
+      }
+
+      vim.keymap.set("n", "<leader>ss", "<cmd>SessionSave<cr>", { noremap = true, desc = "Save session" })
+      vim.keymap.set("n", "<leader>sl", "<cmd>SessionRestore<cr>", { noremap = true, desc = "Load previous session" })
+      vim.keymap.set("n", "<leader>se", require("auto-session.session-lens").search_session, {
+        noremap = true,
+        desc = "Session lens"
+      })
     end,
-  }
+  },
 }

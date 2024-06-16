@@ -7,10 +7,10 @@ return {
         integrations = {
           cmp = true,
           gitsigns = true,
-          nvimtree = true,
           treesitter = true,
           notify = true,
           diffview = true,
+          barbar = true,
         }
       })
 
@@ -25,6 +25,14 @@ return {
     },
     init = function() vim.g.barbar_auto_setup = false end,
     opts = {
+      icons = {
+        diagnostics = {
+          [vim.diagnostic.severity.ERROR] = { enabled = true, icon = ' ' },
+          [vim.diagnostic.severity.WARN] = { enabled = true, icon = ' ' },
+          [vim.diagnostic.severity.INFO] = { enabled = false },
+          [vim.diagnostic.severity.HINT] = { enabled = true },
+        },
+      },
     },
     version = '^1.0.0',
   },

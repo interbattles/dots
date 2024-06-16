@@ -4,7 +4,9 @@ return {
     keys = {
       { "<leader>e", "<cmd>Oil<cr>", { desc = "Open oil" } }
     },
+    lazy = false,
     opts = {
+      default_file_explorer = true,
       view_options = {
         show_hidden = true,
       }
@@ -54,13 +56,8 @@ return {
       plugins = { spelling = true },
       defaults = {
         mode = { "n", "v" },
-        ["g"] = { name = "+goto" },
-        ["gs"] = { name = "+surround" },
-        ["z"] = { name = "+fold" },
-        ["]"] = { name = "+next" },
-        ["["] = { name = "+prev" },
-        ["<leader><tab>"] = { name = "+tabs" },
         ["<leader>b"] = { name = "+buffer" },
+        ["<leader>t"] = { name = "+telescope" },
         ["<leader>c"] = { name = "+code" },
         ["<leader>f"] = { name = "+file/find" },
         ["<leader>g"] = { name = "+git" },
@@ -68,7 +65,6 @@ return {
         ["<leader>gu"] = { name = "+neogit" },
         ["<leader>s"] = { name = "+session" },
         ["<leader>u"] = { name = "+ui" },
-        ["<leader>w"] = { name = "+windows" },
         ["<leader>x"] = { name = "+diagnostics/quickfix" },
       },
     },
@@ -80,9 +76,6 @@ return {
   },
   {
     "NeogitOrg/neogit",
-    keys = {
-      { "<leader>gu", "<cmd>Neogit<cr>", "Neogit UI" }
-    },
     dependencies = {
       "nvim-lua/plenary.nvim",  -- required
       "sindrets/diffview.nvim", -- optional - Diff integration
@@ -91,5 +84,8 @@ return {
       "nvim-telescope/telescope.nvim", -- optional
     },
     config = true
-  }
+  },
+  init = function()
+    vim.keymap.set("n", "<leader>gu", "<cmd>Neogit<cr>", { desc = "Neogit UI" })
+  end
 }

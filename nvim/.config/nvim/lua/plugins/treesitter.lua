@@ -14,6 +14,7 @@ return {
     indent = { enable = true },
     ensure_installed = {
       "bash",
+      "fish",
       "c",
       "diff",
       "jsdoc",
@@ -49,7 +50,6 @@ return {
       },
     },
   },
-  ---@param opts TSConfig
   config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)
   end,
