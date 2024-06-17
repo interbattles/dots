@@ -23,9 +23,9 @@
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "format-icons": {
       "default": [
-        "<span color='#181825'> </span>",
-        "<span color='#181825'> </span>",
-        "<span color='#181825'> </span>",
+        "",
+        "",
+        "",
       ],
     },
   },
@@ -37,9 +37,9 @@
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "format-icons": {
       "default": [
-        "<span color='#181825'> </span>",
-        "<span color='#181825'> </span>",
-        "<span color='#181825'> </span>",
+        "",
+        "",
+        "",
       ],
     },
   },
@@ -65,7 +65,7 @@
   },
   "network": {
     "tooltip": false,
-    "format-wifi": "<span color='#181825'> </span> {bandwidthDownBits}",
+    "format-wifi": " {bandwidthDownBits}",
     "format-ethernet": "",
     "interval": 30,
   },
@@ -75,22 +75,13 @@
     "interval": 1,
   },
   "battery": {
-    "states": {
-      "good": 95,
-      "warning": 30,
-      "critical": 10,
+    "format": "{icon}  {capacity}%",
+    "format-alt": "{icon} {time}",
+    "format-icons": {
+      "default": ["","","","",""],
+      "plugged": "",
+      "charging": "",
     },
-    "format": "{icon}  <span color='#181825'>{capacity}%</span>",
-    "format-charging": "<span color='#a6e3a1'></span> <span color='#181825'>{capacity}%</span>",
-    "format-plugged": " <span color='#181825'>{capacity}</span>%",
-    "format-alt": "<span color='#181825'>{time}</span> {icon}",
-    "format-icons": [
-      "<span color='#181825'></span>",
-      "<span color='#181825'></span>",
-      "<span color='#181825'></span>",
-      "<span color='#181825'></span>",
-      "<span color='#181825'></span>",
-    ],
   },
   "clock": {
     "tooltip": true,
@@ -100,12 +91,12 @@
   },
   "cpu": {
     "interval": 15,
-    "format": "<span> </span> {}%",
+    "format": " {}%",
     "max-length": 10,
   },
   "memory": {
     "interval": 30,
-    "format": "<span> </span> {used}GiB",
+    "format": " {used}GiB",
     "max-length": 13,
   },
   "custom/media": {

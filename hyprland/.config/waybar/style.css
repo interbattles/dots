@@ -3,7 +3,7 @@
 * {
   border: none;
   border-radius: 10px;
-  font-family: "MonoLisa static";
+  font-family: "JetBrainsMono Nerd Font";
   font-size: 15px;
   min-height: 10px;
 }
@@ -67,6 +67,10 @@ window#waybar.hidden {
   font-size: 4px;
 }
 
+.module {
+  color: @mantle;
+}
+
 #network {
   margin-top: 6px;
   margin-left: 8px;
@@ -77,7 +81,6 @@ window#waybar.hidden {
   font-size: 14px;
   font-weight: bold;
   transition: none;
-  color: @crust;
   background: @lavender;
 }
 
@@ -91,7 +94,6 @@ window#waybar.hidden {
   font-size: 14px;
   font-weight: bold;
   transition: none;
-  color: @mantle;
   background: @peach;
 }
 #wireplumber {
@@ -104,7 +106,6 @@ window#waybar.hidden {
   font-size: 14px;
   font-weight: bold;
   transition: none;
-  color: @mantle;
   background: @peach;
 }
 
@@ -118,7 +119,6 @@ window#waybar.hidden {
   transition: none;
   font-size: 14px;
   font-weight: bold;
-  color: @mantle;
   background: @green;
 }
 /*
@@ -131,7 +131,6 @@ window#waybar.hidden {
 
 #battery.critical:not(.charging) {
   background-color: @red;
-  color: @mantle;
   animation-name: blink;
   animation-duration: 0.5s;
   animation-timing-function: linear;
@@ -153,7 +152,6 @@ window#waybar.hidden {
   margin-bottom: 0px;
   border-radius: 10px;
   transition: none;
-  color: @mantle;
   background: @mauve;
 }
 
@@ -168,7 +166,6 @@ window#waybar.hidden {
   transition: none;
   font-size: 14px;
   font-weight: bold;
-  color: @mantle;
   background: @pink;
 }
 
@@ -180,7 +177,6 @@ window#waybar.hidden {
   font-size: 14px;
   font-weight: bold;
   transition: none;
-  color: @mantle;
   background: @teal;
 }
 
@@ -194,7 +190,6 @@ window#waybar.hidden {
   font-size: 14px;
   font-weight: bold;
   transition: none;
-  color: @mantle;
   background: @red;
 }
 
@@ -231,7 +226,6 @@ window#waybar.hidden {
   margin-bottom: 0px;
   border-radius: 10px;
   transition: none;
-  color: @mantle;
   background: @yellow;
 }
 
@@ -245,7 +239,6 @@ window#waybar.hidden {
   font-size: 14px;
   font-weight: bold;
   transition: none;
-  color: @mantle;
   background: @red;
 }
 
@@ -257,6 +250,5 @@ window#waybar.hidden {
   margin-bottom: 0px;
   border-radius: 10px;
   transition: none;
-  color: @mantle;
   background: @peach;
 }

@@ -27,4 +27,4 @@ for dep in ${dependencies[@]}; do
 done
 
 echo "symlinking configurations"
-stow editor git hyprland nvim terminal tmux
+stow editor fish git hyprland nvim terminal tmux

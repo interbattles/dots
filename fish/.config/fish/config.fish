@@ -18,7 +18,7 @@ $HOME/.cargo/bin/mise activate fish | source
 #set --export BUN_INSTALL "$HOME/.bun"
 #set --export PATH $BUN_INSTALL/bin $PATH
 
-abbr -a -- pacfzf pacman\ -S\ \$\(pacman\ -Slq\ \|\ fzf\ --preview\ \'pacman\ -Si\ \{\}\'\ --layout=reverse\)
+abbr -a -- pacfzf pacman\ -Slq\ \|\ fzf\ --preview\ \'pacman\ -Si\ \{\}\'\ --layout=reverse
 abbr -a -- pacfzinstalled pacman\ -Qq\ \|\ fzf\ --preview\ \'pacman\ -Qil\ \{\}\'\ --layout=reverse\ --bind\ \'enter:execute\(pacman\ -Qil\ \{\}\ \|\ less\)\'
 
 fish_add_path /home/devin/.spicetify
