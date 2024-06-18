@@ -60,10 +60,7 @@ return {
         ["<leader>t"] = { name = "+telescope" },
         ["<leader>c"] = { name = "+code" },
         ["<leader>f"] = { name = "+file/find" },
-        ["<leader>g"] = { name = "+git" },
         ["<leader>gh"] = { name = "+hunks" },
-        ["<leader>gu"] = { name = "+neogit" },
-        ["<leader>s"] = { name = "+session" },
         ["<leader>u"] = { name = "+ui" },
         ["<leader>x"] = { name = "+diagnostics/quickfix" },
       },
@@ -83,9 +80,9 @@ return {
       -- Only one of these is needed, not both.
       "nvim-telescope/telescope.nvim", -- optional
     },
-    config = true
+    config = true,
+    init = function()
+      vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>", { desc = "open neogit", noremap = true })
+    end
   },
-  init = function()
-    vim.keymap.set("n", "<leader>gu", "<cmd>Neogit<cr>", { desc = "Neogit UI" })
-  end
 }

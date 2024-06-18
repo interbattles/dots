@@ -128,6 +128,8 @@
     "on-click": "alacritty -e yay -Syu && notify-send 'The system has been updated' ",
   },
   "tray": {
+  	"icon-size": 21,
+    "show-passive-items": true,
     "spacing": 10,
   },
 }
