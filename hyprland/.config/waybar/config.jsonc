@@ -65,7 +65,11 @@
   },
   "network": {
     "tooltip": false,
-    "format-wifi": " {bandwidthDownBits}",
+    "format": "{icon} {bandwidthDownBits}",
+    "format-icons": {
+      "wifi": "",
+      "ethernet": "",
+    },
     "format-ethernet": "",
     "interval": 30,
   },
