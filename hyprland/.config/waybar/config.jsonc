@@ -70,8 +70,7 @@
       "wifi": "",
       "ethernet": "",
     },
-    "format-ethernet": "",
-    "interval": 30,
+    "on-click": "nm-connection-editor",
   },
   "backlight": {
     "tooltip": false,
@@ -90,7 +89,7 @@
   "clock": {
     "tooltip": true,
     "interval": 60,
-    "format": "{:%H:%M}",
+    "format": "󰥔 {:%I:%M %p}",
     "tooltip-format": "{:%Y-%m-%d}",
   },
   "cpu": {

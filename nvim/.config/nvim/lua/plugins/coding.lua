@@ -1,8 +1,32 @@
 return {
   {
+    "numToStr/FTerm.nvim",
+    opts = {
+      dimensions = {
+        height = 0.8,
+        width = 0.8,
+      },
+    },
+    config = true,
+    init = function()
+      vim.keymap.set('n', '<leader>i', '<CMD>lua require("FTerm").toggle()<CR>', { desc = "terminal (floating)" })
+    end
+  },
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ui = {
+        icons = {
+          package_installed = "✓",
+          package_pending = "➜",
+          package_uninstalled = "✗"
+        }
+      }
+    }
+  },
+  {
     "williamboman/mason-lspconfig.nvim",
     dependencies = {
-      "williamboman/mason.nvim",
       "neovim/nvim-lspconfig",
     },
     config = function()

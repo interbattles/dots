@@ -1,17 +1,22 @@
 return {
   {
     'stevearc/oil.nvim',
-    keys = {
-      { "<leader>e", "<cmd>Oil<cr>", { desc = "Open oil" } }
-    },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     lazy = false,
     opts = {
       default_file_explorer = true,
       view_options = {
         show_hidden = true,
+      },
+      buf_options = {
+        buflisted = false, -- default is false
+        bufhidden = "hide"
       }
     },
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = true,
+    init = function()
+      vim.keymap.set("n", "<leader>e", "<cmd>Oil<cr>", { desc = "Open oil", noremap = true })
+    end,
   },
   {
     "lewis6991/gitsigns.nvim",

@@ -20,10 +20,12 @@ return {
   {
     'romgrk/barbar.nvim',
     dependencies = {
-      'lewis6991/gitsigns.nvim',     -- OPTIONAL: for git status
-      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+      'lewis6991/gitsigns.nvim',
+      'nvim-tree/nvim-web-devicons',
     },
-    init = function() vim.g.barbar_auto_setup = false end,
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
     opts = {
       icons = {
         diagnostics = {
@@ -39,12 +41,10 @@ return {
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      require('lualine').setup({
-        options = {
-          theme = "catppuccin"
-        }
-      })
+    lazy = false,
+    config = true,
+    init = function()
+      vim.o.laststatus = 2
     end
   },
   {

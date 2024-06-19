@@ -5,7 +5,9 @@
 - `git-lfs`
 - `fzf`
 - `nvim`
-- `hyprland`
 - `waybar`
+- `hyprland`
+- `hyprlock`
+- `hyprpaper`
 
 ![car](https://c.tenor.com/0PPg0pxcY7kAAAAC/tenor.gif)
