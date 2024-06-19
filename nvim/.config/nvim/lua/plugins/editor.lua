@@ -65,6 +65,7 @@ return {
         ["<leader>t"] = { name = "+telescope" },
         ["<leader>c"] = { name = "+code" },
         ["<leader>f"] = { name = "+file/find" },
+        ["<leader>g"] = { name = "+git" },
         ["<leader>gh"] = { name = "+hunks" },
         ["<leader>u"] = { name = "+ui" },
         ["<leader>x"] = { name = "+diagnostics/quickfix" },
