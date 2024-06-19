@@ -27,8 +27,9 @@ return {
     tag = '0.1.6',
     dependencies = { 'nvim-lua/plenary.nvim' },
     init = function()
-      vim.keymap.set("n", "<leader>tg", "<cmd>Telescope live_grep<cr>", { noremap = true, desc = "Live grep" })
-      vim.keymap.set("n", "<leader>tf", "<cmd>Telescope file_browser<cr>", { noremap = true, desc = "File Browser" })
+      vim.keymap.set("n", "<leader>tg", "<cmd>Telescope live_grep<cr>", { noremap = true, desc = "grep" })
+      vim.keymap.set("n", "<leader>tf", "<cmd>Telescope file_browser<cr>", { noremap = true, desc = "files" })
+      vim.keymap.set("n", "<leader>ts", "<cmd>Telescope scope buffers<cr>", { noremap = true, desc = "scope" })
     end
   },
   {

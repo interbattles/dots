@@ -36,3 +36,14 @@ map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to Upper Window" })
 map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
 map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
+
+-- buffers
+map('n', '<leader>b[', '<Cmd>bnext<CR>')
+map('n', '<leader>b]', '<Cmd>bprev<CR>')
+-- Goto buffer in position...
+map('n', '<leader>b1', '<Cmd>bfirst<CR>')
+map('n', '<leader>b0', '<Cmd>blast<CR>')
+-- Close buffer
+map('n', '<leader>bq', '<Cmd>bdelete<CR>')
+
+map("n", "<leader>be", "<cmd>Telescope scope buffers<cr>", { noremap = true, desc = "scope" })
