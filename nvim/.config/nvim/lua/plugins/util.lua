@@ -16,10 +16,10 @@ return {
       vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right)
       vim.keymap.set('n', '<C-\\>', require('smart-splits').move_cursor_previous)
 
-      vim.keymap.set('n', '<leader>H', require('smart-splits').swap_buf_left, { desc = "swap left" })
-      vim.keymap.set('n', '<leader>J', require('smart-splits').swap_buf_down, { desc = "swap down" })
-      vim.keymap.set('n', '<leader>K', require('smart-splits').swap_buf_up, { desc = "swap up" })
-      vim.keymap.set('n', '<leader>L', require('smart-splits').swap_buf_right, { desc = "swap right" })
+      vim.keymap.set('n', '<leader>sh', require('smart-splits').swap_buf_left, { desc = "swap left" })
+      vim.keymap.set('n', '<leader>sj', require('smart-splits').swap_buf_down, { desc = "swap down" })
+      vim.keymap.set('n', '<leader>sk', require('smart-splits').swap_buf_up, { desc = "swap up" })
+      vim.keymap.set('n', '<leader>sl', require('smart-splits').swap_buf_right, { desc = "swap right" })
     end
   },
   {
@@ -29,7 +29,6 @@ return {
     init = function()
       vim.keymap.set("n", "<leader>tg", "<cmd>Telescope live_grep<cr>", { noremap = true, desc = "grep" })
       vim.keymap.set("n", "<leader>tf", "<cmd>Telescope file_browser<cr>", { noremap = true, desc = "files" })
-      vim.keymap.set("n", "<leader>ts", "<cmd>Telescope scope buffers<cr>", { noremap = true, desc = "scope" })
     end
   },
   {
@@ -44,6 +43,8 @@ return {
     lazy = true,
     init = function()
       require("telescope").load_extension("scope")
+      vim.keymap.set("n", "<leader>ts", "<cmd>Telescope scope buffers<cr>", { noremap = true, desc = "scope" })
+      vim.keymap.set("n", "<leader>be", "<cmd>Telescope scope buffers<cr>", { noremap = true, desc = "explore buffers" })
     end
   },
 }

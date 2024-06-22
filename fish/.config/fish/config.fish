@@ -11,6 +11,7 @@ end
 
 #source $HOME/.cargo/env.fish
 set -gx PATH "$HOME/.cargo/bin" $PATH
+set -Ux EDITOR "nvim"
 
 $HOME/.cargo/bin/mise activate fish | source
 
