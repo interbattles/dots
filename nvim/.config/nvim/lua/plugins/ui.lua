@@ -22,6 +22,20 @@ return {
     end,
   },
   {
+    'akinsho/bufferline.nvim',
+    version = "*",
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      'catppuccin',
+    },
+    config = function()
+      local highlights = require("catppuccin.groups.integrations.bufferline").get()
+      require("bufferline").setup {
+        highlights = highlights
+      }
+    end,
+  },
+  {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons', 'catppuccin' },
     lazy = false,

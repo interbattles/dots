@@ -145,12 +145,12 @@ window#waybar.hidden {
 }
 
 #backlight {
-  margin-top: 6px;
-  margin-left: 8px;
+  margin: 6px 0px 6px 8px;
   padding-left: 10px;
   padding-right: 10px;
-  margin-bottom: 0px;
-  border-radius: 10px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: bold;
   transition: none;
   background: @mauve;
 }

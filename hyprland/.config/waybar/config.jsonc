@@ -1,16 +1,22 @@
 {
   "layer": "top",
-
   // "width": 1728,
   "margin": "10 10",
   //Modules layout
-  "modules-left": ["custom/launcher", "cpu", "memory"],
-  "modules-center": ["hyprland/workspaces"],
+  "modules-left": [
+    "custom/launcher",
+    "cpu",
+    "memory"
+  ],
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
   "modules-right": [
     "tray",
     "custom/updates",
     "network",
     "wireplumber",
+    "backlight",
     "battery",
     "clock",
   ],
@@ -81,7 +87,13 @@
     "format": "{icon}  {capacity}%",
     "format-alt": "{icon} {time}",
     "format-icons": {
-      "default": ["","","","",""],
+      "default": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
       "plugged": "",
       "charging": "",
     },
@@ -131,7 +143,7 @@
     "on-click": "alacritty -e yay -Syu && notify-send 'The system has been updated' ",
   },
   "tray": {
-  	"icon-size": 21,
+    "icon-size": 21,
     "show-passive-items": true,
     "spacing": 10,
   },
