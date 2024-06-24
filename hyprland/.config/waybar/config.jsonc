@@ -72,9 +72,12 @@
   "network": {
     "tooltip": false,
     "format": "{icon} {bandwidthDownBits}",
+    "interval": 25,
     "format-icons": {
       "wifi": "",
-      "ethernet": "",
+      "ethernet": "󰛳",
+      "linked": "󰛵",
+      "disconnected": "󰅛",
     },
     "on-click": "nm-connection-editor",
   },
