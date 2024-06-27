@@ -149,4 +149,7 @@ return {
       },
     },
   },
+  {
+    'chrisbra/Colorizer',
+  },
 }
