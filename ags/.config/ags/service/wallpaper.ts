@@ -24,28 +24,22 @@ class Wallpaper extends Service {
 
   #blockMonitor = false
 
-  #wallpaper() {
-    if (!dependencies("swww"))
+  async #wallpaper() {
+    if (!dependencies("hyprpaper"))
       return
+    await sh([
+      "hyprctl", "hyprpaper", "unload", "all",
+    ])
 
-    sh("hyprctl cursorpos").then(pos => {
-      sh([
-        "swww", "img",
-        "--invert-y",
-        "--transition-type", "grow",
-        "--transition-pos", pos.replace(" ", ""),
-        WP,
-      ]).then(() => {
-        this.changed("wallpaper")
-      })
-    })
+    await sh(["killall", "hyprpaper"])
+    await sh(["hyprpaper"])
   }
 
   async #setWallpaper(path: string) {
     this.#blockMonitor = true
 
     await sh(`cp ${path} ${WP}`)
-    this.#wallpaper()
+    await this.#wallpaper()
 
     this.#blockMonitor = false
   }
@@ -81,18 +75,17 @@ class Wallpaper extends Service {
   constructor() {
     super()
 
-    if (!dependencies("swww"))
+    if (!dependencies("hyprpaper"))
       return this
 
     // gtk portal
-    Utils.monitorFile(WP, () => {
+    Utils.monitorFile(WP, async () => {
       if (!this.#blockMonitor)
-        this.#wallpaper()
+        await this.#wallpaper()
     })
 
-    Utils.execAsync("swww-daemon")
-      .then(this.#wallpaper)
-      .catch(() => null)
+    sh(["killall", "hyprpaper"])
+    sh(["hyprpaper"])
   }
 }
 
