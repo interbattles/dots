@@ -1,7 +1,7 @@
 return {
   {
     'stevearc/oil.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons', },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     lazy = false,
     opts = {
       default_file_explorer = true,
@@ -17,44 +17,44 @@ return {
       keymaps = {
         ['g?'] = 'actions.show_help',
         ['<CR>'] = 'actions.select',
-        ['sv'] = { 'actions.select', opts = { vertical = true, }, desc = 'Open the entry in a vertical split', },
-        ['sh'] = { 'actions.select', opts = { horizontal = true, }, desc = 'Open the entry in a horizontal split', },
-        ['<C-t>'] = { 'actions.select', opts = { tab = true, }, desc = 'Open the entry in new tab', },
+        ['sv'] = { 'actions.select', opts = { vertical = true }, desc = 'Open the entry in a vertical split' },
+        ['sh'] = { 'actions.select', opts = { horizontal = true }, desc = 'Open the entry in a horizontal split' },
+        ['<C-t>'] = { 'actions.select', opts = { tab = true }, desc = 'Open the entry in new tab' },
         ['<C-p>'] = 'actions.preview',
         ['q'] = 'actions.close',
-        ['<C-l>'] = 'actions.refresh',
+        ['gr'] = 'actions.refresh',
         ['-'] = 'actions.parent',
         ['_'] = 'actions.open_cwd',
         ['`'] = 'actions.cd',
-        ['~'] = { 'actions.cd', opts = { scope = 'tab', }, desc = ':tcd to the current oil directory', },
+        ['~'] = { 'actions.cd', opts = { scope = 'tab' }, desc = ':tcd to the current oil directory' },
         ['gs'] = 'actions.change_sort',
         ['gx'] = 'actions.open_external',
         ['g.'] = 'actions.toggle_hidden',
         ['g\\'] = 'actions.toggle_trash',
       },
-      use_default_keymaps = true,
+      use_default_keymaps = false,
     },
     config = true,
     init = function()
-      vim.keymap.set('n', '<leader>e', '<cmd>Oil<cr>', { desc = 'files', noremap = true, })
+      vim.keymap.set('n', '<leader>e', '<cmd>Oil<cr>', { desc = 'files', noremap = true })
     end,
   },
   {
     'lewis6991/gitsigns.nvim',
     opts = {
       signs = {
-        add = { text = '▎', },
-        change = { text = '▎', },
-        delete = { text = '', },
-        topdelete = { text = '', },
-        changedelete = { text = '▎', },
-        untracked = { text = '▎', },
+        add = { text = '▎' },
+        change = { text = '▎' },
+        delete = { text = '' },
+        topdelete = { text = '' },
+        changedelete = { text = '▎' },
+        untracked = { text = '▎' },
       },
       on_attach = function(buffer)
         local gs = package.loaded.gitsigns
 
         local function map(mode, l, r, desc)
-          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc, })
+          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
         end
 
         -- stylua: ignore start
@@ -62,16 +62,16 @@ return {
         map('n', '[h', function() gs.nav_hunk('prev') end, 'Prev Hunk')
         map('n', ']H', function() gs.nav_hunk('last') end, 'Last Hunk')
         map('n', '[H', function() gs.nav_hunk('first') end, 'First Hunk')
-        map({ 'n', 'v', }, '<leader>ghs', ':Gitsigns stage_hunk<CR>', 'Stage Hunk')
-        map({ 'n', 'v', }, '<leader>ghr', ':Gitsigns reset_hunk<CR>', 'Reset Hunk')
+        map({ 'n', 'v' }, '<leader>ghs', ':Gitsigns stage_hunk<CR>', 'Stage Hunk')
+        map({ 'n', 'v' }, '<leader>ghr', ':Gitsigns reset_hunk<CR>', 'Reset Hunk')
         map('n', '<leader>ghS', gs.stage_buffer, 'Stage Buffer')
         map('n', '<leader>ghu', gs.undo_stage_hunk, 'Undo Stage Hunk')
         map('n', '<leader>ghR', gs.reset_buffer, 'Reset Buffer')
         map('n', '<leader>ghp', gs.preview_hunk_inline, 'Preview Hunk Inline')
-        map('n', '<leader>ghb', function() gs.blame_line({ full = true, }) end, 'Blame Line')
+        map('n', '<leader>ghb', function() gs.blame_line({ full = true }) end, 'Blame Line')
         map('n', '<leader>ghd', gs.diffthis, 'Diff This')
         map('n', '<leader>ghD', function() gs.diffthis('~') end, 'Diff This ~')
-        map({ 'o', 'x', }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'GitSigns Select Hunk')
+        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'GitSigns Select Hunk')
       end,
     },
   },
@@ -79,17 +79,17 @@ return {
     'folke/which-key.nvim',
     event = 'VeryLazy',
     opts = {
-      plugins = { spelling = true, },
+      plugins = { spelling = true },
       defaults = {
-        mode = { 'n', 'v', },
-        ['<leader>b'] = { name = '+buffer', },
-        ['<leader>t'] = { name = '+telescope', },
-        ['<leader>c'] = { name = '+code', },
-        ['<leader>f'] = { name = '+file/find', },
-        ['<leader>g'] = { name = '+git', },
-        ['<leader>gh'] = { name = '+hunks', ['_'] = 'which_key_ignore', },
-        ['<leader>u'] = { name = '+ui', },
-        ['<leader>x'] = { name = '+diagnostics/quickfix', },
+        mode = { 'n', 'v' },
+        ['<leader>b'] = { name = '+buffer' },
+        ['<leader>t'] = { name = '+telescope' },
+        ['<leader>c'] = { name = '+code' },
+        ['<leader>f'] = { name = '+file/find' },
+        ['<leader>g'] = { name = '+git' },
+        ['<leader>gh'] = { name = '+hunks', ['_'] = 'which_key_ignore' },
+        ['<leader>u'] = { name = '+ui' },
+        ['<leader>x'] = { name = '+diagnostics/quickfix' },
       },
     },
     config = function(_, opts)
@@ -109,7 +109,44 @@ return {
     },
     config = true,
     init = function()
-      vim.keymap.set('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'open neogit', noremap = true, })
+      vim.keymap.set('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'open neogit', noremap = true })
     end,
+  },
+  {
+    'folke/trouble.nvim',
+    opts = {},
+    cmd = 'Trouble',
+    keys = {
+      {
+        '<leader>xx',
+        '<cmd>Trouble diagnostics toggle<cr>',
+        desc = 'Diagnostics (Trouble)',
+      },
+      {
+        '<leader>xX',
+        '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
+        desc = 'Buffer Diagnostics (Trouble)',
+      },
+      {
+        '<leader>cs',
+        '<cmd>Trouble symbols toggle focus=false<cr>',
+        desc = 'Symbols (Trouble)',
+      },
+      {
+        '<leader>cl',
+        '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
+        desc = 'LSP Definitions / references / ... (Trouble)',
+      },
+      {
+        '<leader>xL',
+        '<cmd>Trouble loclist toggle<cr>',
+        desc = 'Location List (Trouble)',
+      },
+      {
+        '<leader>xQ',
+        '<cmd>Trouble qflist toggle<cr>',
+        desc = 'Quickfix List (Trouble)',
+      },
+    },
   },
 }

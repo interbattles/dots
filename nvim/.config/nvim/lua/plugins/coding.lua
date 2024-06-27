@@ -6,8 +6,8 @@ return {
     dependencies = {
       'folke/lazydev.nvim',
       'hrsh7th/cmp-nvim-lsp',
-      -- 'hrsh7th/cmp-buffer',
-      -- 'hrsh7th/cmp-path',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
     },
     config = function()
       local cmp = require 'cmp'
@@ -57,13 +57,27 @@ return {
           end,
         }),
         sources = cmp.config.sources({
-          { name = 'nvim_lsp' },
-        }, {
-          {
-            name = 'lazydev',
-            group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+            {
+              name = 'nvim_lsp',
+              keyword_length = 3,
+              group_index = 1,
+              max_item_count = 30,
+            },
           },
-        }),
+          {
+            {
+              name = 'lazydev',
+              group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+            },
+          },
+          {
+            {
+              name = 'buffer',
+            },
+            {
+              name = 'path',
+            },
+          }),
 
       })
     end,

@@ -1,1 +1,3 @@
 **/.nvim
+**/node_modules
+**/*.out
