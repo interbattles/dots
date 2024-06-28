@@ -8,8 +8,10 @@ end
 
 #source $HOME/.cargo/env.fish
 set -gx PATH "$HOME/.cargo/bin" $PATH
-set -Ux EDITOR "nvim"
-set -Ux TERMINAL "alacritty"
+set -gx EDITOR "nvim"
+set -gx TERMINAL "alacritty"
+
+set -gx zoxide_cmd cd
 
 ## bun
 #set --export BUN_INSTALL "$HOME/.bun"
@@ -19,5 +21,3 @@ abbr -a -- pacfzf pacman\ -Slq\ \|\ fzf\ --preview\ \'pacman\ -Si\ \{\}\'\ --lay
 abbr -a -- pacfzinstalled pacman\ -Qq\ \|\ fzf\ --preview\ \'pacman\ -Qil\ \{\}\'\ --layout=reverse\ --bind\ \'enter:execute\(pacman\ -Qil\ \{\}\ \|\ less\)\'
 
 fish_add_path "$HOME/.spicetify"
-
-starship init fish | source

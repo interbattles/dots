@@ -6,7 +6,9 @@ git submodule update
 
 if ! command -v cargo &>/dev/null; then
 	echo "installing rustup"
-	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile minimal -y
+
+  pacman -S rustup
+  rustup toolchain install stable --profile minimal
 fi
 
 dependencies=("bat" "eza" "fd-find" "zoxide" "ripgrep" "starship")
@@ -28,3 +30,22 @@ done
 
 echo "symlinking configurations"
 stow ags fish git hyprland nvim starship terminal tmux
+
+# ags setup
+if ! command -v yay &>/dev/null; then
+  echo 'yay needed for aur installs'
+  exit 1
+fi
+yay -S --needed gnome-bluetooth-3.0 swww-git power-profiles-daemon
+
+npm --prefix ./ags/.config/ags install ./ags/.config/ags
+
+if ! command -v esbuild &>/dev/null; then
+  sudo npm install -g esbuild
+fi
+
+if ! command -v sass &>/dev/null; then
+  sudo npm install -g sass
+fi
+
+ags

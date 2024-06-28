@@ -14,17 +14,17 @@ const options = mkOptions(OPTIONS, {
   theme: {
     dark: {
       primary: {
-        bg: opt("#51a4e7"),
-        fg: opt("#141414"),
+        bg: opt("#f5c2e7"),
+        fg: opt("#181825"),
       },
       error: {
-        bg: opt("#e55f86"),
-        fg: opt("#141414"),
+        bg: opt("#f38ba8"),
+        fg: opt("#181825"),
       },
-      bg: opt("#171717"),
-      fg: opt("#eeeeee"),
-      widget: opt("#eeeeee"),
-      border: opt("#eeeeee"),
+      bg: opt("#1e1e2e"),
+      fg: opt("#cdd6f4"),
+      widget: opt("#cdd6f4"),
+      border: opt("#11111b"),
     },
     light: {
       primary: {
@@ -66,7 +66,7 @@ const options = mkOptions(OPTIONS, {
     flatButtons: opt(true),
     position: opt<"top" | "bottom">("top"),
     corners: opt(50),
-    transparent: opt(false),
+    transparent: opt(true),
     layout: {
       start: opt<Array<import("widget/bar/Bar").BarWidget>>([
         "launcher",
@@ -117,7 +117,7 @@ const options = mkOptions(OPTIONS, {
     },
     taskbar: {
       iconSize: opt(0),
-      monochrome: opt(true),
+      monochrome: opt(false),
       exclusive: opt(false),
     },
     messages: {
@@ -168,7 +168,7 @@ const options = mkOptions(OPTIONS, {
   overview: {
     scale: opt(9),
     workspaces: opt(7),
-    monochromeIcon: opt(true),
+    monochromeIcon: opt(false),
   },
 
   powermenu: {
