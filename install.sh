@@ -36,7 +36,7 @@ if ! command -v yay &>/dev/null; then
   echo 'yay needed for aur installs'
   exit 1
 fi
-yay -S --needed gnome-bluetooth-3.0 swww-git power-profiles-daemon
+yay -S --needed gnome-bluetooth-3.0 power-profiles-daemon
 
 npm --prefix ./ags/.config/ags install ./ags/.config/ags
 
