@@ -1,8 +1,6 @@
 set fish_greeting
 
 if status is-interactive
-  fish_vi_key_bindings
-
   fish_config theme choose "Catppuccin Mocha"
 end
 
@@ -12,6 +10,8 @@ set -gx EDITOR "nvim"
 set -gx TERMINAL "alacritty"
 
 set -gx zoxide_cmd cd
+
+set -g fish_key_bindings fish_vi_key_bindings
 
 ## bun
 #set --export BUN_INSTALL "$HOME/.bun"
