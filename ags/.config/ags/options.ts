@@ -71,7 +71,7 @@ const options = mkOptions(OPTIONS, {
       start: opt<Array<import("widget/bar/Bar").BarWidget>>([
         "launcher",
         "workspaces",
-        "taskbar",
+        // "taskbar",
         "expander",
         "messages",
       ]),
@@ -82,7 +82,7 @@ const options = mkOptions(OPTIONS, {
         "media",
         "expander",
         "systray",
-        "colorpicker",
+        // "colorpicker",
         "screenrecord",
         "system",
         "battery",
