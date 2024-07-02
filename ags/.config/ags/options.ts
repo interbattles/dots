@@ -153,8 +153,8 @@ const options = mkOptions(OPTIONS, {
       max: opt(16),
     },
     apps: {
-      iconSize: opt(62),
-      max: opt(6),
+      iconSize: opt(55),
+      max: opt(5),
       favorites: opt([
         [
           "mercury",
