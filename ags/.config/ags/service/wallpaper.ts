@@ -29,7 +29,9 @@ class Wallpaper extends Service {
       return
     await sh([
       "hyprctl", "hyprpaper", "unload", "all",
-    ])
+    ]).then(() => {
+      this.changed("wallpaper")
+    })
 
     await sh(["killall", "hyprpaper"])
     await sh(["hyprpaper"])
