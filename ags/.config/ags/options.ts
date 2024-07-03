@@ -66,7 +66,7 @@ const options = mkOptions(OPTIONS, {
     flatButtons: opt(true),
     position: opt<"top" | "bottom">("top"),
     corners: opt(50),
-    transparent: opt(true),
+    transparent: opt(false),
     layout: {
       start: opt<Array<import("widget/bar/Bar").BarWidget>>([
         "launcher",
@@ -150,7 +150,7 @@ const options = mkOptions(OPTIONS, {
       max: opt(16),
     },
     apps: {
-      iconSize: opt(55),
+      iconSize: opt(30),
       max: opt(5),
       favorites: opt([
         [
