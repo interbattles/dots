@@ -11,7 +11,6 @@ const { width, margin } = options.launcher
 const isnix = nix.available
 
 function Launcher() {
-  const favs = AppLauncher.Favorites()
   const applauncher = AppLauncher.Launcher()
   const sh = ShRun.ShRun()
   const shicon = ShRun.Icon()
@@ -73,7 +72,6 @@ function Launcher() {
     },
     on_change: ({ text }) => {
       text ||= ""
-      favs.reveal_child = text === ""
       help.reveal_child = text.split(" ").length === 1 && text?.startsWith(":")
 
       if (text?.startsWith(":nx"))
@@ -89,14 +87,17 @@ function Launcher() {
       if (!text?.startsWith(":"))
         applauncher.filter(text)
     },
+    setup: self => self.hook(App, (_) => {
+      self.text = ""
+      applauncher.filter(self.text)
+    }),
   })
 
   function focus() {
-    entry.text = "Search"
+    // entry.text = "Search"
     entry.set_position(-1)
     entry.select_region(0, -1)
     entry.grab_focus()
-    favs.reveal_child = true
   }
 
   const layout = Widget.Box({
@@ -114,7 +115,6 @@ function Launcher() {
     }),
     children: [
       Widget.Box([entry, nixload, shicon]),
-      favs,
       help,
       applauncher,
       nix,
