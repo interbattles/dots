@@ -7,21 +7,6 @@ const apps = await Service.import("applications")
 const { query } = apps
 const { iconSize } = options.launcher.apps
 
-// apps.connect('changed', (_) => apps.reload())
-
-// const QuickAppButton = (app: Application) => Widget.Button({
-//   hexpand: true,
-//   tooltip_text: app.name,
-//   on_clicked: () => {
-//     App.closeWindow("launcher")
-//     launchApp(app)
-//   },
-//   child: Widget.Icon({
-//     size: iconSize.bind(),
-//     icon: icon(app.icon_name, icons.fallback.executable),
-//   }),
-// })
-
 const AppItem = (app: Application) => {
   const title = Widget.Label({
     class_name: "title",
@@ -86,11 +71,8 @@ export function Launcher() {
   const list = Widget.Box({
     vertical: true,
     children: applist.bind().as(list => list.map(SeparatedAppItem)),
-    setup: self => {
-      applist.value = query("")
-      self
-        .hook(apps, () => applist.value = query(""), "notify::frequents")
-    },
+    setup: self => self
+      .hook(apps, () => applist.value = query(""), "notify::frequents"),
   })
 
   return Object.assign(list, {
@@ -101,7 +83,7 @@ export function Launcher() {
           item.reveal_child = false
           return i
         }
-        if (item.attribute.app.match(text!)) {
+        if (!text || item.attribute.app.match(text)) {
           item.reveal_child = true
           return ++i
         }

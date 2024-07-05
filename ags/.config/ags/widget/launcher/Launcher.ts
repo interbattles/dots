@@ -88,15 +88,11 @@ function Launcher() {
         applauncher.filter(text)
     },
     setup: self => self.hook(App, (_) => {
-      self.text = ""
       applauncher.filter(self.text)
     }),
   })
 
   function focus() {
-    // entry.text = "Search"
-    entry.set_position(-1)
-    entry.select_region(0, -1)
     entry.grab_focus()
   }
 
@@ -124,7 +120,7 @@ function Launcher() {
 
   return Widget.Box(
     { vertical: true, css: "padding: 1px" },
-    Padding("applauncher", {
+    Padding("launcher", {
       css: margin.bind().as(v => `min-height: ${v}pt;`),
       vexpand: false,
     }),
