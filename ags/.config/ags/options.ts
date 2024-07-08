@@ -223,7 +223,7 @@ const options = mkOptions(OPTIONS, {
   hyprland: {
     gaps: opt(3),
     inactiveBorder: opt("#282828"),
-    gapsWhenOnly: opt(false),
+    gapsWhenOnly: opt(true),
   },
 })
 
