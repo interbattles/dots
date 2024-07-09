@@ -22,6 +22,9 @@ return {
   {
     'AlphaTechnolog/pywal.nvim',
     config = true,
+    init = function()
+      vim.cmd 'colorscheme pywal'
+    end,
   },
   {
     'folke/noice.nvim',
@@ -81,7 +84,7 @@ return {
     config = function()
       require('lualine').setup({
         options = {
-          theme = 'auto',
+          theme = 'pywal-nvim',
           component_separators = '',
           section_separators = '',
         },

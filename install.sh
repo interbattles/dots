@@ -11,7 +11,7 @@ if ! command -v cargo &>/dev/null; then
   rustup toolchain install stable --profile minimal
 fi
 
-dependencies=("bat" "eza" "fd-find" "zoxide" "ripgrep" "starship" "wallust")
+dependencies=("bat" "eza" "fd-find" "zoxide" "ripgrep" "starship")
 for dep in ${dependencies[@]}; do
 	echo "checking $dep"
 	command=$dep
@@ -29,7 +29,7 @@ for dep in ${dependencies[@]}; do
 done
 
 echo "symlinking configurations"
-stow ags fish git hyprland nvim starship terminal tmux
+stow ags fish git hyprland nvim pywal starship terminal tmux
 
 # ags setup
 if ! command -v yay &>/dev/null; then

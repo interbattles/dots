@@ -19,7 +19,7 @@ export async function pywal(
   if (!options.autotheme.value || !dependencies("wal"))
     return
 
-  await sh(`wal -s -t -i ${arg} --backend ${options.autotheme_backend} ${options.theme.scheme.value === "dark" ? "" : "-l"}`.trim())
+  await sh(`wal -s -t -i ${arg} --backend ${options.autotheme_backend} -a ${options.theme.widget.opacity.value} ${options.theme.scheme.value === "dark" ? "" : "-l"}`.trim())
   const c: PyWal = JSON.parse(Utils.readFile(`${GLib.get_user_cache_dir()}/wal/colors.json`))
   const { colors, special } = c
 
