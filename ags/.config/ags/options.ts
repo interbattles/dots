@@ -72,7 +72,7 @@ const options = mkOptions(OPTIONS, {
       start: opt<Array<import("widget/bar/Bar").BarWidget>>([
         "launcher",
         "workspaces",
-        // "taskbar",
+        "taskbar",
         "expander",
         "messages",
       ]),

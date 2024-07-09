@@ -1,3 +1,6 @@
+[window]
+opacity = {background.alpha_dec}
+
 [colors.primary]
 background = "{background}"
 foreground = "{foreground}"

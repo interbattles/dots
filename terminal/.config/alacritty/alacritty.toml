@@ -14,7 +14,6 @@ bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
 
 [window]
 decorations = "None"
-opacity = 0.9
 
 # [colors]
 # transparent_background_colors = true

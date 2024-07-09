@@ -123,7 +123,7 @@ $button-radius: $radius;
 
     .quicksettings:not(.active):not(:active) {
         .bluetooth {
-            color: $primary-bg;
+            /* color: $primary-bg; */
 
             label {
                 font-size: $font-size * .7;
