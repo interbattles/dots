@@ -1,6 +1,29 @@
 ---@diagnostic disable-next-line:unused-local
 local disabled = {
   {
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    lazy = false,
+    config = function()
+      require('catppuccin').setup({
+        integrations = {
+          cmp = true,
+          gitsigns = true,
+          treesitter = true,
+          notify = true,
+          diffview = true,
+          barbar = true,
+          telescope = {
+            enabled = true,
+            style = 'nvchad',
+          },
+        },
+      })
+
+      vim.cmd.colorscheme 'catppuccin'
+    end,
+  },
+  {
     'romgrk/barbar.nvim',
     dependencies = {
       'lewis6991/gitsigns.nvim',
@@ -64,10 +87,10 @@ local disabled = {
     'nvim-tree/nvim-tree.lua',
     enabled = false,
     keys = {
-      { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle explorer" },
+      { '<leader>e', '<cmd>NvimTreeToggle<cr>', desc = 'Toggle explorer' },
     },
     config = function()
-      require("nvim-tree").setup {
+      require('nvim-tree').setup {
         sync_root_with_cwd = true,
         update_focused_file = {
           enable = false,
@@ -78,19 +101,19 @@ local disabled = {
     init = function()
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
-    end
+    end,
   },
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "main",
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'main',
     enabled = false,
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
     },
     keys = {
-      { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
+      { '<leader>e', '<cmd>Neotree toggle<cr>', desc = 'NeoTree' },
     },
     opts = {
       auto_restore_session_experimental = true,
@@ -104,11 +127,11 @@ local disabled = {
         },
       },
       window = {
-        position = "right"
-      }
+        position = 'right',
+      },
     },
     config = function(_, opts)
-      require("neo-tree").setup(opts)
+      require('neo-tree').setup(opts)
     end,
   },
 }

@@ -11,7 +11,7 @@ if ! command -v cargo &>/dev/null; then
   rustup toolchain install stable --profile minimal
 fi
 
-dependencies=("bat" "eza" "fd-find" "zoxide" "ripgrep" "starship")
+dependencies=("bat" "eza" "fd-find" "zoxide" "ripgrep" "starship" "wallust")
 for dep in ${dependencies[@]}; do
 	echo "checking $dep"
 	command=$dep

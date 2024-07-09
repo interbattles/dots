@@ -112,9 +112,4 @@ return {
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end,
   },
-  {
-    'mrded/nvim-lsp-notify',
-    dependencies = { 'rcarriga/nvim-notify' },
-    config = true,
-  },
 }

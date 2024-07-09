@@ -1,1 +1,21 @@
-
+-- vim.api.nvim_create_autocmd('ColorScheme', {
+--   callback = function()
+--     local hl_groups = {
+--       'Normal',
+--       'NormalFloat',
+--       'LineNr',
+--       'Folded',
+--       'NonText',
+--       'SpecialKey',
+--       'VertSplit',
+--       -- 'SignColumn',
+--       -- 'EndOfBuffer',
+--
+--       'GitSignsAdd',
+--       'GitSignsChange',
+--       'GitSignsDelete',
+--     }
+--     for _, name in pairs(hl_groups) do vim.cmd.highlight(name .. ' guibg=none ctermbg=none') end
+--   end,
+-- }
+-- )

@@ -1,6 +1,9 @@
 return {
   {
     'folke/lazydev.nvim',
+    dependencies = {
+      'Bilal2453/luvit-meta',
+    },
     ft = 'lua',
     opts = {
       integrations = {
@@ -8,8 +11,11 @@ return {
         cmp = true,
         coq = false,
       },
+      library = {
+        'lazy.nvim',
+        'luvit-meta/library',
+      },
     },
-    config = true,
   },
   {
     'williamboman/mason.nvim',

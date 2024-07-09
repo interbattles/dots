@@ -23,3 +23,7 @@ output_path = '~/.config/gtk-4.0/gtk.css'
 [templates.gtk3]
 input_path = '~/.config/matugen/templates/gtk.css'
 output_path = '~/.config/gtk-3.0/gtk.css'
+
+[templates.toml]
+input_path = '~/.config/matugen/templates/colors.toml'
+output_path = '~/.cache/matugen.toml'

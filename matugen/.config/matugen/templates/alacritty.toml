@@ -2,15 +2,6 @@
 background = "{{colors.surface.default.hex}}"
 foreground = "{{colors.on_surface.default.hex}}"
 
-#[colors.cursor]
-#text = '#1E1E2E' 
-#cursor = '#F5E0DC' 
-
-#[colors.vi_mode_cursor]
-#text = '#1E1E2E' 
-#cursor = '#B4BEFE' 
-
-
 [colors.search.matches]
 foreground = '#1E1E2E' 
 background = '#A6ADC8' 

@@ -1,7 +1,8 @@
 set fish_greeting
 
 if status is-interactive
-  fish_config theme choose "Catppuccin Mocha"
+  #fish_config theme choose "Catppuccin Mocha"
+   source ~/.cache/wal/colors.fish
 end
 
 #source $HOME/.cargo/env.fish
