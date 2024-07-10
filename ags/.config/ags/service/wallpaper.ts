@@ -70,6 +70,11 @@ class Wallpaper extends Service {
     }
   }
 
+  readonly regenerateCache = () => {
+    console.log("re-running wallpaper daemon")
+    this.changed("wallpaper")
+  }
+
   readonly random = () => { this.#fetchBing() }
   readonly set = (path: string) => { this.#setWallpaper(path) }
   get wallpaper() { return WP }
