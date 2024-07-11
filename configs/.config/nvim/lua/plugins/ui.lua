@@ -50,12 +50,6 @@ return {
           },
         },
       },
-      routes = {
-        {
-          view = 'notify',
-          filter = { event = 'msg_showmode' },
-        },
-      },
     },
     dependencies = {
       'MunifTanjim/nui.nvim',
@@ -86,7 +80,6 @@ return {
     'nvim-lualine/lualine.nvim',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
-      'folke/noice.nvim',
     },
     config = function()
       require('lualine').setup({
@@ -106,12 +99,7 @@ return {
           lualine_c = {
             '%=', --[[ add your center compoentnts here in place of this comment ]]
           },
-          lualine_x = {
-            {
-              require('noice').api.statusline.mode.get,
-              cond = require('noice').api.statusline.mode.has,
-            },
-          },
+          lualine_x = {},
           lualine_y = { 'filetype', 'progress', 'diff' },
           lualine_z = {},
         },
