@@ -29,23 +29,25 @@ for dep in ${dependencies[@]}; do
 done
 
 echo "symlinking configurations"
-stow ags fish git hyprland nvim pywal starship terminal tmux
+stow configs misc
 
 # ags setup
-if ! command -v yay &>/dev/null; then
-  echo 'yay needed for aur installs'
+if ! command -v paru&>/dev/null; then
+  echo 'paru needed for aur installs'
   exit 1
 fi
-yay -S --needed gnome-bluetooth-3.0 power-profiles-daemon
+paru -S --needed gnome-bluetooth-3.0 power-profiles-daemon
 
-npm --prefix ./ags/.config/ags install ./ags/.config/ags
+if ! test -d configs/.config/ags/node_modules; then
+  npm --prefix configs/.config/ags install configs/.config/ags
+fi
 
-if ! command -v esbuild &>/dev/null; then
+if ! npm list -g esbuild &>/dev/null; then
   sudo npm install -g esbuild
 fi
 
-if ! command -v sass &>/dev/null; then
+if ! npm list -g sass &>/dev/null; then
   sudo npm install -g sass
 fi
 
-ags
+pgrep -x ags || ags
