@@ -5,7 +5,7 @@
 @define-color window_fg_color {color7};
 @define-color headerbar_bg_color {color0};
 @define-color headerbar_fg_color {color7};
-@define-color popover_bg_color {color8};
+@define-color popover_bg_color {color0};
 @define-color popover_fg_color {color7};
 @define-color view_bg_color {color0};
 @define-color view_fg_color {color7};

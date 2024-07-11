@@ -3,6 +3,6 @@ if ! status is-interactive ||
     exit
 end
 
-alias ggrep='/bin/grep' # gnu grep (compatability)
+function _grep -w (which grep); command grep $argv; end
 
-alias grep='rg'
+function grep -w rg; rg $argv; end

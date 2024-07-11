@@ -3,6 +3,6 @@ if ! status is-interactive ||
     exit
 end
 
-alias gfind='/bin/find' # gnu find (compatability)
+function _find -w (which find); command find $argv; end
 
-alias find='fd'
+function find -w fd; fd $argv; end

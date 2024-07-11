@@ -3,6 +3,6 @@ if ! status is-interactive ||
     exit
 end
 
-alias gcat='/bin/cat' # gnu cat (compatability)
+function _cat -w (which cat); command cat $argv; end # gnu cat (compatability)
 
-alias cat='bat'
+function cat -w bat; bat $argv; end
