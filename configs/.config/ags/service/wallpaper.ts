@@ -12,7 +12,7 @@ export type Market =
   | "en-NZ"
   | "en-CA"
 
-const WP = `${Utils.HOME}/.wallpaper`
+const WP = `${Utils.HOME}/.config/background`
 const Cache = `${Utils.HOME}/Pictures/Wallpapers/Bing`
 
 class Wallpaper extends Service {
@@ -24,24 +24,24 @@ class Wallpaper extends Service {
 
   #blockMonitor = false
 
-  async #wallpaper() {
-    if (!dependencies("hyprpaper"))
+  #wallpaper() {
+    if (!dependencies("swww"))
       return
-    await sh([
-      "hyprctl", "hyprpaper", "unload", "all",
+
+    sh([
+      "swww", "img",
+      "--transition-type", "none",
+      WP,
     ]).then(() => {
       this.changed("wallpaper")
     })
-
-    await sh(["killall", "hyprpaper"])
-    await sh(["hyprpaper"])
   }
 
   async #setWallpaper(path: string) {
     this.#blockMonitor = true
 
     await sh(`cp ${path} ${WP}`)
-    await this.#wallpaper()
+    this.#wallpaper()
 
     this.#blockMonitor = false
   }
@@ -82,17 +82,18 @@ class Wallpaper extends Service {
   constructor() {
     super()
 
-    if (!dependencies("hyprpaper"))
+    if (!dependencies("swww"))
       return this
 
     // gtk portal
-    Utils.monitorFile(WP, async () => {
+    Utils.monitorFile(WP, () => {
       if (!this.#blockMonitor)
-        await this.#wallpaper()
+        this.#wallpaper()
     })
 
-    sh(["killall", "hyprpaper"])
-    sh(["hyprpaper"])
+    Utils.execAsync("swww-daemon --format xrgb")
+      .then(this.#wallpaper)
+      .catch(() => null)
   }
 }
 

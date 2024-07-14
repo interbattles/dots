@@ -1,29 +1,32 @@
 [config]
 reload_apps = true
 
+[config.custom_keywords]
+alpha = "0.94"
+
+[config.custom_colors]
+color1 = { color = "#d49191", blend = true }
+color2 = { color = "#b6b696", blend = true }
+color3 = { color = "#c4b392", blend = true }
+color4 = { color = "#9e96b6", blend = true }
+color5 = { color = "#b696b1", blend = true }
+color6 = { color = "#98acc8", blend = true }
+
+color9 = { color = "#d89393", blend = true }
+color10 = { color = "#b9b99b", blend = true }
+color11 = { color = "#c8b692", blend = true }
+color12 = { color = "#a299b9", blend = true }
+color13 = { color = "#b997b4", blend = true }
+color14 = { color = "#9bb0ca", blend = true }
+
 [config.reload_apps_list]
 gtk_theme = true
 
-[templates.alacritty]
-input_path = '~/.config/matugen/templates/alacritty.toml'
-output_path = '~/.config/alacritty/theme.toml'
-
-[templates.gtk4-colors]
-input_path = '~/.config/matugen/templates/gtk-colors.css'
-output_path = '~/.config/gtk-4.0/colors.css'
-
-[templates.gtk3-colors]
-input_path = '~/.config/matugen/templates/gtk-colors.css'
-output_path = '~/.config/gtk-3.0/colors.css'
-
-[templates.gtk4]
-input_path = '~/.config/matugen/templates/gtk.css'
-output_path = '~/.config/gtk-4.0/gtk.css'
-
-[templates.gtk3]
-input_path = '~/.config/matugen/templates/gtk.css'
-output_path = '~/.config/gtk-3.0/gtk.css'
-
-[templates.toml]
-input_path = '~/.config/matugen/templates/colors.toml'
-output_path = '~/.cache/matugen.toml'
+[templates]
+alacritty = { input_path = '~/.config/matugen/templates/alacritty.toml', output_path = '~/.cache/matugen/alacritty.toml' }
+foot = { input_path = '~/.config/matugen/templates/foot.ini', output_path = '~/.cache/matugen/foot.ini' }
+ags = { input_path = '~/.config/matugen/templates/ags.json', output_path = '~/.cache/matugen/ags.json' }
+fish = { input_path = '~/.config/matugen/templates/colors.fish', output_path = '~/.cache/matugen/colors.fish' }
+vim = { input_path = '~/.config/matugen/templates/colors.vim', output_path = '~/.cache/matugen/colors.vim' }
+gtk-colors = { input_path = '~/.config/matugen/templates/gtk-colors.css', output_path = '~/.cache/matugen/gtk-colors.css' }
+qt5-colors = { input_path = '~/.config/matugen/templates/qt5ct-colors.conf', output_path = '~/.cache/matugen/qt5ct-colors.conf' }

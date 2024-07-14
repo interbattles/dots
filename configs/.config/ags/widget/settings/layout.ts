@@ -11,6 +11,7 @@ import wallpaper from "service/wallpaper"
 
 const {
   autotheme: at,
+  autotheme_type: att,
   font,
   theme,
   bar: b,
@@ -41,6 +42,7 @@ export default [
       Wallpaper() as ReturnType<typeof Row>,
       Row({ opt: at, title: "Auto Generate Color Scheme" }),
       Button({ opt: at, title: "Regenerate Color Scheme", label: "Generate", onClicked: wallpaper.regenerateCache }),
+      Row({ opt: att, title: "Color Scheme Type", "type": "enum", enums: ["scheme-content", "scheme-expressive", "scheme-fidelity", "scheme-fruit-salad", "scheme-monochrome", "scheme-neutral", "scheme-rainbow", "scheme-tonal-spot"] }),
       Row({ opt: scheme, title: "Color Scheme", type: "enum", enums: ["dark", "light"] }),
     ),
     Group("Dark Colors",

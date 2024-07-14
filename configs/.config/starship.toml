@@ -1,168 +1,193 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """
-\
-[](mauve)\
-$os\
-$username\
-[](bg:pink fg:mauve)\
-$directory\
-[](fg:pink bg:lavender)\
-$git_branch\
-$git_status\
-$character
-"""
+[aws]
+format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
 
-palette = 'catppuccin_mocha'
-
-[palettes.catppuccin_mocha]
-rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
-mauve = "#cba6f7"
-red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
-sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"
-text = "#cdd6f4"
-subtext1 = "#bac2de"
-subtext0 = "#a6adc8"
-overlay2 = "#9399b2"
-overlay1 = "#7f849c"
-overlay0 = "#6c7086"
-surface2 = "#585b70"
-surface1 = "#45475a"
-surface0 = "#313244"
-base = "#1e1e2e"
-mantle = "#181825"
-crust = "#11111b"
-
-[os]
-disabled = false
-style = "bg:mauve fg:base"
-
-[os.symbols]
-Windows = "󰍲"
-Ubuntu = "󰕈"
-SUSE = ""
-Raspbian = "󰐿"
-Mint = "󰣭"
-Macos = "󰀵"
-Manjaro = ""
-Linux = "󰌽"
-Gentoo = "󰣨"
-Fedora = "󰣛"
-Alpine = ""
-Amazon = ""
-Android = ""
-Arch = "󰣇"
-Artix = "󰣇"
-CentOS = ""
-Debian = "󰣚"
-Redhat = "󱄛"
-RedHatEnterprise = "󱄛"
-
-[username]
-show_always = true
-style_user = "bg:mauve fg:mantle"
-style_root = "bg:mauve fg:mantle"
-format = '[ $user ]($style)'
-
-[directory]
-style = "fg:mantle bg:pink"
-format = "[ $path ]($style)"
-truncation_length = 3
-truncation_symbol = "…/"
-
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = "󰝚 "
-"Pictures" = " "
-"Developer" = "󰲋 "
-
-[git_branch]
-symbol = ""
-style = "bg:lavender"
-format = '[[ $symbol $branch ](fg:mantle bg:lavender)]($style)'
-
-[git_status]
-style = "bg:lavender"
-format = '[[($all_status$ahead_behind )](fg:mantle bg:lavender)]($style)'
-
-[nodejs]
-symbol = ""
-style = "bg:flamingo"
-format = '[[ $symbol( $version) ](fg:mantle bg:flamingo)]($style)'
+[bun]
+format = '\[[$symbol($version)]($style)\]'
 
 [c]
-symbol = " "
-style = "bg:flamingo"
-format = '[[ $symbol( $version) ](fg:mantle bg:flamingo)]($style)'
+format = '\[[$symbol($version(-$name))]($style)\]'
 
-[rust]
-symbol = ""
-style = "bg:flamingo"
-format = '[[ $symbol( $version) ](fg:mantle bg:flamingo)]($style)'
+[cmake]
+format = '\[[$symbol($version)]($style)\]'
+
+[cmd_duration]
+format = '\[[⏱ $duration]($style)\]'
+
+[cobol]
+format = '\[[$symbol($version)]($style)\]'
+
+[conda]
+format = '\[[$symbol$environment]($style)\]'
+
+[crystal]
+format = '\[[$symbol($version)]($style)\]'
+
+[daml]
+format = '\[[$symbol($version)]($style)\]'
+
+[dart]
+format = '\[[$symbol($version)]($style)\]'
+
+[deno]
+format = '\[[$symbol($version)]($style)\]'
+
+[docker_context]
+format = '\[[$symbol$context]($style)\]'
+
+[dotnet]
+format = '\[[$symbol($version)(🎯 $tfm)]($style)\]'
+
+[elixir]
+format = '\[[$symbol($version \(OTP $otp_version\))]($style)\]'
+
+[elm]
+format = '\[[$symbol($version)]($style)\]'
+
+[erlang]
+format = '\[[$symbol($version)]($style)\]'
+
+[fennel]
+format = '\[[$symbol($version)]($style)\]'
+
+[fossil_branch]
+format = '\[[$symbol$branch]($style)\]'
+
+[gcloud]
+format = '\[[$symbol$account(@$domain)(\($region\))]($style)\]'
+
+[git_branch]
+format = '\[[$symbol$branch]($style)\]'
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style))'
 
 [golang]
-symbol = ""
-style = "bg:flamingo"
-format = '[[ $symbol( $version) ](fg:mantle bg:flamingo)]($style)'
+format = '\[[$symbol($version)]($style)\]'
 
-[php]
-symbol = ""
-style = "bg:flamingo"
-format = '[[ $symbol( $version) ](fg:mantle bg:flamingo)]($style)'
+[gradle]
+format = '\[[$symbol($version)]($style)\]'
 
-[java]
-symbol = " "
-style = "bg:flamingo"
-format = '[[ $symbol( $version) ](fg:mantle bg:flamingo)]($style)'
-
-[kotlin]
-symbol = ""
-style = "bg:flamingo"
-format = '[[ $symbol( $version) ](fg:mantle bg:flamingo)]($style)'
+[guix_shell]
+format = '\[[$symbol]($style)\]'
 
 [haskell]
-symbol = ""
-style = "bg:flamingo"
-format = '[[ $symbol( $version) ](fg:mantle bg:flamingo)]($style)'
+format = '\[[$symbol($version)]($style)\]'
+
+[haxe]
+format = '\[[$symbol($version)]($style)\]'
+
+[helm]
+format = '\[[$symbol($version)]($style)\]'
+
+[hg_branch]
+format = '\[[$symbol$branch]($style)\]'
+
+[java]
+format = '\[[$symbol($version)]($style)\]'
+
+[julia]
+format = '\[[$symbol($version)]($style)\]'
+
+[kotlin]
+format = '\[[$symbol($version)]($style)\]'
+
+[kubernetes]
+format = '\[[$symbol$context( \($namespace\))]($style)\]'
+
+[lua]
+format = '\[[$symbol($version)]($style)\]'
+
+[memory_usage]
+format = '\[$symbol[$ram( | $swap)]($style)\]'
+
+[meson]
+format = '\[[$symbol$project]($style)\]'
+
+[nim]
+format = '\[[$symbol($version)]($style)\]'
+
+[nix_shell]
+format = '\[[$symbol$state( \($name\))]($style)\]'
+
+[nodejs]
+format = '\[[$symbol($version)]($style)\]'
+
+[ocaml]
+format = '\[[$symbol($version)(\($switch_indicator$switch_name\))]($style)\]'
+
+[opa]
+format = '\[[$symbol($version)]($style)\]'
+
+[openstack]
+format = '\[[$symbol$cloud(\($project\))]($style)\]'
+
+[os]
+format = '\[[$symbol]($style)\]'
+
+[package]
+format = '\[[$symbol$version]($style)\]'
+
+[perl]
+format = '\[[$symbol($version)]($style)\]'
+
+[php]
+format = '\[[$symbol($version)]($style)\]'
+
+[pijul_channel]
+format = '\[[$symbol$channel]($style)\]'
+
+[pulumi]
+format = '\[[$symbol$stack]($style)\]'
+
+[purescript]
+format = '\[[$symbol($version)]($style)\]'
 
 [python]
-symbol = ""
-style = "bg:flamingo"
-format = '[[ $symbol( $version) ](fg:mantle bg:flamingo)]($style)'
+format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
+
+[raku]
+format = '\[[$symbol($version-$vm_version)]($style)\]'
+
+[red]
+format = '\[[$symbol($version)]($style)\]'
+
+[ruby]
+format = '\[[$symbol($version)]($style)\]'
+
+[rust]
+format = '\[[$symbol($version)]($style)\]'
+
+[scala]
+format = '\[[$symbol($version)]($style)\]'
+
+[spack]
+format = '\[[$symbol$environment]($style)\]'
+
+[sudo]
+format = '\[[as $symbol]($style)\]'
+
+[swift]
+format = '\[[$symbol($version)]($style)\]'
+
+[terraform]
+format = '\[[$symbol$workspace]($style)\]'
 
 [time]
-disabled = false
-time_format = "%R"
-style = "bg:surface0"
-format = '[[  $time ](fg:text bg:surface0)]($style)'
+format = '\[[$time]($style)\]'
 
-[line_break]
-disabled = false
+[username]
+format = '\[[$user]($style)\]'
 
-[character]
-disabled = false
-format = '$symbol '
-# success_symbol = '[I](bold fg:green)'
-# error_symbol = '[I](bold fg:green)'
-# vimcmd_symbol = '[N](bold fg:blue)'
-# vimcmd_replace_one_symbol = '[r](bold fg:red)'
-# vimcmd_replace_symbol = '[R](bold fg:red)'
-# vimcmd_visual_symbol= '[V](bold fg:mauve)'
-success_symbol = '[](bg:teal fg:lavender)[  I](bg:teal fg:base)[](fg:teal)'
-error_symbol = '[](bg:teal fg:lavender)[  I](bg:teal fg:base)[](fg:teal)'
-vimcmd_symbol = '[](bg:blue fg:lavender)[  N](bg:blue fg:base)[](fg:blue)'
-vimcmd_replace_one_symbol = '[](bg:red fg:lavender)[  r](bg:red fg:base)[](fg:red)'
-vimcmd_replace_symbol = '[](bg:red fg:lavender)[  R](bg:red fg:base)[](fg:red)'
-vimcmd_visual_symbol = '[](bg:mauve fg:lavender)[  V](bg:mauve fg:base)[](fg:mauve)'
+[vagrant]
+format = '\[[$symbol($version)]($style)\]'
 
+[vlang]
+format = '\[[$symbol($version)]($style)\]'
+
+[zig]
+format = '\[[$symbol($version)]($style)\]'
+
+[solidity]
+format = '\[[$symbol($version)]($style)\]'

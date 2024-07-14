@@ -11,7 +11,7 @@ if ! command -sq cargo
     rustup toolchain install stable --profile minimal
 end
 
-set dependencies bat eza fd-find zoxide ripgrep starship
+set dependencies bat eza fd-find zoxide ripgrep starship matugen
 for dep in $dependencies
     echo "checking $dep"
     set command $dep
@@ -47,5 +47,4 @@ if ! npm list -g sass &>/dev/null
     sudo npm install -g sass
 end
 
-pgr
-sga || sga x- p
+pgrep -x ags || ags

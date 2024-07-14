@@ -150,4 +150,4 @@ configuration {
   }
 }
 
-@theme "~/.cache/wal/colors-rofi-dark.rasi"
+@theme "~/.cache/matugen/rofi-colors.rasi"

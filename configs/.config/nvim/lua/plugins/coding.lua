@@ -12,16 +12,23 @@ return {
 
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
+
+      'rafamadriz/friendly-snippets',
     },
-    config = function()
+    opts = function()
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
 
-      cmp.setup({
+      require('luasnip.loaders.from_vscode').lazy_load()
+
+      return {
         snippet = {
           expand = function(args)
             require 'luasnip'.lsp_expand(args.body)
           end,
+        },
+        performance = {
+          max_view_entries = 50
         },
         mapping = cmp.mapping.preset.insert({
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -63,53 +70,13 @@ return {
           end, { 'i', 's' }),
         }),
         sources = cmp.config.sources({
-            {
-              name = 'nvim_lsp',
-              keyword_length = 3,
-              group_index = 1,
-              max_item_count = 30,
-            },
-          },
-          {
-            {
-              name = 'lazydev',
-              group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-            },
-          },
-          {
-            { name = 'luasnip' },
-          },
-          {
-            {
-              name = 'buffer',
-            },
-            {
-              name = 'path',
-            },
-          }),
-      })
-    end,
-  },
-  {
-    'stevearc/conform.nvim',
-    event = { 'BufWritePre' },
-    cmd = { 'ConformInfo' },
-    keys = {
-      {
-        -- Customize or remove this keymap to your liking
-        '<leader>cf',
-        function()
-          require('conform').format({ async = true, lsp_fallback = true })
-        end,
-        mode = '',
-        desc = 'Format buffer',
-      },
-    },
-    opts = {
-      format_on_save = { timeout_ms = 500, lsp_fallback = true },
-    },
-    init = function()
-      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+          { name = 'lazydev',  group_index = 0 }, -- set group index to 0 to skip loading LuaLS completions
+          { name = 'nvim_lsp', keyword_length = 3, group_index = 1, max_item_count = 30 },
+          { name = 'luasnip' },
+          { name = 'path' },
+          { name = 'buffer', max_item_count = 10, keyword_length = 3 },
+        }),
+      }
     end,
   },
 }

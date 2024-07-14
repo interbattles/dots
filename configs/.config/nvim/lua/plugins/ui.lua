@@ -1,39 +1,23 @@
 return {
-  -- {
-  --   '~/pywal16.nvim',
-  --   config = function()
-  --     vim.cmd('colorscheme pywal16')
-
-  --     -- local colors = require('pywal16.core').get_colors()
-  --     -- local highlights = {
-  --     --   NeogitBranch = {},
-  --     --   NeogitRemote = {},
-  --     --   NeogitHunkHeader = {},
-  --     --   NeogitHunkHeaderHighlight = {},
-  --     --   NeogitDiffContextHighlight = {},
-  --     --   NeogitDiffDeleteHighlight = {},
-  --     --   NeogitDiffAddHighlight = {},
-  --     -- }
-  --     -- for group, properties in pairs(highlights) do
-  --     --   vim.api.nvim_set_hl(0, group, properties)
-  --     -- end
-  --   end,
-  -- },
   {
-    'AlphaTechnolog/pywal.nvim',
-    config = true,
-    init = function()
-      vim.cmd 'colorscheme pywal'
+    'interbattles/matugen.nvim',
+    config = function()
+      local matugen = require('matugen')
+      matugen.setup()
     end,
   },
   {
     'folke/noice.nvim',
+    lazy = false,
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+    },
     opts = {
       lsp = {
         override = {
           ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
           ['vim.lsp.util.stylize_markdown'] = true,
-          ['cmp.entry.get_documentation'] = true,
+          ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
         },
       },
       presets = {
@@ -50,9 +34,9 @@ return {
           },
         },
       },
-    },
-    dependencies = {
-      'MunifTanjim/nui.nvim',
+      cmdline = {
+        view = 'cmdline',
+      },
     },
   },
   {
@@ -63,16 +47,24 @@ return {
       --'catppuccin',
     },
     config = function()
-      -- local highlights = require('catppuccin.groups.integrations.bufferline').get()
-      require('bufferline').setup {
-        -- highlights = highlights,
-      }
+      require('bufferline').setup {}
     end,
     init = function()
-      vim.keymap.set('n', '<leader>bco', '<cmd>BufferLineCloseOthers<cr>', { desc = 'close others', noremap = true })
-      vim.keymap.set('n', '<leader>bch', '<cmd>BufferLineCloseLeft<cr>',
+      vim.keymap.set('n', '[b', '<cmd>BufferLineCyclePrev<cr>', { desc = 'prev buffer', noremap = true })
+      vim.keymap.set('n', ']b', '<cmd>BufferLineCycleNext<cr>', { desc = 'next buffer', noremap = true })
+      vim.keymap.set('n', '[B', '<cmd>BufferLineMovePrev<cr>', { desc = 'move back', noremap = true })
+      vim.keymap.set('n', ']B', '<cmd>BufferLineMoveNext<cr>', { desc = 'move forward', noremap = true })
+
+      vim.keymap.set('n', '<leader>bo', '<cmd>BufferLineCloseOthers<cr>', { desc = 'close others', noremap = true })
+      vim.keymap.set('n', '<leader>be', '<cmd>BufferLineSortByExtension<cr>',
+        { desc = 'sort by extension', noremap = true })
+      vim.keymap.set('n', '<leader>bd', '<cmd>BufferLineSortByDirectory<cr>',
+        { desc = 'sort by directory', noremap = true })
+      vim.keymap.set('n', '<leader>bp', '<cmd>BufferLinePick<cr>', { desc = 'pick buffer', noremap = true })
+      vim.keymap.set('n', '<leader>bP', '<cmd>BufferLinePickClose<cr>', { desc = 'close picker', noremap = true })
+      vim.keymap.set('n', '<leader>bc', '<cmd>BufferLineCloseLeft<cr>',
         { desc = 'close others on left', noremap = true })
-      vim.keymap.set('n', '<leader>bcl', '<cmd>BufferLineCloseRight<cr>',
+      vim.keymap.set('n', '<leader>bC', '<cmd>BufferLineCloseRight<cr>',
         { desc = 'close others on right', noremap = true })
     end,
   },
@@ -82,10 +74,10 @@ return {
       'nvim-tree/nvim-web-devicons',
       'folke/noice.nvim',
     },
-    config = function()
-      require('lualine').setup({
+    opts = function()
+      return {
         options = {
-          theme = 'pywal-nvim',
+          theme = 'matugen-nvim',
           component_separators = '',
           section_separators = '',
         },
@@ -98,13 +90,15 @@ return {
           },
           lualine_b = { 'filename', 'branch', 'diagnostics' },
           lualine_c = {
-            '%=', --[[ add your center compoentnts here in place of this comment ]]
           },
           lualine_x = {
             {
-              require('noice').api.statusline.mode.get,
-              cond = require('noice').api.statusline.mode.has,
-              color = { fg = '#ff9e64' },
+              function() return require('noice').api.status.mode.get() end, ---@diagnostic disable-line:undefined-field
+              cond = function() return package.loaded['noice'] and require('noice').api.status.mode.has() end, ---@diagnostic disable-line:undefined-field
+            },
+            {
+              function() return require('noice').api.status.command.get() end, ---@diagnostic disable-line:undefined-field
+              cond = function() return package.loaded['noice'] and require('noice').api.status.command.has() end, ---@diagnostic disable-line:undefined-field
             },
           },
           lualine_y = { 'filetype', 'progress', 'diff' },
@@ -122,7 +116,7 @@ return {
         winbar = {},
         inactive_winbar = {},
         extensions = {},
-      })
+      }
     end,
     init = function()
       vim.o.laststatus = 3

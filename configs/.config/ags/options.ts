@@ -5,7 +5,7 @@ import icons from "lib/icons"
 
 const options = mkOptions(OPTIONS, {
   autotheme: opt(true),
-  autotheme_backend: opt("wal"),
+  autotheme_type: opt("scheme-tonal-spot"),
 
   wallpaper: {
     resolution: opt<import("service/wallpaper").Resolution>(1920),

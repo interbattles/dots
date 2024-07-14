@@ -66,22 +66,10 @@ return {
         },
       }
       lspconfig.rust_analyzer.setup {}
+      lspconfig.taplo.setup {}
       lspconfig.hyprls.setup {}
-
-      -- custom servers setup
-      local configs = require 'lspconfig.configs'
-      if not configs.fish_lsp then
-        configs.fish_lsp_lsp = {
-          default_config = {
-            cmd = { 'fish-lsp', 'start' },
-            filetypes = { 'fish' },
-            root_dir = function(fname)
-              return lspconfig.util.find_git_ancestor(fname)
-            end,
-            settings = {},
-          },
-        }
-      end
+      lspconfig.vimls.setup {}
+      lspconfig.tsserver.setup {}
       lspconfig.fish_lsp.setup {}
     end,
   },
@@ -100,6 +88,7 @@ return {
           'rust_analyzer',
           'lua_ls',
           'hyprls',
+          'vimls'
         },
         run_on_start = true,
         integrations = {

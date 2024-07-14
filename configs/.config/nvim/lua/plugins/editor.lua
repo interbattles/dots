@@ -1,5 +1,36 @@
 return {
   {
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+      plugins = { spelling = true },
+      preset = 'modern'
+    },
+    config = function(_, opts)
+      local wk = require('which-key')
+      wk.setup(opts)
+
+      wk.add({
+        {
+          mode = { 'n', 'v' },
+          { '<leader><Tab>', group = 'tabs' },
+          { '<leader>b', group = 'buffer' },
+          { '<leader>c', group = 'code' },
+          { '<leader>ct', group = 'trouble', icon = { icon = '󱖫', color = 'green' } },
+          { '<leader>f', group = 'file/find' },
+          { '<leader>g', group = 'git' },
+          { '<leader>gh', group = 'hunks' },
+          { '<leader>t', group = 'telescope' },
+          { '<leader>u', group = 'ui' },
+          { '<leader>x', group = 'diagnostics/quickfix' },
+        },
+      })
+    end,
+  },
+  {
     'stevearc/oil.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     lazy = false,
@@ -17,13 +48,13 @@ return {
       keymaps = {
         ['g?'] = 'actions.show_help',
         ['<CR>'] = 'actions.select',
-        ['sv'] = { 'actions.select', opts = { vertical = true }, desc = 'Open the entry in a vertical split' },
-        ['sh'] = { 'actions.select', opts = { horizontal = true }, desc = 'Open the entry in a horizontal split' },
-        ['<C-t>'] = { 'actions.select', opts = { tab = true }, desc = 'Open the entry in new tab' },
+        ['-'] = { 'actions.select', opts = { vertical = true }, desc = 'open the entry in a vertical split' },
+        ['|'] = { 'actions.select', opts = { horizontal = true }, desc = 'open the entry in a horizontal split' },
+        ['<C-t>'] = { 'actions.select', opts = { tab = true }, desc = 'open the entry in new tab' },
         ['<C-p>'] = 'actions.preview',
         ['q'] = 'actions.close',
-        ['gr'] = 'actions.refresh',
-        ['-'] = 'actions.parent',
+        ['<C-r>'] = 'actions.refresh',
+        [';'] = 'actions.parent',
         ['_'] = 'actions.open_cwd',
         ['`'] = 'actions.cd',
         ['~'] = { 'actions.cd', opts = { scope = 'tab' }, desc = ':tcd to the current oil directory' },
@@ -58,45 +89,22 @@ return {
         end
 
         -- stylua: ignore start
-        map('n', ']h', function() gs.nav_hunk('next') end, 'Next Hunk')
-        map('n', '[h', function() gs.nav_hunk('prev') end, 'Prev Hunk')
-        map('n', ']H', function() gs.nav_hunk('last') end, 'Last Hunk')
-        map('n', '[H', function() gs.nav_hunk('first') end, 'First Hunk')
-        map({ 'n', 'v' }, '<leader>ghs', ':Gitsigns stage_hunk<CR>', 'Stage Hunk')
-        map({ 'n', 'v' }, '<leader>ghr', ':Gitsigns reset_hunk<CR>', 'Reset Hunk')
-        map('n', '<leader>ghS', gs.stage_buffer, 'Stage Buffer')
-        map('n', '<leader>ghu', gs.undo_stage_hunk, 'Undo Stage Hunk')
-        map('n', '<leader>ghR', gs.reset_buffer, 'Reset Buffer')
-        map('n', '<leader>ghp', gs.preview_hunk_inline, 'Preview Hunk Inline')
-        map('n', '<leader>ghb', function() gs.blame_line({ full = true }) end, 'Blame Line')
-        map('n', '<leader>ghd', gs.diffthis, 'Diff This')
-        map('n', '<leader>ghD', function() gs.diffthis('~') end, 'Diff This ~')
-        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'GitSigns Select Hunk')
+        map('n', ']h', function() gs.nav_hunk('next') end, 'next hunk')
+        map('n', '[h', function() gs.nav_hunk('prev') end, 'prev hunk')
+        map('n', ']H', function() gs.nav_hunk('last') end, 'last hunk')
+        map('n', '[H', function() gs.nav_hunk('first') end, 'first hunk')
+        map({ 'n', 'v' }, '<leader>ghs', ':Gitsigns stage_hunk<CR>', 'stage hunk')
+        map({ 'n', 'v' }, '<leader>ghr', ':Gitsigns reset_hunk<CR>', 'reset hunk')
+        map('n', '<leader>ghS', gs.stage_buffer, 'stage buffer')
+        map('n', '<leader>ghu', gs.undo_stage_hunk, 'undo stage hunk')
+        map('n', '<leader>ghR', gs.reset_buffer, 'reset buffer')
+        map('n', '<leader>ghp', gs.preview_hunk_inline, 'preview hunk inline')
+        map('n', '<leader>ghb', function() gs.blame_line({ full = true }) end, 'blame line')
+        map('n', '<leader>ghd', gs.diffthis, 'diff this')
+        map('n', '<leader>ghD', function() gs.diffthis('~') end, 'diff this ~')
+        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'gitsigns select hunk')
       end,
     },
-  },
-  {
-    'folke/which-key.nvim',
-    event = 'VeryLazy',
-    opts = {
-      plugins = { spelling = true },
-      defaults = {
-        mode = { 'n', 'v' },
-        ['<leader>b'] = { name = '+buffer' },
-        ['<leader>t'] = { name = '+telescope' },
-        ['<leader>c'] = { name = '+code' },
-        ['<leader>f'] = { name = '+file/find' },
-        ['<leader>g'] = { name = '+git' },
-        ['<leader>gh'] = { name = '+hunks', ['_'] = 'which_key_ignore' },
-        ['<leader>u'] = { name = '+ui' },
-        ['<leader>x'] = { name = '+diagnostics/quickfix' },
-      },
-    },
-    config = function(_, opts)
-      local wk = require('which-key')
-      wk.setup(opts)
-      wk.register(opts.defaults)
-    end,
   },
   {
     'NeogitOrg/neogit',
@@ -120,37 +128,41 @@ return {
       {
         '<leader>xx',
         '<cmd>Trouble diagnostics toggle<cr>',
-        desc = 'Diagnostics (Trouble)',
+        desc = 'diagnostics (trouble)',
       },
       {
         '<leader>xX',
         '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
-        desc = 'Buffer Diagnostics (Trouble)',
+        desc = 'buffer diagnostics (trouble)',
       },
       {
-        '<leader>cs',
+        '<leader>cts',
         '<cmd>Trouble symbols toggle focus=false<cr>',
-        desc = 'Symbols (Trouble)',
+        desc = 'symbols',
       },
       {
-        '<leader>cl',
+        '<leader>ctl',
         '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
-        desc = 'LSP Definitions / references / ... (Trouble)',
+        desc = 'lsp definitions / references / ...',
       },
       {
         '<leader>xL',
         '<cmd>Trouble loclist toggle<cr>',
-        desc = 'Location List (Trouble)',
+        desc = 'location list (trouble)',
       },
       {
         '<leader>xQ',
         '<cmd>Trouble qflist toggle<cr>',
-        desc = 'Quickfix List (Trouble)',
+        desc = 'quickfix list (trouble)',
       },
     },
   },
   {
-    'chrisbra/Colorizer',
+    'norcalli/nvim-colorizer.lua',
+    config = true,
+    init = function()
+      vim.keymap.set('n', '<leader>cc', '<cmd>ColorizerToggle<cr>', { desc = 'toggle colorizer', noremap = true })
+    end,
   },
   {
     'iamcco/markdown-preview.nvim',

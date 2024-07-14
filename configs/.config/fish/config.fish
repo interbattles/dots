@@ -1,25 +1,16 @@
 set fish_greeting
 
 if status is-interactive
-   source ~/.cache/wal/colors.fish
+    source ~/.cache/matugen/colors.fish
+    set -g fish_key_bindings fish_vi_key_bindings
 end
 
-#source $HOME/.cargo/env.fish
-set -gx PATH "$HOME/.cargo/bin" $PATH
-set -gx EDITOR "nvim"
-set -gx TERMINAL "alacritty"
+set EDITOR nvim
+set zoxide_cmd cd
 
-set -gx zoxide_cmd cd
+set -x STARSHIP_CONFIG ~/.cache/wal/starship.toml
 
-set -g fish_key_bindings fish_vi_key_bindings
-
-## bun
-#set --export BUN_INSTALL "$HOME/.bun"
-#set --export PATH $BUN_INSTALL/bin $PATH
-
-abbr -a -- pacfzf pacman\ -Slq\ \|\ fzf\ --preview\ \'pacman\ -Si\ \{\}\'\ --layout=reverse
-abbr -a -- pacfzinstalled pacman\ -Qq\ \|\ fzf\ --preview\ \'pacman\ -Qil\ \{\}\'\ --layout=reverse\ --bind\ \'enter:execute\(pacman\ -Qil\ \{\}\ \|\ less\)\'
-
-fish_add_path "$HOME/.spicetify"
+fish_add_path -P $HOME/.cargo/bin
 
 pyenv init - | source
+starship init fish | source

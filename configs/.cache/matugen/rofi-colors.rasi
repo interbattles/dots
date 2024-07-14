@@ -1,0 +1,185 @@
+* {
+    primary: #82d3e1;
+    primary-fixed: #9eeffd;
+    primary-fixed-dim: #82d3e1;
+    on-primary: #00363d;
+    on-primary-fixed: #001f24;
+    on-primary-fixed-variant: #004f58;
+    primary-container: #004f58;
+    on-primary-container: #9eeffd;
+    secondary: #b1cbd0;
+    secondary-fixed: #cde7ec;
+    secondary-fixed-dim: #b1cbd0;
+    on-secondary: #1c3438;
+    on-secondary-fixed: #051f23;
+    on-secondary-fixed-variant: #334b4f;
+    secondary-container: #354d51;
+    on-secondary-container: #cde7ec;
+    tertiary: #bac6ea;
+    tertiary-fixed: #dae2ff;
+    tertiary-fixed-dim: #bac6ea;
+    on-tertiary: #24304d;
+    on-tertiary-fixed: #0e1a37;
+    on-tertiary-fixed-variant: #3b4665;
+    tertiary-container: #3b4665;
+    on-tertiary-container: #dae2ff;
+    error: #ffb4ab;
+    on-error: #690005;
+    error-container: #93000a;
+    on-error-container: #ffdad6;
+    surface: #0e1415;
+    on-surface: #dee3e5;
+    on-surface-variant: #bfc8ca;
+    outline: #899294;
+    outline-variant: #3f484a;
+    shadow: #000000;
+    scrim: #000000;
+    inverse-surface: #dee3e5;
+    inverse-on-surface: #2b3133;
+    inverse-primary: #006874;
+    surface-dim: #0e1415;
+    surface-bright: #343a3b;
+    surface-container-lowest: #090f10;
+    surface-container-low: #171d1e;
+    surface-container: #1b2122;
+    surface-container-high: #252b2c;
+    surface-container-highest: #303637;
+}
+
+#window {
+    background-color: @background;
+    border: 0;
+    padding: 2.5ch;
+}
+
+#mainbox {
+    border: 0;
+    padding: 0;
+}
+
+#message {
+    border: 2px 0px 0px;
+    border-color: @border-color;
+    padding: 1px;
+}
+
+#textbox {
+    text-color: @foreground;
+}
+
+#inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+
+#textbox-prompt-colon {
+    expand: false;
+    str: ":";
+    margin: 0px 0.3em 0em 0em;
+    text-color: @on-surface;
+}
+
+#listview {
+    fixed-height: 0;
+    border: 2px 0px 0px;
+    border-color: @border-color;
+    spacing: 2px;
+    scrollbar: true;
+    padding: 2px 0px 0px;
+}
+
+#element {
+    border: 0;
+    padding: 1px;
+}
+
+#element-text, element-icon {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+#element.normal.normal {
+    background-color: @normal-background;
+    text-color: @on-surface;
+}
+
+#element.normal.urgent {
+    background-color: @urgent-background;
+    text-color: @urgent-foreground;
+}
+
+#element.normal.active {
+    background-color: @active-background;
+    text-color: @active-foreground;
+}
+
+#element.selected.normal {
+    background-color: @selected-normal-background;
+    text-color: @selected-normal-foreground;
+}
+
+#element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color: @selected-urgent-foreground;
+}
+
+#element.selected.active {
+    background-color: @selected-active-background;
+    text-color: @selected-active-foreground;
+}
+
+#element.alternate.normal {
+    background-color: @alternate-normal-background;
+    text-color: @alternate-normal-foreground;
+}
+
+#element.alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color: @alternate-urgent-foreground;
+}
+
+#element.alternate.active {
+    background-color: @alternate-active-background;
+    text-color: @alternate-active-foreground;
+}
+
+#scrollbar {
+    width: 4px;
+    border: 0;
+    handle-width: 8px;
+    padding: 0;
+}
+
+#sidebar {
+    border: 2px 0px 0px;
+    border-color: @outline;
+}
+
+#button {
+    text-color: @on-surface;
+}
+
+#button.selected {
+    background-color: @surface-container-high;
+    text-color: @on-surface;
+}
+
+#inputbar {
+    spacing: 0;
+    text-color: @on-surface;
+    padding: 1px;
+}
+
+#case-indicator {
+    spacing: 0;
+    text-color: @on-surface;
+}
+
+#entry {
+    spacing: 0;
+    text-color: @on-surface;
+}
+
+#prompt {
+    spacing: 0;
+    text-color: @on-surface;
+}
