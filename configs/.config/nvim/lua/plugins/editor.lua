@@ -7,7 +7,7 @@ return {
     },
     opts = {
       plugins = { spelling = true },
-      preset = 'modern'
+      preset = 'modern',
     },
     config = function(_, opts)
       local wk = require('which-key')

@@ -6,6 +6,7 @@ import { sh, dependencies } from "./utils"
 export default function init() {
   wallpaper.connect("changed", () => matugen())
   options.autotheme.connect("changed", () => matugen())
+  Utils.monitorFile(`${GLib.get_user_cache_dir()}/matugen/ags.json`, () => theme())
 }
 
 function animate(...setters: Array<() => void>) {
@@ -20,7 +21,13 @@ export async function matugen(
   if (!options.autotheme.value || !dependencies("matugen"))
     return
 
+  console.log("re reading matugen cache")
+
   await sh(`matugen --type ${options.autotheme_type.value} ${type} ${arg}`)
+  theme()
+}
+
+const theme = () => {
   const colors = Utils.readFile(`${GLib.get_user_cache_dir()}/matugen/ags.json`);
   const c = JSON.parse(colors) as Colors
   const { dark, light } = options.theme

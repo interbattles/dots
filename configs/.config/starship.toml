@@ -1,193 +1,311 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-[aws]
-format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
+## ░█▀▀░▀█▀░█▀█░█▀▄░█▀▀░█░█░▀█▀░█▀█
+## ░▀▀█░░█░░█▀█░█▀▄░▀▀█░█▀█░░█░░█▀▀
+## ░▀▀▀░░▀░░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░░
 
-[bun]
-format = '\[[$symbol($version)]($style)\]'
+# Setups
+format="$directory$git_branch$character"
+right_format = """$git_status$cmd_duration"""
+palette = "matugen"
+add_newline = false 
 
-[c]
-format = '\[[$symbol($version(-$name))]($style)\]'
-
-[cmake]
-format = '\[[$symbol($version)]($style)\]'
-
-[cmd_duration]
-format = '\[[⏱ $duration]($style)\]'
-
-[cobol]
-format = '\[[$symbol($version)]($style)\]'
+# Other languages configurations:
+c.disabled = true
+cmake.disabled = true
+haskell.disabled = true
+python.disabled = true
+ruby.disabled = true
+rust.disabled = true
+perl.disabled = true
+package.disabled = true
+lua.disabled = true
+nodejs.disabled = true
+java.disabled = true
+golang.disabled = true
 
 [conda]
-format = '\[[$symbol$environment]($style)\]'
+format = ' [$symbol$environment](color2) '
 
-[crystal]
-format = '\[[$symbol($version)]($style)\]'
+[character]
+success_symbol = "[](primary bold)"
+error_symbol = "[](error)"
+vimcmd_symbol = "[](color2)"
 
-[daml]
-format = '\[[$symbol($version)]($style)\]'
-
-[dart]
-format = '\[[$symbol($version)]($style)\]'
-
-[deno]
-format = '\[[$symbol($version)]($style)\]'
-
-[docker_context]
-format = '\[[$symbol$context]($style)\]'
-
-[dotnet]
-format = '\[[$symbol($version)(🎯 $tfm)]($style)\]'
-
-[elixir]
-format = '\[[$symbol($version \(OTP $otp_version\))]($style)\]'
-
-[elm]
-format = '\[[$symbol($version)]($style)\]'
-
-[erlang]
-format = '\[[$symbol($version)]($style)\]'
-
-[fennel]
-format = '\[[$symbol($version)]($style)\]'
-
-[fossil_branch]
-format = '\[[$symbol$branch]($style)\]'
-
-[gcloud]
-format = '\[[$symbol$account(@$domain)(\($region\))]($style)\]'
+[directory]
+format = "[]($style)[ ](bg:primary_container fg:on_primary_container)[$path](bg:primary_container fg:on_primary_container bold)[ ]($style)"
+style = "bg:none fg:primary_container"
+truncation_length = 3
+truncate_to_repo=false
 
 [git_branch]
-format = '\[[$symbol$branch]($style)\]'
+format = "[]($style)[[ ](bg:secondary_container fg:on_secondary_container bold)$branch](bg:secondary_container fg:on_secondary_container)[ ]($style)"
+style = "bg:none fg:secondary_container"
 
 [git_status]
-format = '([\[$all_status$ahead_behind\]]($style))'
+# $all status$ahead_behind
+format = "[]($style)[$all_status$ahead_behind](bg:secondary_container fg:on_secondary_container)[ ]($style)"
+style = "bg:none fg:secondary_container"
+conflicted = "="
+ahead =	"⇡"
+behind = "⇣"
+diverged = "⇡⇣"
+up_to_date = ""
+untracked = "?"
+stashed = "\\$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
 
-[golang]
-format = '\[[$symbol($version)]($style)\]'
+[cmd_duration]
+min_time = 1
+# duration & style 
+format = "[]($style)[[󰥔 ](bg:tertiary_container fg:on_tertiary_container bold)$duration](bg:tertiary_container fg:on_tertiary_container)[ ]($style)"
+disabled = false
+style = "bg:none fg:tertiary_container"
 
-[gradle]
-format = '\[[$symbol($version)]($style)\]'
+[palettes.matugen]
 
-[guix_shell]
-format = '\[[$symbol]($style)\]'
+background = "#0f1511"
 
-[haskell]
-format = '\[[$symbol($version)]($style)\]'
+color1 = "#ffb4a4"
 
-[haxe]
-format = '\[[$symbol($version)]($style)\]'
+color10 = "#a1d399"
 
-[helm]
-format = '\[[$symbol($version)]($style)\]'
+color10_container = "#245023"
 
-[hg_branch]
-format = '\[[$symbol$branch]($style)\]'
+color10_source = "#c3e88d"
 
-[java]
-format = '\[[$symbol($version)]($style)\]'
+color10_value = "#c3e88d"
 
-[julia]
-format = '\[[$symbol($version)]($style)\]'
+color11 = "#e4c36c"
 
-[kotlin]
-format = '\[[$symbol($version)]($style)\]'
+color11_container = "#594400"
 
-[kubernetes]
-format = '\[[$symbol$context( \($namespace\))]($style)\]'
+color11_source = "#ffc777"
 
-[lua]
-format = '\[[$symbol($version)]($style)\]'
+color11_value = "#ffc777"
 
-[memory_usage]
-format = '\[$symbol[$ram( | $swap)]($style)\]'
+color12 = "#9ecafc"
 
-[meson]
-format = '\[[$symbol$project]($style)\]'
+color12_container = "#164974"
 
-[nim]
-format = '\[[$symbol($version)]($style)\]'
+color12_source = "#82aaff"
 
-[nix_shell]
-format = '\[[$symbol$state( \($name\))]($style)\]'
+color12_value = "#82aaff"
 
-[nodejs]
-format = '\[[$symbol($version)]($style)\]'
+color13 = "#c6c0ff"
 
-[ocaml]
-format = '\[[$symbol($version)(\($switch_indicator$switch_name\))]($style)\]'
+color13_container = "#454078"
 
-[opa]
-format = '\[[$symbol($version)]($style)\]'
+color13_source = "#c099ff"
 
-[openstack]
-format = '\[[$symbol$cloud(\($project\))]($style)\]'
+color13_value = "#c099ff"
 
-[os]
-format = '\[[$symbol]($style)\]'
+color14 = "#80d4db"
 
-[package]
-format = '\[[$symbol$version]($style)\]'
+color14_container = "#004f54"
 
-[perl]
-format = '\[[$symbol($version)]($style)\]'
+color14_source = "#86e1fc"
 
-[php]
-format = '\[[$symbol($version)]($style)\]'
+color14_value = "#86e1fc"
 
-[pijul_channel]
-format = '\[[$symbol$channel]($style)\]'
+color1_container = "#733427"
 
-[pulumi]
-format = '\[[$symbol$stack]($style)\]'
+color1_source = "#ff757f"
 
-[purescript]
-format = '\[[$symbol($version)]($style)\]'
+color1_value = "#ff757f"
 
-[python]
-format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
+color2 = "#a1d399"
 
-[raku]
-format = '\[[$symbol($version-$vm_version)]($style)\]'
+color2_container = "#245023"
 
-[red]
-format = '\[[$symbol($version)]($style)\]'
+color2_source = "#c3e88d"
 
-[ruby]
-format = '\[[$symbol($version)]($style)\]'
+color2_value = "#c3e88d"
 
-[rust]
-format = '\[[$symbol($version)]($style)\]'
+color3 = "#e4c36c"
 
-[scala]
-format = '\[[$symbol($version)]($style)\]'
+color3_container = "#594400"
 
-[spack]
-format = '\[[$symbol$environment]($style)\]'
+color3_source = "#ffc777"
 
-[sudo]
-format = '\[[as $symbol]($style)\]'
+color3_value = "#ffc777"
 
-[swift]
-format = '\[[$symbol($version)]($style)\]'
+color4 = "#9ecafc"
 
-[terraform]
-format = '\[[$symbol$workspace]($style)\]'
+color4_container = "#164974"
 
-[time]
-format = '\[[$time]($style)\]'
+color4_source = "#82aaff"
 
-[username]
-format = '\[[$user]($style)\]'
+color4_value = "#82aaff"
 
-[vagrant]
-format = '\[[$symbol($version)]($style)\]'
+color5 = "#c6c0ff"
 
-[vlang]
-format = '\[[$symbol($version)]($style)\]'
+color5_container = "#454078"
 
-[zig]
-format = '\[[$symbol($version)]($style)\]'
+color5_source = "#c099ff"
 
-[solidity]
-format = '\[[$symbol($version)]($style)\]'
+color5_value = "#c099ff"
+
+color6 = "#80d4db"
+
+color6_container = "#004f54"
+
+color6_source = "#86e1fc"
+
+color6_value = "#86e1fc"
+
+color9 = "#ffb4a4"
+
+color9_container = "#733427"
+
+color9_source = "#ff757f"
+
+color9_value = "#ff757f"
+
+error = "#ffb4ab"
+
+error_container = "#93000a"
+
+inverse_on_surface = "#2c322e"
+
+inverse_primary = "#246a4b"
+
+inverse_surface = "#dee4de"
+
+on_background = "#dee4de"
+
+on_color1 = "#561f13"
+
+on_color10 = "#0b390f"
+
+on_color10_container = "#bdf0b3"
+
+on_color11 = "#3d2e00"
+
+on_color11_container = "#ffdf91"
+
+on_color12 = "#003256"
+
+on_color12_container = "#d0e4ff"
+
+on_color13 = "#2e295f"
+
+on_color13_container = "#e4dfff"
+
+on_color14 = "#00363a"
+
+on_color14_container = "#9df0f8"
+
+on_color1_container = "#ffdad3"
+
+on_color2 = "#0b390f"
+
+on_color2_container = "#bdf0b3"
+
+on_color3 = "#3d2e00"
+
+on_color3_container = "#ffdf91"
+
+on_color4 = "#003256"
+
+on_color4_container = "#d0e4ff"
+
+on_color5 = "#2e295f"
+
+on_color5_container = "#e4dfff"
+
+on_color6 = "#00363a"
+
+on_color6_container = "#9df0f8"
+
+on_color9 = "#561f13"
+
+on_color9_container = "#ffdad3"
+
+on_error = "#690005"
+
+on_error_container = "#ffdad6"
+
+on_primary = "#003823"
+
+on_primary_container = "#abf2ca"
+
+on_primary_fixed = "#002113"
+
+on_primary_fixed_variant = "#005235"
+
+on_secondary = "#203529"
+
+on_secondary_container = "#d0e8d7"
+
+on_secondary_fixed = "#0b1f15"
+
+on_secondary_fixed_variant = "#364b3f"
+
+on_surface = "#dee4de"
+
+on_surface_variant = "#c0c9c1"
+
+on_tertiary = "#053542"
+
+on_tertiary_container = "#c0e9fa"
+
+on_tertiary_fixed = "#001f28"
+
+on_tertiary_fixed_variant = "#234c5a"
+
+outline = "#8a938c"
+
+outline_variant = "#404943"
+
+primary = "#8fd5af"
+
+primary_container = "#005235"
+
+primary_fixed = "#abf2ca"
+
+primary_fixed_dim = "#8fd5af"
+
+scrim = "#000000"
+
+secondary = "#b4ccbc"
+
+secondary_container = "#364b3f"
+
+secondary_fixed = "#d0e8d7"
+
+secondary_fixed_dim = "#b4ccbc"
+
+shadow = "#000000"
+
+source_color = "#343d37"
+
+surface = "#0f1511"
+
+surface_bright = "#353b36"
+
+surface_container = "#1b211d"
+
+surface_container_high = "#262b27"
+
+surface_container_highest = "#303632"
+
+surface_container_low = "#171d19"
+
+surface_container_lowest = "#0a0f0c"
+
+surface_dim = "#0f1511"
+
+surface_variant = "#404943"
+
+tertiary = "#a4cddd"
+
+tertiary_container = "#234c5a"
+
+tertiary_fixed = "#c0e9fa"
+
+tertiary_fixed_dim = "#a4cddd"
+

@@ -1,9 +1,45 @@
 return {
   {
-    'interbattles/matugen.nvim',
-    config = function()
-      local matugen = require('matugen')
-      matugen.setup()
+    'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function ()
+      local styles = require('tokyonight.colors').styles
+
+      vim.cmd [[ source ~/.cache/matugen/colors.vim ]]
+      local c = vim.g
+
+      ---@type Palette
+      local modified_colors = {
+        bg = c.bg,
+        bg_dark = c.bg_alt,
+        fg = c.fg,
+        fg_dark = c.fg_dark,
+        git = {
+          add = c.color2,
+          change = c.color3,
+          delete = c.color1,
+        },
+        red = c.color1,
+        blue = c.color4,
+        cyan = c.color6,
+        teal = c.color14,
+        green = c.color2,
+        purple = c.color13,
+        orange = c.color11,
+        yellow = c.color3,
+        magenta = c.color5,
+        comment = c.comments,
+
+        fg_gutter = c.fg,
+        bg_highlight = c.active,
+        terminal_black = c.bg_alt,
+      }
+      styles.custom = vim.tbl_extend('force', styles.moon --[[@as Palette]], modified_colors)
+
+      require('tokyonight').load({
+        style = 'custom',
+      })
     end,
   },
   {
@@ -46,10 +82,10 @@ return {
       'nvim-tree/nvim-web-devicons',
       --'catppuccin',
     },
-    config = function()
+    config = function ()
       require('bufferline').setup {}
     end,
-    init = function()
+    init = function ()
       vim.keymap.set('n', '[b', '<cmd>BufferLineCyclePrev<cr>', { desc = 'prev buffer', noremap = true })
       vim.keymap.set('n', ']b', '<cmd>BufferLineCycleNext<cr>', { desc = 'next buffer', noremap = true })
       vim.keymap.set('n', '[B', '<cmd>BufferLineMovePrev<cr>', { desc = 'move back', noremap = true })
@@ -74,10 +110,10 @@ return {
       'nvim-tree/nvim-web-devicons',
       'folke/noice.nvim',
     },
-    opts = function()
+    opts = function ()
       return {
         options = {
-          theme = 'matugen-nvim',
+          theme = 'tokyonight',
           component_separators = '',
           section_separators = '',
         },
@@ -93,12 +129,12 @@ return {
           },
           lualine_x = {
             {
-              function() return require('noice').api.status.mode.get() end, ---@diagnostic disable-line:undefined-field
-              cond = function() return package.loaded['noice'] and require('noice').api.status.mode.has() end, ---@diagnostic disable-line:undefined-field
+              function () return require('noice').api.status.mode.get() end, ---@diagnostic disable-line:undefined-field
+              cond = function () return package.loaded['noice'] and require('noice').api.status.mode.has() end, ---@diagnostic disable-line:undefined-field
             },
             {
-              function() return require('noice').api.status.command.get() end, ---@diagnostic disable-line:undefined-field
-              cond = function() return package.loaded['noice'] and require('noice').api.status.command.has() end, ---@diagnostic disable-line:undefined-field
+              function () return require('noice').api.status.command.get() end, ---@diagnostic disable-line:undefined-field
+              cond = function () return package.loaded['noice'] and require('noice').api.status.command.has() end, ---@diagnostic disable-line:undefined-field
             },
           },
           lualine_y = { 'filetype', 'progress', 'diff' },
@@ -118,7 +154,7 @@ return {
         extensions = {},
       }
     end,
-    init = function()
+    init = function ()
       vim.o.laststatus = 3
     end,
   },

@@ -4,6 +4,7 @@ import Button from "./Button"
 import Group from "./Group"
 import Page from "./Page"
 import Wallpaper from "./Wallpaper"
+import Avatar from "./Avatar"
 import options from "options"
 import icons from "lib/icons"
 
@@ -141,7 +142,7 @@ export default [
       Row({ opt: pm.labels, title: "Show Labels" }),
     ),
     Group("Quicksettings",
-      Row({ opt: qs.avatar.image, title: "Avatar", type: "img" }),
+      Avatar() as ReturnType<typeof Row>,
       Row({ opt: qs.avatar.size, title: "Avatar Size" }),
       Row({ opt: qs.media.monochromeIcon, title: "Media Monochrome Icons" }),
       Row({ opt: qs.media.coverSize, title: "Media Cover Art Size" }),

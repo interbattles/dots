@@ -9,5 +9,5 @@ vim.api.nvim_set_option_value('clipboard', 'unnamedplus', { scope = 'global' })
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.opt.showmode = false
 vim.opt.termguicolors = true
+vim.opt.showmode = false

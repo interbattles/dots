@@ -1,0 +1,71 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+## ░█▀▀░▀█▀░█▀█░█▀▄░█▀▀░█░█░▀█▀░█▀█
+## ░▀▀█░░█░░█▀█░█▀▄░▀▀█░█▀█░░█░░█▀▀
+## ░▀▀▀░░▀░░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░░
+
+# Setups
+format="$directory$git_branch$character"
+right_format = """$git_status$cmd_duration"""
+palette = "matugen"
+add_newline = false 
+
+# Other languages configurations:
+c.disabled = true
+cmake.disabled = true
+haskell.disabled = true
+python.disabled = true
+ruby.disabled = true
+rust.disabled = true
+perl.disabled = true
+package.disabled = true
+lua.disabled = true
+nodejs.disabled = true
+java.disabled = true
+golang.disabled = true
+
+[conda]
+format = ' [$symbol$environment](color2) '
+
+[character]
+success_symbol = "[](primary bold)"
+error_symbol = "[](error)"
+vimcmd_symbol = "[](color2)"
+
+[directory]
+format = "[]($style)[ ](bg:primary_container fg:on_primary_container)[$path](bg:primary_container fg:on_primary_container bold)[ ]($style)"
+style = "bg:none fg:primary_container"
+truncation_length = 3
+truncate_to_repo=false
+
+[git_branch]
+format = "[]($style)[[ ](bg:secondary_container fg:on_secondary_container bold)$branch](bg:secondary_container fg:on_secondary_container)[ ]($style)"
+style = "bg:none fg:secondary_container"
+
+[git_status]
+# $all status$ahead_behind
+format = "[]($style)[$all_status$ahead_behind](bg:secondary_container fg:on_secondary_container)[ ]($style)"
+style = "bg:none fg:secondary_container"
+conflicted = "="
+ahead =	"⇡"
+behind = "⇣"
+diverged = "⇡⇣"
+up_to_date = ""
+untracked = "?"
+stashed = "\\$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+[cmd_duration]
+min_time = 1
+# duration & style 
+format = "[]($style)[[󰥔 ](bg:tertiary_container fg:on_tertiary_container bold)$duration](bg:tertiary_container fg:on_tertiary_container)[ ]($style)"
+disabled = false
+style = "bg:none fg:tertiary_container"
+
+[palettes.matugen]
+<* for name, value in colors *>
+{{name}} = "{{value.default.hex}}"
+<* endfor *>

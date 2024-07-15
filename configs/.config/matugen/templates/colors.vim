@@ -1,20 +1,3 @@
-let background = "{{colors.background.default.hex}}"
-let foreground = "{{colors.on_surface.default.hex}}"
-let cursor = "{{colors.on_surface.default.hex}}"
-
-let color0 = "{{colors.surface_container.default.hex}}"
-let color1 = "{{colors.color1.default.hex}}"
-let color2 = "{{colors.color2.default.hex}}"
-let color3 = "{{colors.color3.default.hex}}"
-let color4 = "{{colors.color4.default.hex}}"
-let color5 = "{{colors.color5.default.hex}}"
-let color6 = "{{colors.color6.default.hex}}"
-let color7 = "{{colors.on_surface_variant.default.hex}}"
-let color8 = "{{colors.surface_container_high.default.hex}}"
-let color9 = "{{colors.color9.default.hex}}"
-let color10 = "{{colors.color10.default.hex}}"
-let color11 = "{{colors.color11.default.hex}}"
-let color12 = "{{colors.color12.default.hex}}"
-let color13 = "{{colors.color13.default.hex}}"
-let color14 = "{{colors.color14.default.hex}}"
-let color15 = "{{colors.on_surface.default.hex}}"
+<* for name, value in colors *>
+let {{name}} = "{{value.default.hex}}"
+<* endfor *>

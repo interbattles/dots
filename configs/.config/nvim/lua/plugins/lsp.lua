@@ -30,12 +30,17 @@ return {
     },
   },
   {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+  },
+  {
     'neovim/nvim-lspconfig',
     dependencies = {
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       'hrsh7th/cmp-nvim-lsp',
     },
-    config = function()
+    config = function ()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lspconfig = require('lspconfig')
       lspconfig.util.default_config = vim.tbl_extend(
@@ -53,14 +58,6 @@ return {
           Lua = {
             format = {
               enable = true,
-              defaultConfig = {
-                indent_style = 'space',
-                indent_size = '2',
-                quote_style = 'single',
-                space_around_table_field_list = 'true',
-                table_separator_style = 'comma',
-                trailing_table_separator = 'smart',
-              },
             },
           },
         },
@@ -69,7 +66,6 @@ return {
       lspconfig.taplo.setup {}
       lspconfig.hyprls.setup {}
       lspconfig.vimls.setup {}
-      lspconfig.tsserver.setup {}
       lspconfig.fish_lsp.setup {}
     end,
   },
@@ -79,7 +75,7 @@ return {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
     },
-    config = function()
+    config = function ()
       require('mason').setup()
       require('mason-lspconfig').setup()
 
@@ -88,7 +84,7 @@ return {
           'rust_analyzer',
           'lua_ls',
           'hyprls',
-          'vimls'
+          'vimls',
         },
         run_on_start = true,
         integrations = {
