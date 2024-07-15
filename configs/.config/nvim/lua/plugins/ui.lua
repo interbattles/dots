@@ -11,10 +11,10 @@ return {
 
       ---@type Palette
       local modified_colors = {
-        bg = c.bg,
-        bg_dark = c.bg_alt,
-        fg = c.fg,
-        fg_dark = c.fg_dark,
+        bg = c.surface,
+        bg_dark = c.surface_container_low,
+        fg = c.on_surface,
+        fg_dark = c.on_surface_variant,
         git = {
           add = c.color2,
           change = c.color3,
@@ -29,15 +29,16 @@ return {
         orange = c.color11,
         yellow = c.color3,
         magenta = c.color5,
-        comment = c.comments,
+        comment = c.on_surface_variant,
 
-        fg_gutter = c.fg,
-        bg_highlight = c.active,
-        terminal_black = c.bg_alt,
+        fg_gutter = c.on_surface_variant,
+        bg_highlight = c.surface_brigt,
+        terminal_black = c.surface_container_lowest,
       }
       styles.custom = vim.tbl_extend('force', styles.moon --[[@as Palette]], modified_colors)
 
       require('tokyonight').load({
+        transparent = true,
         style = 'custom',
       })
     end,
