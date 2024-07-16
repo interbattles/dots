@@ -2,7 +2,7 @@
 reload_apps = true
 
 [config.custom_keywords]
-alpha = "0.84"
+alpha = "0.94"
 
 [config.custom_colors]
 color1 = { color = "#ff757f", blend = true }
