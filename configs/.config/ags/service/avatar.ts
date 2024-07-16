@@ -1,6 +1,9 @@
-import { sh } from "lib/utils"
+import { dependencies, sh } from "lib/utils"
 
-export const AV = `${Utils.HOME}/.config/avatar`
+import options from "options"
+const opt = options.quicksettings.avatar.image
+
+const AV = `${Utils.HOME}/.config/avatar`
 
 class Avatar extends Service {
   static {
@@ -10,20 +13,28 @@ class Avatar extends Service {
   }
 
   async #setAvatar(path: string) {
-    await sh(`cp ${path} ${AV}`)
-    this.avatar
+    if (!dependencies('magick'))
+      return
+
+    await sh([
+      `magick ${path}`,
+      '-trim -gravity center -extent 1:1',
+      '( +clone -threshold 101% -fill white -draw "circle %[fx:int(w/2)],%[fx:int(h/2)] %[fx:int(w/2)],%[fx:int(h)]" ) -channel-fx "| gray=>alpha"',
+      `PNG:${AV}`
+    ].join(' '))
+    this.changed("avatar")
   }
 
-  readonly set = (path: string) => { this.#setAvatar(path) }
-  get avatar() { return AV }
+  get avatar() { 
+    if(!Utils.readFile(AV) || opt.value === opt.initial)
+      return 'avatar-default'
+    return AV 
+  }
 
   constructor() {
     super()
 
-    Utils.monitorFile(AV, (file, event) => {
-      console.log(file.get_parse_name(), event)
-      this.changed("avatar")
-    })
+    opt.connect("changed", (opt) => this.#setAvatar(opt.value))
   }
 }
 

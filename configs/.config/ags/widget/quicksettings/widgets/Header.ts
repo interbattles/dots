@@ -2,10 +2,10 @@ import icons from "lib/icons"
 import { uptime } from "lib/variables"
 import options from "options"
 import powermenu, { Action } from "service/powermenu"
-import { AV } from 'service/avatar'
+import avatar from 'service/avatar'
 
 const battery = await Service.import("battery")
-const { image, size } = options.quicksettings.avatar
+const { size } = options.quicksettings.avatar
 
 function up(up: number) {
   const h = Math.floor(up / 60)
@@ -13,15 +13,18 @@ function up(up: number) {
   return `${h}h ${m < 10 ? "0" + m : m}m`
 }
 
-const Avatar = () => Widget.Box({
+const Avatar = () => Widget.Icon({
+  icon: avatar.bind("avatar"),
+  size: size.bind("value"),
   class_name: "avatar",
-  css: Utils.merge([image.bind(), size.bind()], (_img, size) => `
-        min-width: ${size}px;
-        min-height: ${size}px;
-        background-image: url('file://${AV}');
-        background-size: cover;
-    `),
 })
+
+// const Avatar = () => Widget.Icon({
+//   class_name: "avatar",
+//   icon: avatar.bind("avatar"),
+//   size: size.bind(),
+//   vpack: 'center',
+// })
 
 const SysButton = (action: Action) => Widget.Button({
   vpack: "center",

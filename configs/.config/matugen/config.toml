@@ -30,3 +30,4 @@ vim = { input_path = '~/.config/matugen/templates/colors.vim', output_path = '~/
 gtk-colors = { input_path = '~/.config/matugen/templates/gtk-colors.css', output_path = '~/.cache/matugen/gtk-colors.css' }
 qt5-colors = { input_path = '~/.config/matugen/templates/qt5ct-colors.conf', output_path = '~/.config/qt5ct/colors/matugen.conf' }
 starship = { input_path = '~/.config/matugen/templates/starship.toml', output_path = '~/.config/starship.toml' }
+hyprland = { input_path = '~/.config/matugen/templates/hyprcolors.conf', output_path = '~/.cache/matugen/hyprcolors.conf' }
