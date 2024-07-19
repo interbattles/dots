@@ -8,10 +8,6 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[credential]
-	credentialStore = secretservice
-	helper = 
-	helper = /usr/bin/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [credential "https://github.com"]

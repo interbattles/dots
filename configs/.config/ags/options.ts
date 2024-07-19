@@ -10,6 +10,8 @@ const options = mkOptions(OPTIONS, {
   wallpaper: {
     resolution: opt<import("service/wallpaper").Resolution>(1920),
     market: opt<import("service/wallpaper").Market>("random"),
+    source: opt<'bing' | string>(`${Utils.HOME}/walls`),
+    speed: opt(30 * 60)
   },
 
   theme: {
@@ -42,6 +44,7 @@ const options = mkOptions(OPTIONS, {
       border: opt("#080808"),
     },
 
+    opacity: opt(0),
     blur: opt(0),
     scheme: opt<"dark" | "light">("dark"),
     widget: { opacity: opt(94) },
@@ -153,6 +156,15 @@ const options = mkOptions(OPTIONS, {
     apps: {
       iconSize: opt(30),
       max: opt(5),
+      favorites: opt([
+        [
+          "chromium",
+          "neovide",
+          "wezterm",
+          "nemo",
+          "spotify",
+        ],
+      ]),
     },
   },
 

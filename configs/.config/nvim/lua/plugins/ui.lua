@@ -1,46 +1,43 @@
 return {
   {
-    'folke/tokyonight.nvim',
+    "roobert/palette.nvim",
     lazy = false,
     priority = 1000,
     config = function ()
-      local styles = require('tokyonight.colors').styles
-
       vim.cmd [[ source ~/.cache/matugen/colors.vim ]]
-      local c = vim.g
 
-      ---@type Palette
-      local modified_colors = {
-        bg = c.surface,
-        bg_dark = c.surface_container_low,
-        fg = c.on_surface,
-        fg_dark = c.on_surface_variant,
-        git = {
-          add = c.color2,
-          change = c.color3,
-          delete = c.color1,
+      require("palette").setup({
+        palettes = {
+          main = "team_zissou",
         },
-        red = c.color1,
-        blue = c.color4,
-        cyan = c.color6,
-        teal = c.color14,
-        green = c.color2,
-        purple = c.color13,
-        orange = c.color11,
-        yellow = c.color3,
-        magenta = c.color5,
-        comment = c.on_surface_variant,
 
-        fg_gutter = c.on_surface_variant,
-        bg_highlight = c.surface_brigt,
-        terminal_black = c.surface_container_lowest,
-      }
-      styles.custom = vim.tbl_extend('force', styles.moon --[[@as Palette]], modified_colors)
+        italics = true,
+        transparent_background = true,
 
-      require('tokyonight').load({
-        transparent = true,
-        style = 'custom',
+        custom_palettes = {
+          main = {
+            -- a blue theme, based off the built-in dark palette
+            team_zissou = vim.tbl_extend(
+              "force",
+              require("palette.generator").generate_colors(
+                require("palette.colors").main["dark"],
+                vim.g.source_color
+              ),
+              {
+                -- override background and cursor-line
+                color0 = vim.g.surface,
+                color1 = vim.g.surface_container,
+                -- override most prominent colors (strings, etc.)
+                color6 = vim.g.primary,
+                color7 = vim.g.secondary,
+                color8 = vim.g.tertiary,
+              }
+            ),
+          },
+        },
       })
+
+      vim.cmd [[ colorscheme palette ]]
     end,
   },
   {
@@ -83,8 +80,18 @@ return {
       'nvim-tree/nvim-web-devicons',
       --'catppuccin',
     },
-    config = function ()
-      require('bufferline').setup {}
+    opts = {
+      options = {
+        diagnostics = 'nvim_lsp',
+        show_close_icon = false,
+        always_show_bufferline = false,
+        indicator = {
+          style = 'underscore'
+        },
+     },
+    },
+    config = function (_, opts)
+      require('bufferline').setup(opts)
     end,
     init = function ()
       vim.keymap.set('n', '[b', '<cmd>BufferLineCyclePrev<cr>', { desc = 'prev buffer', noremap = true })
@@ -99,9 +106,9 @@ return {
         { desc = 'sort by directory', noremap = true })
       vim.keymap.set('n', '<leader>bp', '<cmd>BufferLinePick<cr>', { desc = 'pick buffer', noremap = true })
       vim.keymap.set('n', '<leader>bP', '<cmd>BufferLinePickClose<cr>', { desc = 'close picker', noremap = true })
-      vim.keymap.set('n', '<leader>bc', '<cmd>BufferLineCloseLeft<cr>',
+      vim.keymap.set('n', '<leader>bC', '<cmd>BufferLineCloseLeft<cr>',
         { desc = 'close others on left', noremap = true })
-      vim.keymap.set('n', '<leader>bC', '<cmd>BufferLineCloseRight<cr>',
+      vim.keymap.set('n', '<leader>bc', '<cmd>BufferLineCloseRight<cr>',
         { desc = 'close others on right', noremap = true })
     end,
   },
@@ -114,7 +121,6 @@ return {
     opts = function ()
       return {
         options = {
-          theme = 'tokyonight',
           component_separators = '',
           section_separators = '',
         },
@@ -126,8 +132,7 @@ return {
             },
           },
           lualine_b = { 'filename', 'branch', 'diagnostics' },
-          lualine_c = {
-          },
+          lualine_c = { '%=' },
           lualine_x = {
             {
               function () return require('noice').api.status.mode.get() end, ---@diagnostic disable-line:undefined-field
@@ -154,9 +159,6 @@ return {
         inactive_winbar = {},
         extensions = {},
       }
-    end,
-    init = function ()
-      vim.o.laststatus = 3
     end,
   },
 }

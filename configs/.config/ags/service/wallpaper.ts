@@ -1,5 +1,5 @@
 import options from "options"
-import { dependencies, sh } from "lib/utils"
+import { bash, dependencies, sh } from "lib/utils"
 
 export type Resolution = 1920 | 1366 | 3840
 export type Market =
@@ -75,6 +75,13 @@ class Wallpaper extends Service {
     this.changed("wallpaper")
   }
 
+  readonly reload = () => {
+    console.log("reloading wallpaper file")
+    this.#wallpaper()
+  }
+
+
+
   readonly random = () => { this.#fetchBing() }
   readonly set = (path: string) => { this.#setWallpaper(path) }
   get wallpaper() { return WP }
@@ -91,9 +98,19 @@ class Wallpaper extends Service {
         this.#wallpaper()
     })
 
-    Utils.execAsync("swww-daemon --format xrgb")
+    bash(`pgrep -x swww-daemon || swww-daemon --format xrgb`)
       .then(this.#wallpaper)
-      .catch(() => null)
+      .catch((e) => console.error(e))
+
+    if (options.wallpaper.speed.value > 0)
+      setInterval(() => {
+        if (options.wallpaper.source.value == 'bing')
+          this.random()
+        else
+          bash(`find ${options.wallpaper.source.value} -type f \\( -name '*.png' -o -name '*.jpg' \\) | shuf -n 1`)
+            .then(picked => this.#setWallpaper(picked))
+            .catch(e => console.error(e))
+      }, options.wallpaper.speed.value * 1000)
   }
 }
 

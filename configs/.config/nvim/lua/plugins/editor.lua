@@ -9,7 +9,7 @@ return {
       plugins = { spelling = true },
       preset = 'modern',
     },
-    config = function(_, opts)
+    config = function (_, opts)
       local wk = require('which-key')
       wk.setup(opts)
 
@@ -38,10 +38,10 @@ return {
       default_file_explorer = true,
       view_options = {
         show_hidden = true,
-        is_hidden_file = function(name, _)
+        is_hidden_file = function (name, _)
           return vim.startswith(name, '.')
         end,
-        is_always_hidden = function(name, _)
+        is_always_hidden = function (name, _)
           return name == '..'
         end,
       },
@@ -66,7 +66,7 @@ return {
       use_default_keymaps = false,
     },
     config = true,
-    init = function()
+    init = function ()
       vim.keymap.set('n', '<leader>e', '<cmd>Oil<cr>', { desc = 'files', noremap = true })
     end,
   },
@@ -81,7 +81,7 @@ return {
         changedelete = { text = '▎' },
         untracked = { text = '▎' },
       },
-      on_attach = function(buffer)
+      on_attach = function (buffer)
         local gs = package.loaded.gitsigns
 
         local function map(mode, l, r, desc)
@@ -89,19 +89,19 @@ return {
         end
 
         -- stylua: ignore start
-        map('n', ']h', function() gs.nav_hunk('next') end, 'next hunk')
-        map('n', '[h', function() gs.nav_hunk('prev') end, 'prev hunk')
-        map('n', ']H', function() gs.nav_hunk('last') end, 'last hunk')
-        map('n', '[H', function() gs.nav_hunk('first') end, 'first hunk')
+        map('n', ']h', function () gs.nav_hunk('next') end, 'next hunk')
+        map('n', '[h', function () gs.nav_hunk('prev') end, 'prev hunk')
+        map('n', ']H', function () gs.nav_hunk('last') end, 'last hunk')
+        map('n', '[H', function () gs.nav_hunk('first') end, 'first hunk')
         map({ 'n', 'v' }, '<leader>ghs', ':Gitsigns stage_hunk<CR>', 'stage hunk')
         map({ 'n', 'v' }, '<leader>ghr', ':Gitsigns reset_hunk<CR>', 'reset hunk')
         map('n', '<leader>ghS', gs.stage_buffer, 'stage buffer')
         map('n', '<leader>ghu', gs.undo_stage_hunk, 'undo stage hunk')
         map('n', '<leader>ghR', gs.reset_buffer, 'reset buffer')
         map('n', '<leader>ghp', gs.preview_hunk_inline, 'preview hunk inline')
-        map('n', '<leader>ghb', function() gs.blame_line({ full = true }) end, 'blame line')
+        map('n', '<leader>ghb', function () gs.blame_line({ full = true }) end, 'blame line')
         map('n', '<leader>ghd', gs.diffthis, 'diff this')
-        map('n', '<leader>ghD', function() gs.diffthis('~') end, 'diff this ~')
+        map('n', '<leader>ghD', function () gs.diffthis('~') end, 'diff this ~')
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'gitsigns select hunk')
       end,
     },
@@ -116,7 +116,7 @@ return {
       'nvim-telescope/telescope.nvim', -- optional
     },
     config = true,
-    init = function()
+    init = function ()
       vim.keymap.set('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'open neogit', noremap = true })
     end,
   },
@@ -160,7 +160,7 @@ return {
   {
     'norcalli/nvim-colorizer.lua',
     config = true,
-    init = function()
+    init = function ()
       vim.keymap.set('n', '<leader>cc', '<cmd>ColorizerToggle<cr>', { desc = 'toggle colorizer', noremap = true })
     end,
   },
@@ -168,6 +168,91 @@ return {
     'iamcco/markdown-preview.nvim',
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
     ft = { 'markdown' },
-    build = function() vim.fn['mkdp#util#install']() end,
+    build = function () vim.fn['mkdp#util#install']() end,
   },
+  {
+    'goolord/alpha-nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    config = function ()
+      local alpha = require 'alpha'
+      local dashboard = require 'alpha.themes.dashboard'
+      require 'alpha.term'
+
+      math.randomseed(os.time())
+      local arts = vim.api.nvim_list_runtime_paths()[1] .. "/arts"
+      local dir = require 'plenary.scandir'.scan_dir(arts, { hidden = true, depth = 1 })
+      local custom_art = dir[math.random(#dir)]
+      vim.g.dir = dir
+
+      dashboard.section.terminal.type = 'terminal'
+      dashboard.section.terminal.command = "cat " .. custom_art
+      dashboard.section.terminal.width = 32
+      dashboard.section.terminal.height = 14
+
+      dashboard.section.buttons.val = {
+        dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+        dashboard.button("s", " Session Lens", ":Telescope session-lens<CR>"),
+        dashboard.button("f", "󰥨 Find Files", ":Telescope find_files<CR>"),
+        dashboard.button("b", "󰌱 Browse Files", ":Telescope file_browser<CR>"),
+        dashboard.button("d", " Dotfiles", ":cd ~/dots | Oil<CR>"),
+        dashboard.button("q", "󰅚  Quit NVIM", ":qa<CR>"),
+      }
+
+      dashboard.config.layout = {
+        { type = "padding", val = 2 },
+        dashboard.section.terminal,
+        { type = "padding", val = 2 },
+        dashboard.section.buttons,
+        dashboard.section.footer,
+      }
+
+      --{
+      --  --"      |\\      _,,,---,,_            ",
+      --  --"ZZZzz /,`.-'`'    -.  ;-;;,_        ",
+      --  --"     |,4-  ) )-,_. ,\\ (  `'-'       ",
+      --  --"    '---''(_/--'  `-'\\_)            ",
+      --}
+      alpha.setup(dashboard.opts)
+    end,
+  },
+  --{
+  --  'nvimdev/dashboard-nvim',
+  --  event = 'VimEnter',
+  --  opts = {
+  --    theme = 'hyper',
+  --    preview = {
+  --      command = "cat",
+  --      file_path = "~/.config/nvim/arts/boykissersmall.txt",
+  --      file_height = 19,
+  --      file_width = 59,
+  --    },
+  --    config = {
+  --      shortcut = {
+  --        {
+  --          desc = '󰊳 Update',
+  --          group = '@property',
+  --          action = 'Lazy update',
+  --          key = 'u',
+  --        },
+  --        {
+  --          icon = ' ',
+  --          desc = 'Files',
+  --          group = 'Label',
+  --          action = 'Telescope file_browser',
+  --          key = 'f',
+  --        },
+  --        {
+  --          icon = ' ',
+  --          desc = 'Session Lens',
+  --          group = 'DiagnosticHint',
+  --          action = 'Telescope session-lens',
+  --          key = 'l',
+  --        },
+  --      },
+  --    },
+  --  },
+  --  dependencies = { { 'nvim-tree/nvim-web-devicons' } },
+  --},
 }

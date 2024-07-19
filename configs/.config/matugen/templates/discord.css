@@ -1,0 +1,80 @@
+/**
+ * @name vesktop matugen
+ * @author @9j5
+ * @version 1.0.0
+ * @description meow
+ * @source https://github.com/interbattles/dotfiles
+*/
+
+* {
+    /* font-family: "JetBrains Mono"; */
+    /* font-style: italic; */
+
+    /* *.background */
+    --background-primary: {{colors.surface.default.hex}};
+    --background-secondary: {{colors.surface.default.hex}};
+    --background-tertiary: {{colors.surface.default.hex}};
+
+    --background-primary-alt: {{colors.surface.default.hex}};
+    --background-secondary-alt: {{colors.surface.default.hex}};
+    --background-tertiary-alt: {{colors.surface.default.hex}};
+
+    --channeltextarea-background: {{colors.surface.default.hex}};
+
+    --profile-gradient-primary-color: {{colors.surface.default.hex}};
+    --profile-gradient-secondary-color: {{colors.surface.default.hex}};
+    --profile-body-background-color: {{colors.surface.default.hex}};
+
+    --__header-bar-background: {{colors.surface.default.hex}} !important;
+
+    --scrollbar-auto-track: {{colors.surface.default.hex}};
+    --scrollbar-thin-track: {{colors.surface.default.hex}};
+
+    /* primary.* */
+    --primary-630: {{colors.primary.default.hex}};
+    
+    /* *.color2 */
+    --scrollbar-auto-thumb: {{colors.primary.default.hex}};
+    --scrollbar-thin-thumb: {{colors.primary.default.hex}};
+
+    /* *.color3 */
+    --red-400: {{colors.error.default.hex}};
+
+    /* *.color4 */
+    --status-danger: {{colors.error.default.hex}};
+    --button-outline-danger-border: {{colors.on_error.default.hex}};
+    --button-outline-danger-text: {{colors.on_error_container.default.hex}};
+    --button-danger-background: {{colors.error_container.default.hex}};
+
+    --yellow-300: {{colors.secondary.default.hex}};
+
+    /* *.color5 */
+    --header-primary: {{colors.primary.default.hex}};
+    --brand-experiment: {{colors.primary.default.hex}};
+    --brand-experiment-360: {{colors.primary.default.hex}};
+    --brand-experiment-500: {{colors.primary.default.hex}};
+    --profile-gradient-button-color: {{colors.primary.default.hex}};
+
+    --green-360: {{colors.primary.default.hex}};
+
+    /* *.color6 */
+    --channels-default: {{colors.primary.default.hex}};
+    --channel-icon: {{colors.primary.default.hex}};
+
+    /* *.color7 */
+    --text-normal: {{colors.on_surface.default.hex}};
+    --interactive-active: {{colors.on_surface.default.hex}};
+}
+
+/* status indicators */
+rect[fill="#f23f43"] {
+    fill: {{colors.color3.default.hex}} !important;
+}
+
+rect[fill="#f0b232"] {
+    fill: {{colors.color4.default.hex}} !important;
+}
+
+rect[fill="#23a55a"] {
+    fill: {{colors.color5.default.hex}} !important;
+}

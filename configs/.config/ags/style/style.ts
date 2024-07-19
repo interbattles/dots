@@ -17,6 +17,7 @@ const {
     dark,
     light,
     blur,
+    opacity,
     scheme,
     padding,
     spacing,
@@ -36,7 +37,7 @@ const t = (dark: Opt<any> | string, light: Opt<any> | string) => scheme.value ==
 const $ = (name: string, value: string | Opt<any>) => `$${name}: ${value};`
 
 const variables = () => [
-    $("bg", blur.value ? `transparentize(${t(dark.bg, light.bg)}, ${blur.value / 100})` : t(dark.bg, light.bg)),
+    $("bg", opacity.value ? `transparentize(${t(dark.bg, light.bg)}, ${opacity.value / 100})` : t(dark.bg, light.bg)),
     $("fg", t(dark.fg, light.fg)),
 
     $("primary-bg", t(dark.primary.bg, light.primary.bg)),

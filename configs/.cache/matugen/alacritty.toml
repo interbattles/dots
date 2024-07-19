@@ -1,6 +1,6 @@
 [colors.primary]
-background = "#101418"
-foreground = "#e0e2e8"
+background = "#0e1514"
+foreground = "#dde4e2"
 
 [colors.search.matches]
 foreground = '#1E1E2E' 

@@ -23,7 +23,7 @@ export async function matugen(
 
   console.log("re reading matugen cache")
 
-  await sh(`matugen --type ${options.autotheme_type.value} ${type} ${arg}`)
+  await sh(`matugen --mode ${options.theme.scheme.value} --type ${options.autotheme_type.value} ${type} ${arg}`)
   theme()
 }
 

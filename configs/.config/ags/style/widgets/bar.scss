@@ -27,9 +27,11 @@ $button-radius: $radius;
 
     .panel-button {
         @include panel-button;
+        >* {
+            background-color: $bg;
+        }
 
         &:not(.flat) {
-
             @include accs-button($flat: false);
         }
     }

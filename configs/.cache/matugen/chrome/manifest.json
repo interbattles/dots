@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "version": "1.0",
+  "name": "Matugen",
+  "theme": {
+    "colors": {
+      "frame": [26, 21, 20],
+      "frame_inactive": [22, 29, 28],
+      "toolbar": [14, 21, 20],
+      "ntp_text": [221, 228, 226],
+      "ntp_link": [14, 21, 20],
+      "ntp_section": [129, 213, 205],
+      "button_background": [221, 228, 226],
+      "toolbar_button_icon": [221, 228, 226],
+      "toolbar_text": [221, 228, 226],
+      "omnibox_background": [14, 21, 20],
+      "omnibox_text": [221, 228, 226]
+    },
+    "properties": {
+      "ntp_background_alignment": "bottom"
+    }
+  }
+}

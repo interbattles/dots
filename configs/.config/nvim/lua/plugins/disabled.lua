@@ -4,7 +4,7 @@ local disabled = {
     'catppuccin/nvim',
     name = 'catppuccin',
     lazy = false,
-    config = function()
+    config = function ()
       require('catppuccin').setup({
         integrations = {
           cmp = true,
@@ -29,7 +29,7 @@ local disabled = {
       'lewis6991/gitsigns.nvim',
       'nvim-tree/nvim-web-devicons',
     },
-    init = function()
+    init = function ()
       vim.g.barbar_auto_setup = false
 
       local map = vim.keymap.set
@@ -89,7 +89,7 @@ local disabled = {
     keys = {
       { '<leader>e', '<cmd>NvimTreeToggle<cr>', desc = 'Toggle explorer' },
     },
-    config = function()
+    config = function ()
       require('nvim-tree').setup {
         sync_root_with_cwd = true,
         update_focused_file = {
@@ -98,7 +98,7 @@ local disabled = {
         },
       }
     end,
-    init = function()
+    init = function ()
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
     end,
@@ -130,10 +130,147 @@ local disabled = {
         position = 'right',
       },
     },
-    config = function(_, opts)
+    config = function (_, opts)
       require('neo-tree').setup(opts)
     end,
   },
+  {
+    'nvim-lualine/lualine.nvim',
+    enabled = false,
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      'folke/noice.nvim',
+    },
+    opts = function ()
+      return {
+        options = {
+          theme = 'tokyonight',
+          component_separators = '',
+          section_separators = '',
+        },
+        sections = {
+          lualine_a = {
+            {
+              'mode',
+              icons_enabled = true,
+            },
+          },
+          lualine_b = { 'filename', 'branch', 'diagnostics' },
+          lualine_c = {},
+          lualine_x = {
+            {
+              function () return require('noice').api.status.mode.get() end, ---@diagnostic disable-line:undefined-field
+              cond = function () return package.loaded['noice'] and require('noice').api.status.mode.has() end, ---@diagnostic disable-line:undefined-field
+            },
+            {
+              function () return require('noice').api.status.command.get() end, ---@diagnostic disable-line:undefined-field
+              cond = function () return package.loaded['noice'] and require('noice').api.status.command.has() end, ---@diagnostic disable-line:undefined-field
+            },
+          },
+          lualine_y = { 'filetype', 'progress', 'diff' },
+          lualine_z = {},
+        },
+        inactive_sections = {
+          lualine_a = { 'filename' },
+          lualine_b = {},
+          lualine_c = {},
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = { 'location' },
+        },
+        tabline = {},
+        winbar = {},
+        inactive_winbar = {},
+        extensions = {},
+      }
+    end,
+    init = function ()
+      vim.o.laststatus = 3
+    end,
+  },
+  {
+    'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {
+      style = 'custom',
+      -- transparent = false,     -- Enable this to disable setting the background color
+      -- terminal_colors = false, -- Configure the colors used when opening a `:terminal` in Neovim
+      -- styles = {
+      --   -- floats = 'transparent',
+      --   -- sidebars = 'transparent',
+      -- },
+      -- cache = false,
+    },
+    config = function (_, opts)
+      local styles = require('tokyonight.colors').styles
+      local util = require('tokyonight.util')
+
+      vim.cmd [[ source $HOME/.cache/matugen/colors.vim ]]
+      ---@type Palette
+      local modified_colors = {
+        bg = vim.g.surface,
+        bg_dark = vim.g.surface_container,
+        fg = vim.g.on_surface,
+        fg_dark = vim.g.on_surface_variant,
+        git = {
+          add = vim.g.color2,
+          change = vim.g.color3,
+          delete = vim.g.color1,
+        },
+        red = vim.g.color1,
+        blue = vim.g.color4,
+        cyan = vim.g.color6,
+        teal = vim.g.color14,
+        green = vim.g.color2,
+        purple = vim.g.color13,
+        orange = vim.g.color11,
+        yellow = vim.g.color3,
+        magenta = vim.g.color5,
+        comment = vim.g.on_surface_variant,
+
+        fg_gutter = vim.g.on_surface_variant,
+        bg_highlight = vim.g.surface_bright,
+        terminal_black = vim.g.surface_container_low,
+      }
+      styles.custom = vim.tbl_extend('force', styles.moon --[[@as Palette]], modified_colors)
+      require('tokyonight').load(opts)
+    end,
+  },
+  {
+    'goolord/alpha-nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    config = function ()
+      local alpha = require 'alpha'
+      local dashboard = require 'alpha.themes.dashboard'
+      require 'alpha.term'
+
+      local arts = vim.api.nvim_list_runtime_paths()[1] .. "/arts"
+      local dir = require'plenary.scandir'.scan_dir(arts, { hidden = true, depth = 1 })
+
+      dashboard.section.terminal.type = 'terminal'
+      dashboard.section.terminal.command = "cat "..dir[math.random(#dir)]
+
+      dashboard.config.layout = {
+        { type = "padding", val = 2 },
+        dashboard.section.terminal,
+        { type = "padding", val = 2 },
+        dashboard.section.buttons,
+        dashboard.section.footer,
+      }
+
+      --{
+      --  --"      |\\      _,,,---,,_            ",
+      --  --"ZZZzz /,`.-'`'    -.  ;-;;,_        ",
+      --  --"     |,4-  ) )-,_. ,\\ (  `'-'       ",
+      --  --"    '---''(_/--'  `-'\\_)            ",
+      --}
+      alpha.setup(dashboard.opts)
+    end,
+  },
+
 }
 
 return {}

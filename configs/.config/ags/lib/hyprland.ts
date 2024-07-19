@@ -8,6 +8,7 @@ const {
     radius,
     border: { width },
     blur,
+    opacity,
     shadows,
     dark: {
       primary: { bg: darkActive },
@@ -63,12 +64,14 @@ async function setupHyprland() {
     `decoration:drop_shadow ${shadows.value ? "yes" : "no"}`,
     `dwindle:no_gaps_when_only ${hyprland.gapsWhenOnly.value ? 0 : 1}`,
     `master:no_gaps_when_only ${hyprland.gapsWhenOnly.value ? 0 : 1}`,
+    `decoration:blur:enabled ${blur.value > 0}`
   ])
 
   await sendBatch(App.windows.map(({ name }) => `layerrule unset, ${name}`))
 
-  if (blur.value > 0) {
+  if (opacity.value > 0 && blur.value > 0) {
     sendBatch(App.windows.flatMap(({ name }) => [
+      `decoration:blur:size ${blur.value}`,
       `layerrule unset, ${name}`,
       `layerrule blur, ${name}`,
       `layerrule ignorealpha ${/* based on shadow color */.29}, ${name}`,

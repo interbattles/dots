@@ -3,12 +3,6 @@ vim.g.maplocalleader = '\\'
 
 local map = vim.keymap.set
 
-if vim.g.neovide then
-  map({ 'n', 'v' }, '<C-=>', ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>')
-  map({ 'n', 'v' }, '<C-->', ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>')
-  map({ 'n', 'v' }, '<C-0>', ':lua vim.g.neovide_scale_factor = 1<CR>')
-end
-
 -- quit
 map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'quit' })
 
@@ -68,9 +62,9 @@ map('n', '<leader><tab>0', '<cmd>tablast<cr>', { desc = 'last tab' })
 map('n', '<leader><tab>o', '<cmd>tabonly<cr>', { desc = 'close other tabs' })
 map('n', '<leader><tab>1', '<cmd>tabfirst<cr>', { desc = 'first tab' })
 map('n', '<leader><tab><tab>', '<cmd>tabnew<cr>', { desc = 'new tab' })
-map('n', '<leader><tab>]', '<cmd>tabnext<cr>', { desc = 'next tab' })
+map('n', ']<tab>', '<cmd>tabnext<cr>', { desc = 'next tab' })
+map('n', '[<tab>', '<cmd>tabprevious<cr>', { desc = 'previous tab' })
 map('n', '<leader><tab>q', '<cmd>tabclose<cr>', { desc = 'close tab' })
-map('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'previous tab' })
 
 -- lsp
 map('n', '<leader>cf', vim.lsp.buf.format, { desc = 'format buffer' })

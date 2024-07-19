@@ -1,25 +1,22 @@
 [config]
-reload_apps = true
+reload_apps = false
 
 [config.custom_keywords]
 alpha = "0.94"
 
 [config.custom_colors]
-color1 = { color = "#ff757f", blend = true }
-color2 = { color = "#c3e88d", blend = true }
-color3 = { color = "#ffc777", blend = true }
-color4 = { color = "#82aaff", blend = true }
-color5 = { color = "#c099ff", blend = true }
-color6 = { color = "#86e1fc", blend = true }
+color1 = { color = "#f07178", blend = true }
+color2 = { color = "#C3E88D", blend = true }
+color3 = { color = "#F78C6C", blend = true }
+color4 = { color = "#82AAFF", blend = true }
+color5 = { color = "#C792EA", blend = true }
+color6 = { color = "#89DDFF", blend = true }
 color9 = { color = "#ff757f", blend = true }
 color10 = { color = "#c3e88d", blend = true }
 color11 = { color = "#ffc777", blend = true }
-color12 = { color = "#82aaff", blend = true }
-color13 = { color = "#c099ff", blend = true }
+color12 = { color = "#B2CCD6", blend = true }
+color13 = { color = "#bb80b3", blend = true }
 color14 = { color = "#86e1fc", blend = true }
-
-[config.reload_apps_list]
-gtk_theme = true
 
 [templates]
 alacritty = { input_path = '~/.config/matugen/templates/alacritty.toml', output_path = '~/.cache/matugen/alacritty.toml' }
@@ -29,5 +26,8 @@ fish = { input_path = '~/.config/matugen/templates/colors.fish', output_path = '
 vim = { input_path = '~/.config/matugen/templates/colors.vim', output_path = '~/.cache/matugen/colors.vim' }
 gtk-colors = { input_path = '~/.config/matugen/templates/gtk-colors.css', output_path = '~/.cache/matugen/gtk-colors.css' }
 qt5-colors = { input_path = '~/.config/matugen/templates/qt5ct-colors.conf', output_path = '~/.config/qt5ct/colors/matugen.conf' }
+qt6-colors = { input_path = '~/.config/matugen/templates/qt5ct-colors.conf', output_path = '~/.config/qt6ct/colors/matugen.conf' }
 starship = { input_path = '~/.config/matugen/templates/starship.toml', output_path = '~/.config/starship.toml' }
 hyprland = { input_path = '~/.config/matugen/templates/hyprcolors.conf', output_path = '~/.cache/matugen/hyprcolors.conf' }
+chromium = { input_path = '~/.config/matugen/templates/chromium.json', output_path = '~/.cache/matugen/chrome/manifest.json' }
+discord = { input_path = '~/.config/matugen/templates/discord.css', output_path = '~/.config/vesktop/themes/matugen.css' }

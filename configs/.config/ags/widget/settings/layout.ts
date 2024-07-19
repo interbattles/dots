@@ -27,6 +27,7 @@ const {
 const {
   dark,
   light,
+  opacity,
   blur,
   scheme,
   padding,
@@ -72,6 +73,7 @@ export default [
       Row({ opt: border.opacity, title: "Border Opacity", max: 100 }),
       Row({ opt: border.width, title: "Border Width" }),
       Row({ opt: blur, title: "Blur", note: "0 to disable", max: 70 }),
+      Row({ opt: opacity, title: "Opacity", note: "0 to disable", max: 70 }),
     ),
     Group("UI",
       Row({ opt: padding, title: "Padding" }),

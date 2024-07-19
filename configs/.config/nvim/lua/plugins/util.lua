@@ -5,11 +5,14 @@ return {
   {
     'akinsho/toggleterm.nvim',
     version = '*',
-    config = true
+    config = true,
+    init = function ()
+      vim.keymap.set('n', '<leader>o', '<cmd>ToggleTerm<cr>', { desc = 'toggle term' })
+    end
   },
   {
     'mrjones2014/smart-splits.nvim',
-    init = function()
+    init = function ()
       vim.keymap.set('n', '<A-h>', require('smart-splits').resize_left)
       vim.keymap.set('n', '<A-j>', require('smart-splits').resize_down)
       vim.keymap.set('n', '<A-k>', require('smart-splits').resize_up)
@@ -40,7 +43,7 @@ return {
         initial_mode = 'normal',
       },
     },
-    config = function(_, opts)
+    config = function (_, opts)
       require('telescope').setup(opts)
 
       require('telescope').load_extension 'file_browser'
@@ -52,9 +55,24 @@ return {
       vim.keymap.set('n', '<leader>ta', '<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>',
         { noremap = true, desc = 'find all' })
       vim.keymap.set('n', '<leader>th', '<cmd>Telescope help_tags<CR>', { noremap = true, desc = 'help tags' })
-      vim.keymap.set('n', '<leader>tc', '<cmd>Telescope command_history<CR>', { noremap = true, desc = 'command history' })
+      vim.keymap.set('n', '<leader>tc', '<cmd>Telescope command_history<CR>',
+        { noremap = true, desc = 'command history' })
       vim.keymap.set('n', '<leader>to', '<cmd>Telescope oldfiles<CR>', { noremap = true, desc = 'old files' })
       vim.keymap.set('n', '<leader>tt', '<cmd>Telescope colorscheme<CR>', { noremap = true, desc = 'colorschemes' })
     end,
+  },
+  {
+    'rmagatti/auto-session',
+    dependencies = {
+      'nvim-telescope/telescope.nvim', -- Only needed if you want to use sesssion lens
+    },
+    config = function ()
+      require('auto-session').setup({
+        auto_session_suppress_dirs = { '~/', '~/Downloads', '/' },
+      })
+    end,
+    init = function ()
+      vim.keymap.set('n', '<leader>sl', '<cmd>Telescope session-lens<cr>', { desc = 'session lens'} )
+    end
   },
 }

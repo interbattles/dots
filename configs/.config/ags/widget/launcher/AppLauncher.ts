@@ -7,6 +7,19 @@ const apps = await Service.import("applications")
 const { query } = apps
 const { iconSize } = options.launcher.apps
 
+const QuickAppButton = (app: Application) => Widget.Button({
+  hexpand: true,
+  tooltip_text: app.name,
+  on_clicked: () => {
+    App.closeWindow("launcher")
+    launchApp(app)
+  },
+  child: Widget.Icon({
+    size: iconSize.bind(),
+    icon: icon(app.icon_name, icons.fallback.executable),
+  }),
+})
+
 const AppItem = (app: Application) => {
   const title = Widget.Label({
     class_name: "title",
@@ -51,6 +64,25 @@ const AppItem = (app: Application) => {
     },
   })
 }
+export function Favorites() {
+  const favs = options.launcher.apps.favorites.bind()
+  return Widget.Revealer({
+    visible: favs.as(f => f.length > 0),
+    child: Widget.Box({
+      vertical: true,
+      children: favs.as(favs => favs.flatMap(fs => [
+        Widget.Separator(),
+        Widget.Box({
+          class_name: "quicklaunch horizontal",
+          children: fs
+            .map(f => query(f)?.[0])
+            .filter(f => f)
+            .map(QuickAppButton),
+        }),
+      ])),
+    }),
+  })
+}
 
 export function Launcher() {
   const applist = Variable(query(""))
@@ -79,11 +111,11 @@ export function Launcher() {
     filter(text: string | null) {
       first = query(text || "")[0]
       list.children.reduce((i, item) => {
-        if (i >= max.value) {
+        if (!text || i >= max.value) {
           item.reveal_child = false
           return i
         }
-        if (!text || item.attribute.app.match(text)) {
+        if (item.attribute.app.match(text)) {
           item.reveal_child = true
           return ++i
         }
