@@ -5,10 +5,12 @@ return {
   {
     'akinsho/toggleterm.nvim',
     version = '*',
-    config = true,
-    init = function ()
-      vim.keymap.set('n', '<leader>o', '<cmd>ToggleTerm<cr>', { desc = 'toggle term' })
-    end
+    opts = {
+      open_mapping = [[<A-t>]],
+    },
+    config = function (_, opts)
+      require('toggleterm').setup(opts)
+    end,
   },
   {
     'mrjones2014/smart-splits.nvim',
@@ -49,16 +51,16 @@ return {
       require('telescope').load_extension 'file_browser'
       require('telescope').load_extension 'scope'
 
-      vim.keymap.set('n', '<leader>tg', '<cmd>Telescope live_grep<cr>', { noremap = true, desc = 'grep' })
-      vim.keymap.set('n', '<leader>tf', '<cmd>Telescope file_browser<cr>', { noremap = true, desc = 'files' })
-      vim.keymap.set('n', '<leader>tb', '<cmd>Telescope scope buffers<cr>', { noremap = true, desc = 'buffers' })
-      vim.keymap.set('n', '<leader>ta', '<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>',
+      vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { noremap = true, desc = 'grep' })
+      vim.keymap.set('n', '<leader>ff', '<cmd>Telescope file_browser<cr>', { noremap = true, desc = 'files' })
+      vim.keymap.set('n', '<leader>fb', '<cmd>Telescope scope buffers<cr>', { noremap = true, desc = 'buffers' })
+      vim.keymap.set('n', '<leader>fa', '<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>',
         { noremap = true, desc = 'find all' })
-      vim.keymap.set('n', '<leader>th', '<cmd>Telescope help_tags<CR>', { noremap = true, desc = 'help tags' })
-      vim.keymap.set('n', '<leader>tc', '<cmd>Telescope command_history<CR>',
+      vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<CR>', { noremap = true, desc = 'help tags' })
+      vim.keymap.set('n', '<leader>fc', '<cmd>Telescope command_history<CR>',
         { noremap = true, desc = 'command history' })
-      vim.keymap.set('n', '<leader>to', '<cmd>Telescope oldfiles<CR>', { noremap = true, desc = 'old files' })
-      vim.keymap.set('n', '<leader>tt', '<cmd>Telescope colorscheme<CR>', { noremap = true, desc = 'colorschemes' })
+      vim.keymap.set('n', '<leader>fo', '<cmd>Telescope oldfiles<CR>', { noremap = true, desc = 'old files' })
+      vim.keymap.set('n', '<leader>ft', '<cmd>Telescope colorscheme<CR>', { noremap = true, desc = 'colorschemes' })
     end,
   },
   {
@@ -72,7 +74,8 @@ return {
       })
     end,
     init = function ()
-      vim.keymap.set('n', '<leader>sl', '<cmd>Telescope session-lens<cr>', { desc = 'session lens'} )
-    end
+      vim.keymap.set('n', '<leader>sl', '<cmd>Telescope session-lens<cr>', { desc = 'session lens' })
+      vim.keymap.set('n', '<leader>fs', '<cmd>Telescope session-lens<cr>', { desc = 'sessions' })
+    end,
   },
 }

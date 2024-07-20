@@ -37,9 +37,9 @@ let color13_source = "#bb80b3"
 
 let color13_value = "#bb80b3"
 
-let color14 = "#80d4db"
+let color14 = "#81d3de"
 
-let color14_container = "#004f54"
+let color14_container = "#004f56"
 
 let color14_source = "#86e1fc"
 
@@ -105,7 +105,7 @@ let error_container = "#93000a"
 
 let inverse_on_surface = "#2b3231"
 
-let inverse_primary = "#006a64"
+let inverse_primary = "#006a66"
 
 let inverse_surface = "#dde4e2"
 
@@ -129,9 +129,9 @@ let on_color13 = "#442254"
 
 let on_color13_container = "#f7d8ff"
 
-let on_color14 = "#00363a"
+let on_color14 = "#00363b"
 
-let on_color14_container = "#9df0f8"
+let on_color14_container = "#9df0fa"
 
 let on_color1_container = "#ffdad2"
 
@@ -163,67 +163,67 @@ let on_error = "#690005"
 
 let on_error_container = "#ffdad6"
 
-let on_primary = "#003734"
+let on_primary = "#003735"
 
-let on_primary_container = "#9df2e9"
+let on_primary_container = "#9cf1ec"
 
-let on_primary_fixed = "#00201e"
+let on_primary_fixed = "#00201f"
 
-let on_primary_fixed_variant = "#00504b"
+let on_primary_fixed_variant = "#00504d"
 
-let on_secondary = "#1c3532"
+let on_secondary = "#1b3533"
 
-let on_secondary_container = "#cce8e4"
+let on_secondary_container = "#cce8e5"
 
-let on_secondary_fixed = "#051f1d"
+let on_secondary_fixed = "#051f1e"
 
-let on_secondary_fixed_variant = "#324b49"
+let on_secondary_fixed_variant = "#324b4a"
 
 let on_surface = "#dde4e2"
 
-let on_surface_variant = "#bec9c6"
+let on_surface_variant = "#bec9c7"
 
-let on_tertiary = "#18324a"
+let on_tertiary = "#19324b"
 
-let on_tertiary_container = "#cfe5ff"
+let on_tertiary_container = "#d1e4ff"
 
-let on_tertiary_fixed = "#001d33"
+let on_tertiary_fixed = "#011d34"
 
-let on_tertiary_fixed_variant = "#304962"
+let on_tertiary_fixed_variant = "#314862"
 
-let outline = "#899391"
+let outline = "#889391"
 
-let outline_variant = "#3f4947"
+let outline_variant = "#3f4948"
 
-let primary = "#81d5cd"
+let primary = "#80d5d0"
 
-let primary_container = "#00504b"
+let primary_container = "#00504d"
 
-let primary_fixed = "#9df2e9"
+let primary_fixed = "#9cf1ec"
 
-let primary_fixed_dim = "#81d5cd"
+let primary_fixed_dim = "#80d5d0"
 
 let scrim = "#000000"
 
-let secondary = "#b0ccc8"
+let secondary = "#b0ccc9"
 
-let secondary_container = "#324b49"
+let secondary_container = "#324b4a"
 
-let secondary_fixed = "#cce8e4"
+let secondary_fixed = "#cce8e5"
 
-let secondary_fixed_dim = "#b0ccc8"
+let secondary_fixed_dim = "#b0ccc9"
 
 let shadow = "#000000"
 
-let source_color = "#a6b0ae"
+let source_color = "#293534"
 
 let surface = "#0e1514"
 
-let surface_bright = "#343a39"
+let surface_bright = "#343a3a"
 
 let surface_container = "#1a2120"
 
-let surface_container_high = "#252b2a"
+let surface_container_high = "#252b2b"
 
 let surface_container_highest = "#2f3635"
 
@@ -233,13 +233,13 @@ let surface_container_lowest = "#090f0f"
 
 let surface_dim = "#0e1514"
 
-let surface_variant = "#3f4947"
+let surface_variant = "#3f4948"
 
-let tertiary = "#afc9e7"
+let tertiary = "#b1c9e8"
 
-let tertiary_container = "#304962"
+let tertiary_container = "#314862"
 
-let tertiary_fixed = "#cfe5ff"
+let tertiary_fixed = "#d1e4ff"
 
-let tertiary_fixed_dim = "#afc9e7"
+let tertiary_fixed_dim = "#b1c9e8"
 

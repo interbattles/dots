@@ -64,6 +64,12 @@ return {
           },
         },
       }
+      local cssls_capabilities = vim.lsp.protocol.make_client_capabilities()
+      cssls_capabilities.textDocument.completion.completionItem.snippetSupport = true
+      lspconfig.cssls.setup {
+        capabilities = cssls_capabilities
+      }
+
       lspconfig.rust_analyzer.setup {}
       lspconfig.taplo.setup {}
       lspconfig.hyprls.setup {}

@@ -11,7 +11,7 @@ const options = mkOptions(OPTIONS, {
     resolution: opt<import("service/wallpaper").Resolution>(1920),
     market: opt<import("service/wallpaper").Market>("random"),
     source: opt<'bing' | string>(`${Utils.HOME}/walls`),
-    speed: opt(30 * 60)
+    speed: opt(30)
   },
 
   theme: {

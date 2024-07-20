@@ -7,9 +7,8 @@ indent_style = space
 indent_size = 2
 # if indent_style is tab, this is valid
 # none/single/double
-quote_style = 'single'
+quote_style = single
 
-continuation_indent = 4
 ## extend option
 # continuation_indent.before_block = 4
 # continuation_indent.in_expr = 4

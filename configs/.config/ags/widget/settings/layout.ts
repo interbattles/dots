@@ -12,6 +12,7 @@ import wallpaper from "service/wallpaper"
 
 const {
   autotheme: at,
+  wallpaper: wp,
   autotheme_type: att,
   font,
   theme,
@@ -42,6 +43,7 @@ export default [
   Page("Theme", icons.ui.themes,
     Group("",
       Wallpaper() as ReturnType<typeof Row>,
+      Row({ opt: wp.speed, title: "Wallpaper speed (minutes)", note: "0 to disable" }),
       Row({ opt: at, title: "Auto Generate Color Scheme" }),
       Button({ opt: at, title: "Regenerate Color Scheme", label: "Generate", onClicked: wallpaper.regenerateCache }),
       Row({ opt: att, title: "Color Scheme Type", "type": "enum", enums: ["scheme-content", "scheme-expressive", "scheme-fidelity", "scheme-fruit-salad", "scheme-monochrome", "scheme-neutral", "scheme-rainbow", "scheme-tonal-spot"] }),

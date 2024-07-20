@@ -19,15 +19,40 @@ return {
           { '<leader><Tab>', group = 'tabs' },
           { '<leader>b', group = 'buffer' },
           { '<leader>c', group = 'code' },
+          { '<leader>q', group = 'quit' },
           { '<leader>ct', group = 'trouble', icon = { icon = '󱖫', color = 'green' } },
           { '<leader>f', group = 'file/find' },
           { '<leader>g', group = 'git' },
           { '<leader>gh', group = 'hunks' },
           { '<leader>t', group = 'telescope' },
           { '<leader>u', group = 'ui' },
+          { '<leader>s', group = 'session' },
           { '<leader>x', group = 'diagnostics/quickfix' },
+          { '<leader>m', group = 'harpoon', icon = { icon = '󰀱', color = 'orange' } },
+          { '<leader><leader>', desc = 'harpoon quick menu', icon = { icon = '󰀱', color = 'orange' } },
         },
       })
+    end,
+  },
+  {
+    'cbochs/grapple.nvim',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      'nvim-telescope/telescope.nvim',
+    },
+    opts = {
+      scope = 'git_branch',
+      icons = true,
+      quick_select = '123456789',
+    },
+    keys = {
+      { '<c-t>', '<cmd>Grapple toggle<cr>',          desc = 'grapple toggle tag' },
+      { ';',     '<cmd>Grapple toggle_tags<cr>',     desc = 'grapple open tags window' },
+      { 'm',     '<cmd>Grapple cycle_tags next<cr>', desc = 'grapple cycle next tag' },
+      { 'M',     '<cmd>Grapple cycle_tags prev<cr>', desc = 'grapple cycle previous tag' },
+    },
+    init = function ()
+      require('telescope').load_extension 'grapple'
     end,
   },
   {
@@ -109,15 +134,13 @@ return {
   {
     'NeogitOrg/neogit',
     dependencies = {
-      'nvim-lua/plenary.nvim',  -- required
-      'sindrets/diffview.nvim', -- optional - Diff integration
-
-      -- Only one of these is needed, not both.
-      'nvim-telescope/telescope.nvim', -- optional
+      'nvim-lua/plenary.nvim',
+      'sindrets/diffview.nvim',
+      'nvim-telescope/telescope.nvim',
     },
     config = true,
     init = function ()
-      vim.keymap.set('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'open neogit', noremap = true })
+      require('which-key').add({ '<leader>gg', '<cmd>Neogit<cr>', desc = 'open neogit' })
     end,
   },
   {
@@ -180,30 +203,30 @@ return {
       local dashboard = require 'alpha.themes.dashboard'
       require 'alpha.term'
 
-      math.randomseed(os.time())
-      local arts = vim.api.nvim_list_runtime_paths()[1] .. "/arts"
-      local dir = require 'plenary.scandir'.scan_dir(arts, { hidden = true, depth = 1 })
-      local custom_art = dir[math.random(#dir)]
-      vim.g.dir = dir
+      -- math.randomseed(os.time())
+      -- local arts = vim.api.nvim_list_runtime_paths()[1] .. "/arts"
+      -- local dir = require 'plenary.scandir'.scan_dir(arts, { hidden = true, depth = 1 })
+      -- local custom_art = dir[math.random(#dir)]
+      -- vim.g.dir = dir
 
-      dashboard.section.terminal.type = 'terminal'
-      dashboard.section.terminal.command = "cat " .. custom_art
-      dashboard.section.terminal.width = 32
-      dashboard.section.terminal.height = 14
+      -- dashboard.section.terminal.type = 'terminal'
+      -- dashboard.section.terminal.command = "cat " .. custom_art
+      -- dashboard.section.terminal.width = 32
+      -- dashboard.section.terminal.height = 14
 
       dashboard.section.buttons.val = {
-        dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-        dashboard.button("s", " Session Lens", ":Telescope session-lens<CR>"),
-        dashboard.button("f", "󰥨 Find Files", ":Telescope find_files<CR>"),
-        dashboard.button("b", "󰌱 Browse Files", ":Telescope file_browser<CR>"),
-        dashboard.button("d", " Dotfiles", ":cd ~/dots | Oil<CR>"),
-        dashboard.button("q", "󰅚  Quit NVIM", ":qa<CR>"),
+        dashboard.button('e', '  New file', ':ene <BAR> startinsert <CR>'),
+        dashboard.button('s', ' Session Lens', ':Telescope session-lens<CR>'),
+        dashboard.button('f', '󰥨 Find Files', ':Telescope find_files<CR>'),
+        dashboard.button('b', '󰌱 Browse Files', ':Telescope file_browser<CR>'),
+        dashboard.button('d', ' Dotfiles', ':cd ~/dots | Oil<CR>'),
+        dashboard.button('q', '󰅚 Quit NVIM', ':qa<CR>'),
       }
 
       dashboard.config.layout = {
-        { type = "padding", val = 2 },
+        { type = 'padding', val = 2 },
         dashboard.section.terminal,
-        { type = "padding", val = 2 },
+        { type = 'padding', val = 2 },
         dashboard.section.buttons,
         dashboard.section.footer,
       }
@@ -217,42 +240,4 @@ return {
       alpha.setup(dashboard.opts)
     end,
   },
-  --{
-  --  'nvimdev/dashboard-nvim',
-  --  event = 'VimEnter',
-  --  opts = {
-  --    theme = 'hyper',
-  --    preview = {
-  --      command = "cat",
-  --      file_path = "~/.config/nvim/arts/boykissersmall.txt",
-  --      file_height = 19,
-  --      file_width = 59,
-  --    },
-  --    config = {
-  --      shortcut = {
-  --        {
-  --          desc = '󰊳 Update',
-  --          group = '@property',
-  --          action = 'Lazy update',
-  --          key = 'u',
-  --        },
-  --        {
-  --          icon = ' ',
-  --          desc = 'Files',
-  --          group = 'Label',
-  --          action = 'Telescope file_browser',
-  --          key = 'f',
-  --        },
-  --        {
-  --          icon = ' ',
-  --          desc = 'Session Lens',
-  --          group = 'DiagnosticHint',
-  --          action = 'Telescope session-lens',
-  --          key = 'l',
-  --        },
-  --      },
-  --    },
-  --  },
-  --  dependencies = { { 'nvim-tree/nvim-web-devicons' } },
-  --},
 }

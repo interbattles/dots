@@ -50,12 +50,12 @@ map('t', '<C-/>', '<cmd>close<cr>', { desc = 'hide terminal' })
 map('t', '<c-_>', '<cmd>close<cr>', { desc = 'which_key_ignore' })
 
 -- buffers
--- REPLACED BY BUFFERLINE
--- map('n', ']b', '<cmd>bnext<cr>', { desc = 'next buffer' })
--- map('n', '[b', '<cmd>bprev<cr>', { desc = 'prev buffer' })
+map({'n','v'}, ']b', '<cmd>bnext<cr>', { desc = 'next buffer' })
+map({'n','v'}, '[b', '<cmd>bprev<cr>', { desc = 'prev buffer' })
 map({'n','v'}, '<leader>b1', '<cmd>bfirst<cr>', { desc = 'goto first' })
 map({'n','v'}, '<leader>b0', '<cmd>blast<cr>', { desc = 'goto last' })
 map({'n','v'}, '<leader>bq', '<cmd>bdelete<cr>', { desc = 'close current' })
+map({'n','v'}, '<leader>bc', '<cmd>%bd<cr>', { desc = 'clear buffers' })
 
 -- tabs
 map('n', '<leader><tab>0', '<cmd>tablast<cr>', { desc = 'last tab' })

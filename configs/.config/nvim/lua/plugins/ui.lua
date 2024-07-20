@@ -1,128 +1,52 @@
 return {
   {
-    "roobert/palette.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function ()
-      vim.cmd [[ source ~/.cache/matugen/colors.vim ]]
-
-      require("palette").setup({
-        palettes = {
-          main = "team_zissou",
-        },
-
-        italics = true,
-        transparent_background = true,
-
-        custom_palettes = {
-          main = {
-            -- a blue theme, based off the built-in dark palette
-            team_zissou = vim.tbl_extend(
-              "force",
-              require("palette.generator").generate_colors(
-                require("palette.colors").main["dark"],
-                vim.g.source_color
-              ),
-              {
-                -- override background and cursor-line
-                color0 = vim.g.surface,
-                color1 = vim.g.surface_container,
-                -- override most prominent colors (strings, etc.)
-                color6 = vim.g.primary,
-                color7 = vim.g.secondary,
-                color8 = vim.g.tertiary,
-              }
-            ),
-          },
-        },
-      })
-
-      vim.cmd [[ colorscheme palette ]]
-    end,
-  },
-  {
-    'folke/noice.nvim',
-    lazy = false,
-    dependencies = {
-      'MunifTanjim/nui.nvim',
-    },
-    opts = {
-      lsp = {
-        override = {
-          ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-          ['vim.lsp.util.stylize_markdown'] = true,
-          ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
-        },
-      },
-      presets = {
-        bottom_search = true,
-        command_palette = true,
-        long_message_to_split = true,
-        inc_rename = false,
-        lsp_doc_border = false,
-      },
-      views = {
-        mini = {
-          win_options = {
-            winblend = 0,
-          },
-        },
-      },
-      cmdline = {
-        view = 'cmdline',
-      },
-    },
-  },
-  {
-    'akinsho/bufferline.nvim',
-    version = '*',
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-      --'catppuccin',
-    },
-    opts = {
-      options = {
-        diagnostics = 'nvim_lsp',
-        show_close_icon = false,
-        always_show_bufferline = false,
-        indicator = {
-          style = 'underscore'
-        },
-     },
-    },
-    config = function (_, opts)
-      require('bufferline').setup(opts)
-    end,
-    init = function ()
-      vim.keymap.set('n', '[b', '<cmd>BufferLineCyclePrev<cr>', { desc = 'prev buffer', noremap = true })
-      vim.keymap.set('n', ']b', '<cmd>BufferLineCycleNext<cr>', { desc = 'next buffer', noremap = true })
-      vim.keymap.set('n', '[B', '<cmd>BufferLineMovePrev<cr>', { desc = 'move back', noremap = true })
-      vim.keymap.set('n', ']B', '<cmd>BufferLineMoveNext<cr>', { desc = 'move forward', noremap = true })
-
-      vim.keymap.set('n', '<leader>bo', '<cmd>BufferLineCloseOthers<cr>', { desc = 'close others', noremap = true })
-      vim.keymap.set('n', '<leader>be', '<cmd>BufferLineSortByExtension<cr>',
-        { desc = 'sort by extension', noremap = true })
-      vim.keymap.set('n', '<leader>bd', '<cmd>BufferLineSortByDirectory<cr>',
-        { desc = 'sort by directory', noremap = true })
-      vim.keymap.set('n', '<leader>bp', '<cmd>BufferLinePick<cr>', { desc = 'pick buffer', noremap = true })
-      vim.keymap.set('n', '<leader>bP', '<cmd>BufferLinePickClose<cr>', { desc = 'close picker', noremap = true })
-      vim.keymap.set('n', '<leader>bC', '<cmd>BufferLineCloseLeft<cr>',
-        { desc = 'close others on left', noremap = true })
-      vim.keymap.set('n', '<leader>bc', '<cmd>BufferLineCloseRight<cr>',
-        { desc = 'close others on right', noremap = true })
-    end,
-  },
-  {
     'nvim-lualine/lualine.nvim',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
       'folke/noice.nvim',
     },
     opts = function ()
+      vim.cmd [[ source ~/.cache/matugen/colors.vim ]]
+      local background = vim.g.alpha < 1 and 'NONE' or vim.g.surface_variant
+      local theme = {
+        normal = {
+          a = { bg = vim.g.primary_container, fg = vim.g.on_primary_container, gui = 'bold' },
+          b = { bg = vim.g.surface_container, fg = vim.g.on_surface },
+          c = { bg = background, fg = vim.g.on_surface },
+        },
+        insert = {
+          a = { bg = vim.g.secondary_container, fg = vim.g.on_secondary_container, gui = 'bold' },
+          b = { bg = vim.g.surface_container, fg = vim.g.on_surface },
+          c = { bg = background, fg = vim.g.on_surface },
+        },
+        visual = {
+          a = { bg = vim.g.tertiary_container, fg = vim.g.on_tertiary_container, gui = 'bold' },
+          b = { bg = vim.g.surface_container, fg = vim.g.on_surface },
+          c = { bg = background, fg = vim.g.on_surface },
+        },
+        replace = {
+          a = { bg = vim.g.secondary_container, fg = vim.g.on_secondary_container, gui = 'bold' },
+          b = { bg = vim.g.surface_container, fg = vim.g.on_surface },
+          c = { bg = background, fg = vim.g.on_surface },
+        },
+        command = {
+          a = { bg = vim.g.secondary_container, fg = vim.g.on_secondary_container, gui = 'bold' },
+          b = { bg = vim.g.surface_container, fg = vim.g.on_surface },
+          c = { bg = background, fg = vim.g.on_surface },
+        },
+        inactive = {
+          a = { bg = vim.g.surface_container, fg = vim.g.on_surface, gui = 'bold' },
+          b = { bg = vim.g.surface_container, fg = vim.g.on_surface },
+          c = { bg = background, fg = vim.g.on_surface },
+        },
+      }
+
+      require('grapple').statusline()
       return {
         options = {
+          theme = theme,
           component_separators = '',
-          section_separators = '',
+          section_separators = { left = '', right = '' },
         },
         sections = {
           lualine_a = {
@@ -132,7 +56,7 @@ return {
             },
           },
           lualine_b = { 'filename', 'branch', 'diagnostics' },
-          lualine_c = { '%=' },
+          lualine_c = { '%=', 'grapple' },
           lualine_x = {
             {
               function () return require('noice').api.status.mode.get() end, ---@diagnostic disable-line:undefined-field
@@ -154,9 +78,42 @@ return {
           lualine_y = {},
           lualine_z = { 'location' },
         },
-        tabline = {},
-        winbar = {},
-        inactive_winbar = {},
+        tabline = {
+          lualine_a = {},
+          lualine_b = {
+            {
+              'buffers',
+              mode = 0,
+
+              symbols = {
+                modified = ' ●',
+                alternate_file = '',
+                directory = '',
+              },
+            },
+          },
+          lualine_c = {},
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = {},
+        },
+        winbar = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = {},
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = {},
+        },
+        inactive_winbar = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = {},
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = {},
+
+        },
         extensions = {},
       }
     end,

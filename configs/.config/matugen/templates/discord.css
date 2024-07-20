@@ -53,13 +53,14 @@
     --brand-experiment: {{colors.primary.default.hex}};
     --brand-experiment-360: {{colors.primary.default.hex}};
     --brand-experiment-500: {{colors.primary.default.hex}};
-    --profile-gradient-button-color: {{colors.primary.default.hex}};
+    --profile-gradient-button-color: {{colors.primary_container.default.hex}};
 
     --green-360: {{colors.primary.default.hex}};
 
     /* *.color6 */
     --channels-default: {{colors.primary.default.hex}};
     --channel-icon: {{colors.primary.default.hex}};
+    --custom-channel-members-bg: {{colors.surface.default.hex}};
 
     /* *.color7 */
     --text-normal: {{colors.on_surface.default.hex}};

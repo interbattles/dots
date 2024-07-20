@@ -248,10 +248,10 @@ local disabled = {
       require 'alpha.term'
 
       local arts = vim.api.nvim_list_runtime_paths()[1] .. "/arts"
-      local dir = require'plenary.scandir'.scan_dir(arts, { hidden = true, depth = 1 })
+      local dir = require 'plenary.scandir'.scan_dir(arts, { hidden = true, depth = 1 })
 
       dashboard.section.terminal.type = 'terminal'
-      dashboard.section.terminal.command = "cat "..dir[math.random(#dir)]
+      dashboard.section.terminal.command = "cat " .. dir[math.random(#dir)]
 
       dashboard.config.layout = {
         { type = "padding", val = 2 },
@@ -270,7 +270,45 @@ local disabled = {
       alpha.setup(dashboard.opts)
     end,
   },
+  {
+    'akinsho/bufferline.nvim',
+    version = '*',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      --'catppuccin',
+    },
+    opts = {
+      options = {
+        diagnostics = 'nvim_lsp',
+        show_close_icon = false,
+        always_show_bufferline = false,
+        indicator = {
+          style = 'underscore',
+        },
+      },
+    },
+    config = function (_, opts)
+      require('bufferline').setup(opts)
+    end,
+    init = function ()
+      vim.keymap.set('n', '[b', '<cmd>BufferLineCyclePrev<cr>', { desc = 'prev buffer', noremap = true })
+      vim.keymap.set('n', ']b', '<cmd>BufferLineCycleNext<cr>', { desc = 'next buffer', noremap = true })
+      vim.keymap.set('n', '[B', '<cmd>BufferLineMovePrev<cr>', { desc = 'move back', noremap = true })
+      vim.keymap.set('n', ']B', '<cmd>BufferLineMoveNext<cr>', { desc = 'move forward', noremap = true })
 
+      vim.keymap.set('n', '<leader>bo', '<cmd>BufferLineCloseOthers<cr>', { desc = 'close others', noremap = true })
+      vim.keymap.set('n', '<leader>be', '<cmd>BufferLineSortByExtension<cr>',
+        { desc = 'sort by extension', noremap = true })
+      vim.keymap.set('n', '<leader>bd', '<cmd>BufferLineSortByDirectory<cr>',
+        { desc = 'sort by directory', noremap = true })
+      vim.keymap.set('n', '<leader>bp', '<cmd>BufferLinePick<cr>', { desc = 'pick buffer', noremap = true })
+      vim.keymap.set('n', '<leader>bP', '<cmd>BufferLinePickClose<cr>', { desc = 'close picker', noremap = true })
+      vim.keymap.set('n', '<leader>bC', '<cmd>BufferLineCloseLeft<cr>',
+        { desc = 'close others on left', noremap = true })
+      vim.keymap.set('n', '<leader>bc', '<cmd>BufferLineCloseRight<cr>',
+        { desc = 'close others on right', noremap = true })
+    end,
+  },
 }
 
 return {}

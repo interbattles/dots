@@ -1,5 +1,6 @@
 import options from "options"
 import { bash, dependencies, sh } from "lib/utils"
+import GLib from "types/@girs/glib-2.0/glib-2.0"
 
 export type Resolution = 1920 | 1366 | 3840
 export type Market =
@@ -14,6 +15,7 @@ export type Market =
 
 const WP = `${Utils.HOME}/.config/background`
 const Cache = `${Utils.HOME}/Pictures/Wallpapers/Bing`
+const { source, speed } = options.wallpaper
 
 class Wallpaper extends Service {
   static {
@@ -70,6 +72,11 @@ class Wallpaper extends Service {
     }
   }
 
+  #createInterval() {
+    console.log('creating new interval')
+    return setInterval(this.random, options.wallpaper.speed.value * 1000 * 60)
+  }
+
   readonly regenerateCache = () => {
     console.log("re-running wallpaper daemon")
     this.changed("wallpaper")
@@ -80,9 +87,15 @@ class Wallpaper extends Service {
     this.#wallpaper()
   }
 
+  readonly random = () => {
+    if (source.value === 'bing')
+      this.#fetchBing()
+    else
+      bash(`find ${options.wallpaper.source.value} -type f \\( -name '*.png' -o -name '*.jpg' \\) | shuf -n 1`)
+        .then(picked => this.#setWallpaper(picked))
+        .catch(e => console.error(e))
+  }
 
-
-  readonly random = () => { this.#fetchBing() }
   readonly set = (path: string) => { this.#setWallpaper(path) }
   get wallpaper() { return WP }
 
@@ -102,15 +115,18 @@ class Wallpaper extends Service {
       .then(this.#wallpaper)
       .catch((e) => console.error(e))
 
-    if (options.wallpaper.speed.value > 0)
-      setInterval(() => {
-        if (options.wallpaper.source.value == 'bing')
-          this.random()
-        else
-          bash(`find ${options.wallpaper.source.value} -type f \\( -name '*.png' -o -name '*.jpg' \\) | shuf -n 1`)
-            .then(picked => this.#setWallpaper(picked))
-            .catch(e => console.error(e))
-      }, options.wallpaper.speed.value * 1000)
+    let interval: GLib.Source | null = options.wallpaper.speed.value > 0
+      ? this.#createInterval()
+      : null
+
+    speed.connect("changed", () => {
+      interval?.destroy()
+      console.log('destroyed previous interval')
+
+      speed.value > 0
+        ? interval = this.#createInterval()
+        : interval = null
+    })
   }
 }
 
