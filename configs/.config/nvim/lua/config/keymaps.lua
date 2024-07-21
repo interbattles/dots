@@ -20,8 +20,8 @@ map('v', '<', '<gv')
 map('v', '>', '>gv')
 
 -- block moving
-map("v", "J", ":m '>+1<CR>gv=gv", { desc = "move block down" })
-map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move block up" })
+map('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'move block down' })
+map('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'move block up' })
 
 -- REPLACED W/ SMART SPLITS.NVIM
 -- REPLACED W/ SMART SPLITS.NVIM
@@ -33,7 +33,7 @@ map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move block up" })
 -- map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
 -- map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
 -- map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
--- 
+--
 -- -- resize window using <ctrl> arrow keys
 -- map("n", "<A-k>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
 -- map("n", "<A-j>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
@@ -50,12 +50,12 @@ map('t', '<C-/>', '<cmd>close<cr>', { desc = 'hide terminal' })
 map('t', '<c-_>', '<cmd>close<cr>', { desc = 'which_key_ignore' })
 
 -- buffers
-map({'n','v'}, ']b', '<cmd>bnext<cr>', { desc = 'next buffer' })
-map({'n','v'}, '[b', '<cmd>bprev<cr>', { desc = 'prev buffer' })
-map({'n','v'}, '<leader>b1', '<cmd>bfirst<cr>', { desc = 'goto first' })
-map({'n','v'}, '<leader>b0', '<cmd>blast<cr>', { desc = 'goto last' })
-map({'n','v'}, '<leader>bq', '<cmd>bdelete<cr>', { desc = 'close current' })
-map({'n','v'}, '<leader>bc', '<cmd>%bd<cr>', { desc = 'clear buffers' })
+map({ 'n', 'v' }, ']b', '<cmd>bnext<cr>', { desc = 'next buffer' })
+map({ 'n', 'v' }, '[b', '<cmd>bprev<cr>', { desc = 'prev buffer' })
+map({ 'n', 'v' }, '<leader>b1', '<cmd>bfirst<cr>', { desc = 'goto first' })
+map({ 'n', 'v' }, '<leader>b0', '<cmd>blast<cr>', { desc = 'goto last' })
+map({ 'n', 'v' }, '<leader>bq', '<cmd>bdelete<cr>', { desc = 'close current' })
+map({ 'n', 'v' }, '<leader>bc', '<cmd>%bd<cr>', { desc = 'clear buffers' })
 
 -- tabs
 map('n', '<leader><tab>0', '<cmd>tablast<cr>', { desc = 'last tab' })
@@ -65,10 +65,3 @@ map('n', '<leader><tab><tab>', '<cmd>tabnew<cr>', { desc = 'new tab' })
 map('n', ']<tab>', '<cmd>tabnext<cr>', { desc = 'next tab' })
 map('n', '[<tab>', '<cmd>tabprevious<cr>', { desc = 'previous tab' })
 map('n', '<leader><tab>q', '<cmd>tabclose<cr>', { desc = 'close tab' })
-
--- lsp
-map('n', '<leader>cf', vim.lsp.buf.format, { desc = 'format buffer' })
-map("n", "<leader>cd", vim.lsp.buf.definition, { desc = 'definition' })
-map("n", "<leader>ci", vim.lsp.buf.implementation, { desc = 'implementations' })
-map("n", "<leader>cn", vim.lsp.buf.rename, { desc = 'rename' })
-map("n", "<leader>cr", vim.lsp.buf.references, { desc = 'references' })

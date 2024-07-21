@@ -79,7 +79,13 @@ return {
           lualine_z = { 'location' },
         },
         tabline = {
-          lualine_a = {},
+          lualine_a = {
+            {
+              'filename',
+              file_status = false,
+              icon = '',
+            },
+          },
           lualine_b = {
             {
               'buffers',
@@ -95,7 +101,9 @@ return {
           lualine_c = {},
           lualine_x = {},
           lualine_y = {},
-          lualine_z = {},
+          lualine_z = {
+            'tabs',
+          },
         },
         winbar = {
           lualine_a = {},
