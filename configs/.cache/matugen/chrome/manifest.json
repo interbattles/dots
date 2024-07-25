@@ -4,17 +4,17 @@
   "name": "Matugen",
   "theme": {
     "colors": {
-      "frame": [26, 21, 20],
-      "frame_inactive": [22, 29, 28],
-      "toolbar": [14, 21, 20],
-      "ntp_text": [221, 228, 226],
-      "ntp_link": [14, 21, 20],
-      "ntp_section": [128, 213, 208],
-      "button_background": [221, 228, 226],
-      "toolbar_button_icon": [221, 228, 226],
-      "toolbar_text": [221, 228, 226],
-      "omnibox_background": [14, 21, 20],
-      "omnibox_text": [221, 228, 226]
+      "frame": [27, 20, 23],
+      "frame_inactive": [23, 28, 31],
+      "toolbar": [15, 20, 23],
+      "ntp_text": [223, 227, 231],
+      "ntp_link": [15, 20, 23],
+      "ntp_section": [142, 207, 242],
+      "button_background": [223, 227, 231],
+      "toolbar_button_icon": [223, 227, 231],
+      "toolbar_text": [223, 227, 231],
+      "omnibox_background": [15, 20, 23],
+      "omnibox_text": [223, 227, 231]
     },
     "properties": {
       "ntp_background_alignment": "bottom"

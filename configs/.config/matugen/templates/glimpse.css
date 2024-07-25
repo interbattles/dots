@@ -1,0 +1,68 @@
+* {
+    font-size: 20px;
+    font-weight: bold;
+    animation: none;
+    color: rgba({{colors.on_surface.default.red}}, {{colors.on_surface.default.green}}, {{colors.on_surface.default.blue}}, {{custom.alpha}});
+    border: none;
+}
+
+.search-field {
+    padding: 20px;
+    background-color: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}}, {{custom.alpha}});
+}
+
+.outer-container {
+    background-color: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}}, {{custom.alpha}});
+    border-radius: 10px;
+}
+
+.results-list {
+    background-color: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}}, {{custom.alpha}});
+    border-radius: 10px;
+}
+
+.result-box {
+    background-color: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}}, {{custom.alpha}});
+    padding: 19px;
+    border-radius: 20px;
+    transition: all 0s;
+}
+
+.result-title {}
+
+.result-subtext {}
+
+.result-icon {
+    margin-right: 20px;
+}
+
+.odd-row {}
+
+.result-box:selected {
+    background-color: rgba({{colors.surface_variant.default.red}}, {{colors.surface_variant.default.green}}, {{colors.surface_variant.default.blue}}, {{custom.alpha}});
+    color: rgba({{colors.on_surface_variant.default.red}}, {{colors.on_surface_variant.default.green}}, {{colors.on_surface_variant.default.blue}}, {{custom.alpha}});
+    transition: background-color 0.3s;
+    border: none;
+}
+
+scrollbar {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+}
+
+scrollbar slider {
+    border-radius: 2px;
+    background-color: #fff;
+    border: none;
+}
+
+.preview-text {
+    padding: 3px;
+    background-color: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}}, {{custom.alpha}});
+    border-radius: 10px;
+}
+
+.preview-window {
+    background-color: rgba({{colors.surface_container.default.red}}, {{colors.surface_container.default.green}}, {{colors.surface_container.default.blue}}, {{custom.alpha}});
+    border-radius: 10px;
+}

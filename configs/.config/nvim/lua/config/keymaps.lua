@@ -23,22 +23,17 @@ map('v', '>', '>gv')
 map('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'move block down' })
 map('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'move block up' })
 
--- REPLACED W/ SMART SPLITS.NVIM
--- REPLACED W/ SMART SPLITS.NVIM
--- REPLACED W/ SMART SPLITS.NVIM
--- REPLACED W/ SMART SPLITS.NVIM
+---- move to window using the <ctrl> hjkl keys
+--map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
+--map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
+--map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+--map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 --
--- -- move to window using the <ctrl> hjkl keys
--- map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
--- map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
--- map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
--- map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
---
--- -- resize window using <ctrl> arrow keys
--- map("n", "<A-k>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
--- map("n", "<A-j>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
--- map("n", "<A-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
--- map("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+---- resize window using <ctrl> arrow keys
+--map('n', '<A-h>', '<C-w><', { desc = 'resize left' })
+--map('n', '<A-l>', '<C-w>>', { desc = 'resize right' })
+--map('n', '<A-k>', '<C-w>-', { desc = 'resize up' })
+--map('n', '<A-j>', '<C-w>+', { desc = 'resize down' })
 
 -- terminal mappings
 map('t', '<esc><esc>', '<c-\\><c-n>', { desc = 'enter normal mode' })

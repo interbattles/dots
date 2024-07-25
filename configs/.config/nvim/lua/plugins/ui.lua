@@ -4,6 +4,7 @@ return {
     dependencies = {
       'nvim-tree/nvim-web-devicons',
       'folke/noice.nvim',
+      'cbochs/grapple.nvim',
     },
     opts = function ()
       vim.cmd [[ source ~/.cache/matugen/colors.vim ]]
@@ -55,7 +56,7 @@ return {
               icons_enabled = true,
             },
           },
-          lualine_b = { 'filename', 'branch', 'diagnostics' },
+          lualine_b = { 'branch', 'diagnostics' },
           lualine_c = { '%=', 'grapple' },
           lualine_x = {
             {
@@ -81,29 +82,30 @@ return {
         tabline = {
           lualine_a = {
             {
-              'filename',
-              file_status = false,
+              function ()
+                local bufs = vim.fn.getbufinfo({ buflisted = 1 })
+                local currentBuf = vim.api.nvim_get_current_buf()
+
+                local currentIdx = 1
+                for i, x in pairs(bufs) do
+                  if x.bufnr == currentBuf then
+                    currentIdx = i
+                  end
+                end
+
+                return currentIdx .. '/' .. #bufs
+              end,
               icon = '',
             },
-          },
-          lualine_b = {
             {
-              'buffers',
-              mode = 0,
-
-              symbols = {
-                modified = ' ●',
-                alternate_file = '',
-                directory = '',
-              },
+              'filename',
             },
           },
+          lualine_b = {},
           lualine_c = {},
           lualine_x = {},
           lualine_y = {},
-          lualine_z = {
-            'tabs',
-          },
+          lualine_z = { 'tabs' },
         },
         winbar = {
           lualine_a = {},
@@ -120,7 +122,6 @@ return {
           lualine_x = {},
           lualine_y = {},
           lualine_z = {},
-
         },
         extensions = {},
       }

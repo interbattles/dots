@@ -188,55 +188,7 @@ local disabled = {
       vim.o.laststatus = 3
     end,
   },
-  {
-    'folke/tokyonight.nvim',
-    lazy = false,
-    priority = 1000,
-    opts = {
-      style = 'custom',
-      -- transparent = false,     -- Enable this to disable setting the background color
-      -- terminal_colors = false, -- Configure the colors used when opening a `:terminal` in Neovim
-      -- styles = {
-      --   -- floats = 'transparent',
-      --   -- sidebars = 'transparent',
-      -- },
-      -- cache = false,
-    },
-    config = function (_, opts)
-      local styles = require('tokyonight.colors').styles
-      local util = require('tokyonight.util')
 
-      vim.cmd [[ source $HOME/.cache/matugen/colors.vim ]]
-      ---@type Palette
-      local modified_colors = {
-        bg = vim.g.surface,
-        bg_dark = vim.g.surface_container,
-        fg = vim.g.on_surface,
-        fg_dark = vim.g.on_surface_variant,
-        git = {
-          add = vim.g.color2,
-          change = vim.g.color3,
-          delete = vim.g.color1,
-        },
-        red = vim.g.color1,
-        blue = vim.g.color4,
-        cyan = vim.g.color6,
-        teal = vim.g.color14,
-        green = vim.g.color2,
-        purple = vim.g.color13,
-        orange = vim.g.color11,
-        yellow = vim.g.color3,
-        magenta = vim.g.color5,
-        comment = vim.g.on_surface_variant,
-
-        fg_gutter = vim.g.on_surface_variant,
-        bg_highlight = vim.g.surface_bright,
-        terminal_black = vim.g.surface_container_low,
-      }
-      styles.custom = vim.tbl_extend('force', styles.moon --[[@as Palette]], modified_colors)
-      require('tokyonight').load(opts)
-    end,
-  },
   {
     'goolord/alpha-nvim',
     dependencies = {
@@ -247,16 +199,28 @@ local disabled = {
       local dashboard = require 'alpha.themes.dashboard'
       require 'alpha.term'
 
-      local arts = vim.api.nvim_list_runtime_paths()[1] .. "/arts"
-      local dir = require 'plenary.scandir'.scan_dir(arts, { hidden = true, depth = 1 })
+      -- math.randomseed(os.time())
+      -- local arts = vim.api.nvim_list_runtime_paths()[1] .. "/arts"
+      -- local dir = require 'plenary.scandir'.scan_dir(arts, { hidden = true, depth = 1 })
+      -- local custom_art = dir[math.random(#dir)]
+      -- vim.g.dir = dir
 
-      dashboard.section.terminal.type = 'terminal'
-      dashboard.section.terminal.command = "cat " .. dir[math.random(#dir)]
+      -- dashboard.section.terminal.type = 'terminal'
+      -- dashboard.section.terminal.command = "cat " .. custom_art
+      -- dashboard.section.terminal.width = 32
+      -- dashboard.section.terminal.height = 14
+
+      dashboard.section.buttons.val = {
+        dashboard.button('e', '  New file', ':ene <BAR> startinsert <CR>'),
+        dashboard.button('s', ' Session Lens', ':Telescope session-lens<CR>'),
+        dashboard.button('f', '󰥨 Find Files', ':Telescope find_files<CR>'),
+        dashboard.button('b', '󰌱 Browse Files', ':Telescope file_browser<CR>'),
+        dashboard.button('d', ' Dotfiles', ':cd ~/dots | Oil<CR>'),
+        dashboard.button('q', '󰅚 Quit NVIM', ':qa<CR>'),
+      }
 
       dashboard.config.layout = {
-        { type = "padding", val = 2 },
-        dashboard.section.terminal,
-        { type = "padding", val = 2 },
+        { type = 'padding', val = 2 },
         dashboard.section.buttons,
         dashboard.section.footer,
       }
@@ -270,6 +234,7 @@ local disabled = {
       alpha.setup(dashboard.opts)
     end,
   },
+
   {
     'akinsho/bufferline.nvim',
     version = '*',
@@ -309,6 +274,88 @@ local disabled = {
         { desc = 'close others on right', noremap = true })
     end,
   },
+  {
+    'stevearc/oil.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    keys = {
+      { '-', '<cmd>Oil<cr>', desc = 'files', noremap = true },
+    },
+    cmd = 'Oil',
+    opts = {
+      default_file_explorer = true,
+      view_options = {
+        show_hidden = true,
+        is_hidden_file = function (name, _)
+          return vim.startswith(name, '.')
+        end,
+        is_always_hidden = function (name, _)
+          return name == '..'
+        end,
+      },
+      keymaps = {
+        ['g?'] = 'actions.show_help',
+        ['<CR>'] = 'actions.select',
+        ['<C-->'] = { 'actions.select', opts = { vertical = true }, desc = 'open the entry in a vertical split' },
+        ['<C-|>'] = { 'actions.select', opts = { horizontal = true }, desc = 'open the entry in a horizontal split' },
+        ['<C-t>'] = { 'actions.select', opts = { tab = true }, desc = 'open the entry in new tab' },
+        ['<C-p>'] = 'actions.preview',
+        ['q'] = 'actions.close',
+        ['<C-r>'] = 'actions.refresh',
+        ['-'] = 'actions.parent',
+        ['_'] = 'actions.open_cwd',
+        ['`'] = 'actions.cd',
+        ['~'] = { 'actions.cd', opts = { scope = 'tab' }, desc = ':tcd to the current oil directory' },
+        ['gs'] = 'actions.change_sort',
+        ['gx'] = 'actions.open_external',
+        ['g.'] = 'actions.toggle_hidden',
+        ['g\\'] = 'actions.toggle_trash',
+      },
+      use_default_keymaps = false,
+    },
+  },
+   {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function ()
+      local harpoon = require('harpoon')
+      harpoon:setup()
+
+      -- this breaks the harpoon lualine plugin
+      -- local function toggle()
+      --   local harpoon_entries = harpoon:list()
+      --   local current_path = vim.fn.expand('%:.')
+
+      --   for i = 1, harpoon_entries:length() do
+      --     local harpoon_entry = harpoon_entries:get(i)
+      --     if not harpoon_entry then
+      --       break
+      --     end
+
+      --     local harpoon_path = harpoon_entry.value
+      --     if harpoon_path == current_path then
+      --       harpoon_entries:remove_at(i)
+      --       vim.notify('removed harpoon entry ' .. i)
+      --       return
+      --     end
+      --   end
+      --   harpoon_entries:add()
+      --   vim.notify('added harpoon entry ')
+      -- end
+
+      vim.keymap.set('n', '<C-t>', function () harpoon:list():add() end)
+      vim.keymap.set('n', ';', function () harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+      vim.keymap.set('n', '<C-1>', function () harpoon:list():select(1) end)
+      vim.keymap.set('n', '<C-2>', function () harpoon:list():select(2) end)
+      vim.keymap.set('n', '<C-3>', function () harpoon:list():select(3) end)
+      vim.keymap.set('n', '<C-4>', function () harpoon:list():select(4) end)
+
+      vim.keymap.set('n', ',', function () harpoon:list():prev() end)
+      vim.keymap.set('n', '.', function () harpoon:list():next() end)
+    end,
+  },
+ 
 }
 
 return {}

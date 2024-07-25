@@ -1,14 +1,14 @@
 return {
   {
-    "roobert/palette.nvim",
+    'roobert/palette.nvim',
     lazy = false,
     priority = 1000,
     config = function ()
       vim.cmd [[ source ~/.cache/matugen/colors.vim ]]
 
-      require("palette").setup({
+      require('palette').setup({
         palettes = {
-          main = "matugen",
+          main = 'matugen',
         },
 
         italics = true,
@@ -17,9 +17,9 @@ return {
         custom_palettes = {
           main = {
             matugen = vim.tbl_extend(
-              "force",
-              require("palette.generator").generate_colors(
-                require("palette.colors").main["dark"],
+              'force',
+              require('palette.generator').generate_colors(
+                require('palette.colors').main['dark'],
                 vim.g.source_color
               ),
               {
@@ -41,7 +41,7 @@ return {
   },
   {
     'folke/noice.nvim',
-    lazy = false,
+    event = 'VeryLazy',
     dependencies = {
       'MunifTanjim/nui.nvim',
     },
@@ -50,7 +50,7 @@ return {
         override = {
           ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
           ['vim.lsp.util.stylize_markdown'] = true,
-          ['cmp.entry.get_documentation'] = true,   -- requires hrsh7th/nvim-cmp
+          ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
         },
       },
       presets = {

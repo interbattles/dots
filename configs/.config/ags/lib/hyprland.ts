@@ -24,7 +24,8 @@ const deps = [
   "hyprland",
   spacing.id,
   radius.id,
-  blur.id,
+  blur.size.id,
+  blur.passes.id,
   width.id,
   shadows.id,
   darkActive.id,
@@ -64,14 +65,15 @@ async function setupHyprland() {
     `decoration:drop_shadow ${shadows.value ? "yes" : "no"}`,
     `dwindle:no_gaps_when_only ${hyprland.gapsWhenOnly.value ? 0 : 1}`,
     `master:no_gaps_when_only ${hyprland.gapsWhenOnly.value ? 0 : 1}`,
-    `decoration:blur:enabled ${blur.value > 0}`
+    `decoration:blur:enabled ${blur.size.value > 0}`
   ])
 
   await sendBatch(App.windows.map(({ name }) => `layerrule unset, ${name}`))
 
-  if (opacity.value > 0 && blur.value > 0) {
+  if (opacity.value > 0 && blur.size.value > 0) {
     sendBatch(App.windows.flatMap(({ name }) => [
-      `decoration:blur:size ${blur.value}`,
+      `decoration:blur:size ${blur.size.value}`,
+      `decoration:blur:passes ${blur.passes.value}`,
       `layerrule unset, ${name}`,
       `layerrule blur, ${name}`,
       `layerrule ignorealpha ${/* based on shadow color */.29}, ${name}`,

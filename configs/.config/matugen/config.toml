@@ -2,7 +2,7 @@
 reload_apps = false
 
 [config.custom_keywords]
-alpha = "0.94"
+alpha = "0.7"
 
 [config.custom_colors]
 color1 = { color = "#f07178", blend = true }
@@ -31,3 +31,6 @@ starship = { input_path = '~/.config/matugen/templates/starship.toml', output_pa
 hyprland = { input_path = '~/.config/matugen/templates/hyprcolors.conf', output_path = '~/.cache/matugen/hyprcolors.conf' }
 chromium = { input_path = '~/.config/matugen/templates/chromium.json', output_path = '~/.cache/matugen/chrome/manifest.json' }
 discord = { input_path = '~/.config/matugen/templates/discord.css', output_path = '~/.config/vesktop/themes/matugen.css' }
+glimpse = { input_path = '~/.config/matugen/templates/glimpse.css', output_path = '~/.config/glimpse/style.css' }
+wezterm_colors = { input_path = '~/.config/matugen/templates/wezterm/colors.lua', output_path = '~/.config/wezterm/colors/matugen.lua' }
+wezterm_config = { input_path = '~/.config/matugen/templates/wezterm/config.lua', output_path = '~/.config/wezterm/extra.lua' }

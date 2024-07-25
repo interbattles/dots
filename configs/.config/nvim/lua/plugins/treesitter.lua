@@ -1,6 +1,5 @@
 return {
   'nvim-treesitter/nvim-treesitter',
-  lazy = false,
   version = false,
   build = ':TSUpdate',
   opts_extend = { 'ensure_installed' },
@@ -10,7 +9,6 @@ return {
     ensure_installed = {
       'bash',
       'fish',
-      'c',
       'diff',
       'jsdoc',
       'json',
@@ -23,9 +21,6 @@ return {
       'javascript',
       'markdown',
       'markdown_inline',
-      'printf',
-      'python',
-      'query',
       'toml',
       'vim',
       'vimdoc',

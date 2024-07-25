@@ -1,6 +1,12 @@
-return {
+local extra = require('extra')
+
+local config = {
   enable_wayland = true,
 	font = require("wezterm").font("JetBrainsMono Nerd Font"),
+	color_schemes = {
+		["matugen"] = require('colors.matugen'),
+	},
+  color_scheme = "matugen",
 	default_cursor_style = "BlinkingBar",
 
 	window_close_confirmation = "NeverPrompt",
@@ -10,7 +16,20 @@ return {
 		saturation = 0.9,
 		brightness = 0.8,
 	},
-
-	window_background_opacity = 0.8,
-	text_background_opacity = 1.0,
 }
+
+local function spread(template)
+    local result = {}
+    for key, value in pairs(template) do
+        result[key] = value
+    end
+
+    return function(table)
+        for key, value in pairs(table) do
+            result[key] = value
+        end
+        return result
+    end
+end
+
+return spread(config)(extra)

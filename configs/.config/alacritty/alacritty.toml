@@ -1,9 +1,7 @@
-import = [
-    "~/.cache/wal/colors-alacritty-term-only.toml"
-]
+import = ["~/.cache/matugen/alacritty.toml"]
 
 [env]
-TERM="alacritty"
+TERM = "alacritty"
 WINIT_X11_SCALE_FACTOR = "1.0"
 
 [font]
@@ -14,6 +12,3 @@ bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
 
 [window]
 decorations = "None"
-
-# [colors]
-# transparent_background_colors = true

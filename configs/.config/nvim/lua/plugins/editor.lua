@@ -28,8 +28,6 @@ return {
           { '<leader>u', group = 'ui' },
           { '<leader>s', group = 'session' },
           { '<leader>x', group = 'diagnostics/quickfix' },
-          { '<leader>m', group = 'harpoon', icon = { icon = '󰀱', color = 'orange' } },
-          { '<leader><leader>', desc = 'harpoon quick menu', icon = { icon = '󰀱', color = 'orange' } },
         },
       })
     end,
@@ -37,62 +35,94 @@ return {
   {
     'cbochs/grapple.nvim',
     dependencies = {
-      'nvim-tree/nvim-web-devicons',
+      { 'nvim-tree/nvim-web-devicons', lazy = true },
       'nvim-telescope/telescope.nvim',
     },
     opts = {
-      scope = 'git_branch',
+      scope = 'git',
       icons = true,
-      quick_select = '123456789',
+      status = true,
     },
     keys = {
-      { '<c-t>', '<cmd>Grapple toggle<cr>',          desc = 'grapple toggle tag' },
-      { ';',     '<cmd>Grapple toggle_tags<cr>',     desc = 'grapple open tags window' },
-      { 'm',     '<cmd>Grapple cycle_tags next<cr>', desc = 'grapple cycle next tag' },
-      { 'M',     '<cmd>Grapple cycle_tags prev<cr>', desc = 'grapple cycle previous tag' },
+      { '<C-t>', '<cmd>Grapple toggle<cr>',          desc = 'tag a file' },
+      { ';',     '<cmd>Grapple toggle_tags<cr>',     desc = 'toggle tags menu' },
+
+      { '<C-1>', '<cmd>Grapple select index=1<cr>',  desc = 'select first tag' },
+      { '<C-2>', '<cmd>Grapple select index=2<cr>',  desc = 'select second tag' },
+      { '<C-3>', '<cmd>Grapple select index=3<cr>',  desc = 'select third tag' },
+      { '<C-4>', '<cmd>Grapple select index=4<cr>',  desc = 'select fourth tag' },
+
+      { ',',     '<cmd>Grapple cycle_tags prev<cr>', desc = 'go to previous tag' },
+      { '.',     '<cmd>Grapple cycle_tags next<cr>', desc = 'go to next tag' },
     },
     init = function ()
       require('telescope').load_extension 'grapple'
     end,
   },
   {
-    'stevearc/oil.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    lazy = false,
-    opts = {
-      default_file_explorer = true,
-      view_options = {
-        show_hidden = true,
-        is_hidden_file = function (name, _)
-          return vim.startswith(name, '.')
-        end,
-        is_always_hidden = function (name, _)
-          return name == '..'
-        end,
-      },
-      keymaps = {
-        ['g?'] = 'actions.show_help',
-        ['<CR>'] = 'actions.select',
-        ['-'] = { 'actions.select', opts = { vertical = true }, desc = 'open the entry in a vertical split' },
-        ['|'] = { 'actions.select', opts = { horizontal = true }, desc = 'open the entry in a horizontal split' },
-        ['<C-t>'] = { 'actions.select', opts = { tab = true }, desc = 'open the entry in new tab' },
-        ['<C-p>'] = 'actions.preview',
-        ['q'] = 'actions.close',
-        ['<C-r>'] = 'actions.refresh',
-        [';'] = 'actions.parent',
-        ['_'] = 'actions.open_cwd',
-        ['`'] = 'actions.cd',
-        ['~'] = { 'actions.cd', opts = { scope = 'tab' }, desc = ':tcd to the current oil directory' },
-        ['gs'] = 'actions.change_sort',
-        ['gx'] = 'actions.open_external',
-        ['g.'] = 'actions.toggle_hidden',
-        ['g\\'] = 'actions.toggle_trash',
-      },
-      use_default_keymaps = false,
+    'echasnovski/mini.files',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
     },
-    config = true,
-    init = function ()
-      vim.keymap.set('n', '<leader>e', '<cmd>Oil<cr>', { desc = 'files', noremap = true })
+    opts = {
+      mappings = {
+        close       = 'q',
+        go_in       = '',
+        go_in_plus  = '<CR>',
+        go_out      = '-',
+        go_out_plus = '_',
+        reset       = '<BS>',
+        reveal_cwd  = '@',
+        show_help   = 'g?',
+        synchronize = '=',
+        trim_left   = '<',
+        trim_right  = '>',
+      },
+    },
+    config = function (_, opts)
+      local MiniFiles = require('mini.files')
+      MiniFiles.setup(opts)
+
+      vim.keymap.set('n', '-', MiniFiles.open, { desc = 'open minifiles' })
+
+      local files_set_cwd = function ()
+        local cur_entry_path = MiniFiles.get_fs_entry().path
+        local cur_directory = vim.fs.dirname(cur_entry_path)
+        vim.fn.chdir(cur_directory)
+      end
+
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'MiniFilesBufferCreate',
+        callback = function (args)
+          vim.keymap.set('n', 'g~', files_set_cwd, { buffer = args.data.buf_id })
+        end,
+      })
+
+      local map_split = function (buf_id, lhs, direction)
+        local rhs = function ()
+          -- Make new window and set it as target
+          local new_target_window
+          vim.api.nvim_win_call(MiniFiles.get_target_window() --[[@as number]], function ()
+            vim.cmd(direction .. ' split')
+            new_target_window = vim.api.nvim_get_current_win()
+          end)
+
+          MiniFiles.set_target_window(new_target_window)
+        end
+
+        local desc = 'Split ' .. direction
+        vim.keymap.set('n', lhs, rhs, { buffer = buf_id, desc = desc })
+      end
+
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'MiniFilesBufferCreate',
+        callback = function (args)
+          local buf_id = args.data.buf_id
+          -- Tweak keys to your liking
+          map_split(buf_id, 'gs', 'belowright horizontal')
+          map_split(buf_id, 'gv', 'belowright vertical')
+        end,
+      })
     end,
   },
   {
@@ -133,15 +163,15 @@ return {
   },
   {
     'NeogitOrg/neogit',
+    keys = {
+      { '<leader>gg', '<cmd>Neogit<cr>', desc = 'open neogit' },
+    },
     dependencies = {
       'nvim-lua/plenary.nvim',
       'sindrets/diffview.nvim',
       'nvim-telescope/telescope.nvim',
     },
     config = true,
-    init = function ()
-      require('which-key').add({ '<leader>gg', '<cmd>Neogit<cr>', desc = 'open neogit' })
-    end,
   },
   {
     'folke/trouble.nvim',
@@ -183,9 +213,9 @@ return {
   {
     'norcalli/nvim-colorizer.lua',
     config = true,
-    init = function ()
-      vim.keymap.set('n', '<leader>cc', '<cmd>ColorizerToggle<cr>', { desc = 'toggle colorizer', noremap = true })
-    end,
+    keys = {
+      { '<leader>cc', '<cmd>ColorizerToggle<cr>', desc = 'toggle colorizer', noremap = true },
+    },
   },
   {
     'iamcco/markdown-preview.nvim',
@@ -194,50 +224,51 @@ return {
     build = function () vim.fn['mkdp#util#install']() end,
   },
   {
-    'goolord/alpha-nvim',
+    'nvimdev/dashboard-nvim',
+    event = 'VimEnter',
     dependencies = {
-      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
     },
     config = function ()
-      local alpha = require 'alpha'
-      local dashboard = require 'alpha.themes.dashboard'
-      require 'alpha.term'
+      local function entry(icon, desc, key, action)
+        return {
+          key = key,
+          desc = desc,
+          action = action,
+          icon = icon .. ' ',
+          icon_hl = 'SpecialKey',
+          desc_hl = 'Normal',
+          key_hl = 'SpecialKey',
+          key_format = ' [%s]',
+        }
+      end
 
-      -- math.randomseed(os.time())
-      -- local arts = vim.api.nvim_list_runtime_paths()[1] .. "/arts"
-      -- local dir = require 'plenary.scandir'.scan_dir(arts, { hidden = true, depth = 1 })
-      -- local custom_art = dir[math.random(#dir)]
-      -- vim.g.dir = dir
-
-      -- dashboard.section.terminal.type = 'terminal'
-      -- dashboard.section.terminal.command = "cat " .. custom_art
-      -- dashboard.section.terminal.width = 32
-      -- dashboard.section.terminal.height = 14
-
-      dashboard.section.buttons.val = {
-        dashboard.button('e', '  New file', ':ene <BAR> startinsert <CR>'),
-        dashboard.button('s', ' Session Lens', ':Telescope session-lens<CR>'),
-        dashboard.button('f', '󰥨 Find Files', ':Telescope find_files<CR>'),
-        dashboard.button('b', '󰌱 Browse Files', ':Telescope file_browser<CR>'),
-        dashboard.button('d', ' Dotfiles', ':cd ~/dots | Oil<CR>'),
-        dashboard.button('q', '󰅚 Quit NVIM', ':qa<CR>'),
+      require('dashboard').setup {
+        theme = 'doom',
+        preview = {
+          command = 'lolcrab',
+          file_path = '~/.config/nvim/arts/dashboard.txt',
+          file_width = 69,
+          file_height = 10,
+        },
+        config = {
+          center = {
+            entry('', 'New File', 'e', 'ene | startinsert'),
+            (require('auto-session').session_exists_for_cwd()
+              and entry('󰦛', 'Restore Session', 'r', 'SessionRestore')
+              or entry('', 'Session Lens', 's', 'Telescope session-lens')),
+            entry('󰥨', 'Find Files', 'f', 'Telescope find_files'),
+            entry('󰌱', 'Browse Files', 'b', 'Telescope file_browser'),
+            entry('', 'Dotfiles', 'd', 'cd ~/dots | Oil'),
+            entry('󰅚', 'Quit NVIM', 'q', 'qa'),
+          },
+          footer = function ()
+            local stats = require('lazy').stats()
+            local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+            return { '󰏋 Loaded ' .. stats.loaded .. ' / 󱑥 ' .. stats.count .. ' plugins (' .. ms .. 'ms)' }
+          end,
+        },
       }
-
-      dashboard.config.layout = {
-        { type = 'padding', val = 2 },
-        dashboard.section.terminal,
-        { type = 'padding', val = 2 },
-        dashboard.section.buttons,
-        dashboard.section.footer,
-      }
-
-      --{
-      --  --"      |\\      _,,,---,,_            ",
-      --  --"ZZZzz /,`.-'`'    -.  ;-;;,_        ",
-      --  --"     |,4-  ) )-,_. ,\\ (  `'-'       ",
-      --  --"    '---''(_/--'  `-'\\_)            ",
-      --}
-      alpha.setup(dashboard.opts)
     end,
   },
 }
