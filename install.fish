@@ -11,7 +11,7 @@ if ! command -sq cargo
     rustup toolchain install stable --profile minimal
 end
 
-set dependencies bat eza fd-find zoxide ripgrep starship matugen
+set dependencies bat eza fd-find zoxide ripgrep starship matugen zellij
 for dep in $dependencies
     echo "checking $dep"
     set command $dep

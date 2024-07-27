@@ -2,7 +2,7 @@
 reload_apps = false
 
 [config.custom_keywords]
-alpha = "0.7"
+alpha = "0.84"
 
 [config.custom_colors]
 color1 = { color = "#f07178", blend = true }
@@ -19,18 +19,27 @@ color13 = { color = "#bb80b3", blend = true }
 color14 = { color = "#86e1fc", blend = true }
 
 [templates]
-alacritty = { input_path = '~/.config/matugen/templates/alacritty.toml', output_path = '~/.cache/matugen/alacritty.toml' }
-foot = { input_path = '~/.config/matugen/templates/foot.ini', output_path = '~/.cache/matugen/foot.ini' }
-ags = { input_path = '~/.config/matugen/templates/ags.json', output_path = '~/.cache/matugen/ags.json' }
-fish = { input_path = '~/.config/matugen/templates/colors.fish', output_path = '~/.cache/matugen/colors.fish' }
-vim = { input_path = '~/.config/matugen/templates/colors.vim', output_path = '~/.cache/matugen/colors.vim' }
-gtk-colors = { input_path = '~/.config/matugen/templates/gtk-colors.css', output_path = '~/.cache/matugen/gtk-colors.css' }
-qt5-colors = { input_path = '~/.config/matugen/templates/qt5ct-colors.conf', output_path = '~/.config/qt5ct/colors/matugen.conf' }
-qt6-colors = { input_path = '~/.config/matugen/templates/qt5ct-colors.conf', output_path = '~/.config/qt6ct/colors/matugen.conf' }
-starship = { input_path = '~/.config/matugen/templates/starship.toml', output_path = '~/.config/starship.toml' }
-hyprland = { input_path = '~/.config/matugen/templates/hyprcolors.conf', output_path = '~/.cache/matugen/hyprcolors.conf' }
-chromium = { input_path = '~/.config/matugen/templates/chromium.json', output_path = '~/.cache/matugen/chrome/manifest.json' }
-discord = { input_path = '~/.config/matugen/templates/discord.css', output_path = '~/.config/vesktop/themes/matugen.css' }
-glimpse = { input_path = '~/.config/matugen/templates/glimpse.css', output_path = '~/.config/glimpse/style.css' }
+# terminals
+alacritty = { input_path = '~/.config/matugen/templates/terminals/alacritty.toml', output_path = '~/.cache/matugen/alacritty.toml' }
+foot = { input_path = '~/.config/matugen/templates/terminals/foot.ini', output_path = '~/.cache/matugen/foot.ini' }
 wezterm_colors = { input_path = '~/.config/matugen/templates/wezterm/colors.lua', output_path = '~/.config/wezterm/colors/matugen.lua' }
 wezterm_config = { input_path = '~/.config/matugen/templates/wezterm/config.lua', output_path = '~/.config/wezterm/extra.lua' }
+
+# desktop
+ags = { input_path = '~/.config/matugen/templates/desktop/ags.json', output_path = '~/.cache/matugen/ags.json' }
+hyprland = { input_path = '~/.config/matugen/templates/desktop/hyprcolors.conf', output_path = '~/.cache/matugen/hyprcolors.conf' }
+gtk-colors = { input_path = '~/.config/matugen/templates/desktop/gtk-colors.css', output_path = '~/.cache/matugen/gtk-colors.css' }
+qt5-colors = { input_path = '~/.config/matugen/templates/desktop/qt5ct-colors.conf', output_path = '~/.config/qt5ct/colors/matugen.conf' }
+qt6-colors = { input_path = '~/.config/matugen/templates/desktop/qt5ct-colors.conf', output_path = '~/.config/qt6ct/colors/matugen.conf' }
+glimpse = { input_path = '~/.config/matugen/templates/desktop/glimpse.css', output_path = '~/.config/glimpse/style.css' }
+
+# apps
+starship = { input_path = '~/.config/matugen/templates/starship.toml', output_path = '~/.config/starship.toml' }
+chromium = { input_path = '~/.config/matugen/templates/chromium.json', output_path = '~/.cache/matugen/chrome/manifest.json' }
+discord = { input_path = '~/.config/matugen/templates/discord.css', output_path = '~/.config/vesktop/themes/matugen.css' }
+fish = { input_path = '~/.config/matugen/templates/colors.fish', output_path = '~/.cache/matugen/colors.fish' }
+vim = { input_path = '~/.config/matugen/templates/colors.vim', output_path = '~/.cache/matugen/colors.vim' }
+
+# zellij
+zellij_layout = { input_path = '~/.config/matugen/templates/zellij/layout.kdl', output_path = '~/.config/zellij/layouts/default.kdl' }
+zellij_theme = { input_path = '~/.config/matugen/templates/zellij/theme.kdl', output_path = '~/.config/zellij/themes/default.kdl' }

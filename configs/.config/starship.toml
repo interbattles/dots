@@ -67,13 +67,13 @@ style = "bg:none fg:tertiary_container"
 
 [palettes.matugen]
 
-background = "#0f1417"
+background = "#101510"
 
-color1 = "#ffb1c5"
+color1 = "#ffb4a3"
 
-color10 = "#a1d399"
+color10 = "#a3d397"
 
-color10_container = "#245023"
+color10_container = "#275022"
 
 color10_source = "#c3e88d"
 
@@ -87,9 +87,9 @@ color11_source = "#ffc777"
 
 color11_value = "#ffc777"
 
-color12 = "#89d0ed"
+color12 = "#81d3de"
 
-color12_container = "#004d62"
+color12_container = "#004f56"
 
 color12_source = "#b2ccd6"
 
@@ -103,31 +103,31 @@ color13_source = "#bb80b3"
 
 color13_value = "#bb80b3"
 
-color14 = "#89d0ed"
+color14 = "#80d4db"
 
-color14_container = "#004d62"
+color14_container = "#004f54"
 
 color14_source = "#86e1fc"
 
 color14_value = "#86e1fc"
 
-color1_container = "#703346"
+color1_container = "#723426"
 
 color1_source = "#f07178"
 
 color1_value = "#f07178"
 
-color2 = "#a1d399"
+color2 = "#a3d397"
 
-color2_container = "#245023"
+color2_container = "#275022"
 
 color2_source = "#c3e88d"
 
 color2_value = "#c3e88d"
 
-color3 = "#ffb3b1"
+color3 = "#ffb68a"
 
-color3_container = "#733333"
+color3_container = "#6f3811"
 
 color3_source = "#f78c6c"
 
@@ -149,17 +149,17 @@ color5_source = "#c792ea"
 
 color5_value = "#c792ea"
 
-color6 = "#8bd0f0"
+color6 = "#82d3e1"
 
-color6_container = "#004d64"
+color6_container = "#004f58"
 
 color6_source = "#89ddff"
 
 color6_value = "#89ddff"
 
-color9 = "#ffb1c6"
+color9 = "#ffb4a4"
 
-color9_container = "#703347"
+color9_container = "#733427"
 
 color9_source = "#ff757f"
 
@@ -169,45 +169,45 @@ error = "#ffb4ab"
 
 error_container = "#93000a"
 
-inverse_on_surface = "#2c3134"
+inverse_on_surface = "#2c322d"
 
-inverse_primary = "#196584"
+inverse_primary = "#2d6a44"
 
-inverse_surface = "#dfe3e7"
+inverse_surface = "#dfe4dd"
 
-on_background = "#dfe3e7"
+on_background = "#dfe4dd"
 
-on_color1 = "#551d30"
+on_color1 = "#561f12"
 
-on_color10 = "#0b390f"
+on_color10 = "#0f380d"
 
-on_color10_container = "#bdf0b3"
+on_color10_container = "#bff0b1"
 
 on_color11 = "#3d2e00"
 
 on_color11_container = "#ffdf91"
 
-on_color12 = "#003545"
+on_color12 = "#00363c"
 
-on_color12_container = "#baeaff"
+on_color12_container = "#9df0fb"
 
 on_color13 = "#442254"
 
 on_color13_container = "#f7d8ff"
 
-on_color14 = "#003545"
+on_color14 = "#00363a"
 
-on_color14_container = "#baeaff"
+on_color14_container = "#9df0f8"
 
-on_color1_container = "#ffd9e1"
+on_color1_container = "#ffdad2"
 
-on_color2 = "#0b390f"
+on_color2 = "#0f380d"
 
-on_color2_container = "#bdf0b3"
+on_color2_container = "#bff0b1"
 
-on_color3 = "#571d1f"
+on_color3 = "#522300"
 
-on_color3_container = "#ffdad8"
+on_color3_container = "#ffdbc8"
 
 on_color4 = "#003256"
 
@@ -217,95 +217,95 @@ on_color5 = "#36265d"
 
 on_color5_container = "#e9ddff"
 
-on_color6 = "#003546"
+on_color6 = "#00363d"
 
-on_color6_container = "#bee9ff"
+on_color6_container = "#9eeffe"
 
-on_color9 = "#551d31"
+on_color9 = "#561f13"
 
-on_color9_container = "#ffd9e1"
+on_color9_container = "#ffdad3"
 
 on_error = "#690005"
 
 on_error_container = "#ffdad6"
 
-on_primary = "#003548"
+on_primary = "#00391d"
 
-on_primary_container = "#c1e8ff"
+on_primary_container = "#b1f1c2"
 
-on_primary_fixed = "#001e2b"
+on_primary_fixed = "#00210e"
 
-on_primary_fixed_variant = "#004d67"
+on_primary_fixed_variant = "#11512e"
 
-on_secondary = "#1f333d"
+on_secondary = "#223527"
 
-on_secondary_container = "#d1e6f3"
+on_secondary_container = "#d2e8d4"
 
-on_secondary_fixed = "#091e28"
+on_secondary_fixed = "#0d1f13"
 
-on_secondary_fixed_variant = "#364954"
+on_secondary_fixed_variant = "#384b3c"
 
-on_surface = "#dfe3e7"
+on_surface = "#dfe4dd"
 
-on_surface_variant = "#c0c7cd"
+on_surface_variant = "#c0c9bf"
 
-on_tertiary = "#312c4c"
+on_tertiary = "#023640"
 
-on_tertiary_container = "#e5deff"
+on_tertiary_container = "#beeaf7"
 
-on_tertiary_fixed = "#1b1736"
+on_tertiary_fixed = "#001f26"
 
-on_tertiary_fixed_variant = "#474364"
+on_tertiary_fixed_variant = "#214c57"
 
-outline = "#8a9297"
+outline = "#8b938a"
 
-outline_variant = "#40484d"
+outline_variant = "#414942"
 
-primary = "#8ecff2"
+primary = "#95d5a7"
 
-primary_container = "#004d67"
+primary_container = "#11512e"
 
-primary_fixed = "#c1e8ff"
+primary_fixed = "#b1f1c2"
 
-primary_fixed_dim = "#8ecff2"
+primary_fixed_dim = "#95d5a7"
 
 scrim = "#000000"
 
-secondary = "#b5c9d7"
+secondary = "#b6ccb9"
 
-secondary_container = "#364954"
+secondary_container = "#384b3c"
 
-secondary_fixed = "#d1e6f3"
+secondary_fixed = "#d2e8d4"
 
-secondary_fixed_dim = "#b5c9d7"
+secondary_fixed_dim = "#b6ccb9"
 
 shadow = "#000000"
 
-source_color = "#d1dce4"
+source_color = "#1d5b37"
 
-surface = "#0f1417"
+surface = "#101510"
 
-surface_bright = "#353a3d"
+surface_bright = "#353a36"
 
-surface_container = "#1b2023"
+surface_container = "#1c211c"
 
-surface_container_high = "#262b2e"
+surface_container_high = "#262b27"
 
-surface_container_highest = "#313539"
+surface_container_highest = "#313631"
 
-surface_container_low = "#171c1f"
+surface_container_low = "#181d18"
 
-surface_container_lowest = "#0a0f12"
+surface_container_lowest = "#0a0f0b"
 
-surface_dim = "#0f1417"
+surface_dim = "#101510"
 
-surface_variant = "#40484d"
+surface_variant = "#414942"
 
-tertiary = "#c9c2ea"
+tertiary = "#a2cdda"
 
-tertiary_container = "#474364"
+tertiary_container = "#214c57"
 
-tertiary_fixed = "#e5deff"
+tertiary_fixed = "#beeaf7"
 
-tertiary_fixed_dim = "#c9c2ea"
+tertiary_fixed_dim = "#a2cdda"
 

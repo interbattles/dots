@@ -1,0 +1,35 @@
+layout {
+    default_tab_template {
+        children
+        pane size=1 borderless=true {
+            plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
+                format_left   "{mode} #[fg={{colors.primary.default.hex}},bold]{session}"
+                format_center "{tabs}"
+                format_right  "{command_git_branch} {datetime}"
+                format_space  ""
+
+                border_enabled  "false"
+                border_char     "─"
+                border_format   "#[fg={{colors.outline.default.hex}}]{char}"
+                border_position "top"
+
+                hide_frame_for_single_pane "true"
+
+                mode_normal  "#[bg={{colors.primary.default.hex}}] "
+                mode_tmux    "#[bg={{colors.secondary.default.hex}}] "
+
+                tab_normal   "#[fg={{colors.on_surface.default.hex}}] {name} "
+                tab_active   "#[fg={{colors.on_surface_variant.default.hex}},bold,italic] {name} "
+
+                command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
+                command_git_branch_format      "#[fg={{colors.primary.default.hex}}] {stdout} "
+                command_git_branch_interval    "10"
+                command_git_branch_rendermode  "static"
+
+                datetime        "#[fg={{colors.on_surface.default.hex}},bold] {format} "
+                datetime_format "%A, %d %b %Y %H:%M"
+                datetime_timezone "Europe/Berlin"
+            }
+        }
+    }
+}
