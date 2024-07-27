@@ -2,22 +2,6 @@ return {
   { 'Bilal2453/luvit-meta',        lazy = true },
   { 'justinsgithub/wezterm-types', lazy = true },
   {
-    'folke/lazydev.nvim',
-    ft = 'lua',
-    opts = {
-      integrations = {
-        lspconfig = true,
-        cmp = true,
-        coq = false,
-      },
-      library = {
-        'lazy.nvim',
-        'luvit-meta/library',
-        { path = 'wezterm-types', mods = { 'wezterm' } },
-      },
-    },
-  },
-  {
     'neovim/nvim-lspconfig',
     dependencies = {
       { 'williamboman/mason.nvim',      dependencies = { 'williamboman/mason-lspconfig.nvim' } },
@@ -28,6 +12,7 @@ return {
       local lspconfig = require('lspconfig')
       local handlers = {
         tsserver = function () end,
+        rust_analyzer = function () end,
         function (server) lspconfig[server].setup(require('config.lsp')[server]) end,
       }
 
@@ -44,6 +29,11 @@ return {
     end,
   },
   {
+    'mrcjkb/rustaceanvim',
+    version = '^5',
+    lazy = false,
+  },
+  {
     'williamboman/mason.nvim',
     opts = {
       ui = {
@@ -54,5 +44,31 @@ return {
         },
       },
     },
+  },
+  {
+    'stevearc/conform.nvim',
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
+    keys = {
+      {
+        '<leader>cf',
+        function ()
+          require('conform').format({ async = true })
+        end,
+        mode = { 'n', 'x' },
+        desc = 'format',
+      },
+    },
+    opts = {
+      formatters_by_ft = {},
+      default_format_opts = {
+        lsp_format = 'fallback',
+      },
+      format_on_save = { timeout_ms = 500 },
+      formatters = {},
+    },
+    init = function ()
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
   },
 }

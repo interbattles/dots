@@ -9,8 +9,15 @@ return {
   {
     'akinsho/toggleterm.nvim',
     version = '*',
+    keys = {
+      { '<leader>tf',     '<cmd>ToggleTerm direction=float<cr>',      desc = 'floating' },
+      { '<leader>th',     '<cmd>ToggleTerm direction=horizontal<cr>', desc = 'horizontal' },
+      { '<leader>tv',     '<cmd>ToggleTerm direction=vertical<cr>',   desc = 'vertical' },
+      { '<leader>t<tab>', '<cmd>ToggleTerm direction=tab<cr>',        desc = 'tab' },
+      { '<A-t>',          '<cmd>ToggleTerm<cr>',                      desc = 'toggle' },
+    },
     opts = {
-      open_mapping = [[<A-t>]],
+      open_mapping = '<A-t>',
     },
   },
   {

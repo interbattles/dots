@@ -9,6 +9,28 @@ local default_config = {
 
 local configs = {
   lua_ls = {
+    on_init = function (client)
+      local path = client.workspace_folders[1].name
+      if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
+        return
+      end
+
+      local lazy = require('lazy.core.config')
+      client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+        runtime = {
+          version = 'LuaJIT',
+        },
+        workspace = {
+          checkThirdParty = false,
+          library = {
+            vim.env.VIMRUNTIME,
+            lazy.spec.plugins['wezterm-types'].dir,
+            lazy.spec.plugins['luvit-meta'].dir,
+          },
+        },
+      })
+    end,
+
     settings = {
       Lua = {
         format = {
@@ -26,13 +48,13 @@ local configs = {
         textDocument = {
           completion = {
             completionItem = {
-              snippetSupport = true
-            }
-          }
-        }
+              snippetSupport = true,
+            },
+          },
+        },
       }
     ),
-  }
+  },
 }
 
 for key, config in pairs(configs) do
@@ -41,7 +63,7 @@ for key, config in pairs(configs) do
 end
 
 setmetatable(configs, {
-  __index = function() return default_config end,
+  __index = function () return default_config end,
 })
 
 return configs

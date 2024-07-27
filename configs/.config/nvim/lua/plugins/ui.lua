@@ -127,4 +127,16 @@ return {
       }
     end,
   },
+  {
+    'nvim-zh/colorful-winsep.nvim',
+    opts = function ()
+      vim.cmd [[ source ~/.cache/matugen/colors.vim ]]
+      return {
+        hi = {
+          fg = vim.g.primary,
+        },
+      }
+    end,
+    event = { 'WinLeave' },
+  },
 }

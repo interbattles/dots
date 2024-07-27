@@ -313,7 +313,7 @@ local disabled = {
       use_default_keymaps = false,
     },
   },
-   {
+  {
     'ThePrimeagen/harpoon',
     branch = 'harpoon2',
     dependencies = { 'nvim-lua/plenary.nvim' },
@@ -355,7 +355,7 @@ local disabled = {
       vim.keymap.set('n', '.', function () harpoon:list():next() end)
     end,
   },
- 
+
 }
 
 return {}
