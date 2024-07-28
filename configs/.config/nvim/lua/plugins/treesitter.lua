@@ -19,6 +19,7 @@ return {
       'regex',
       'typescript',
       'javascript',
+      'rust',
       'markdown',
       'markdown_inline',
       'toml',
@@ -44,10 +45,10 @@ return {
       },
     },
   },
-  config = function(_, opts)
+  config = function (_, opts)
     require('nvim-treesitter.configs').setup(opts)
   end,
-  init = function()
+  init = function ()
     vim.filetype.add({
       pattern = { ['.*/hypr/.*%.conf'] = 'hyprlang' },
     })

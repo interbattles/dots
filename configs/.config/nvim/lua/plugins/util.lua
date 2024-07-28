@@ -47,17 +47,30 @@ return {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-file-browser.nvim',
     },
-    opts = {
-      defaults = {
-        initial_mode = 'normal',
-      },
+    opts = function ()
+      local config = require('telescope.config')
 
-      pickers = {
-        find_files = {
-          hidden = true,
+      local vimgrep_arguments = { unpack(config.values.vimgrep_arguments) }
+
+      -- I want to search in hidden/dot files.
+      table.insert(vimgrep_arguments, '--hidden')
+      -- I don't want to search in the `.git` directory.
+      table.insert(vimgrep_arguments, '--glob')
+      table.insert(vimgrep_arguments, '!**/.git/*')
+
+      return {
+        defaults = {
+          initial_mode = 'normal',
+          vimgrep_arguments = vimgrep_arguments,
         },
-      },
-    },
+
+        pickers = {
+          find_files = {
+            hidden = true,
+          },
+        },
+      }
+    end,
     config = function (_, opts)
       require('telescope').setup(opts)
 

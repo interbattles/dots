@@ -4,7 +4,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function ()
-      vim.cmd [[ source ~/.cache/matugen/colors.vim ]]
+      vim.cmd.source '~/.cache/matugen/colors.vim'
 
       require('palette').setup({
         palettes = {
@@ -36,7 +36,7 @@ return {
         },
       })
 
-      vim.cmd [[ colorscheme palette ]]
+      vim.cmd.colorscheme 'palette'
     end,
   },
   {

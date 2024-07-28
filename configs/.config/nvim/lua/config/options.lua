@@ -14,7 +14,7 @@ vim.opt.showmode = false
 
 
 if vim.g.neovide then
-  vim.cmd [[source ~/.cache/matugen/colors.vim]]
+  vim.cmd.source '~/.cache/matugen/colors.vim'
 
   vim.g.neovide_transparency = vim.g.alpha
   vim.g.neovide_window_blurred = false

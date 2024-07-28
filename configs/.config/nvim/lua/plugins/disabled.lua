@@ -135,106 +135,110 @@ local disabled = {
     end,
   },
   {
-    'nvim-lualine/lualine.nvim',
-    enabled = false,
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-      'folke/noice.nvim',
-    },
-    opts = function ()
-      return {
-        options = {
-          theme = 'tokyonight',
-          component_separators = '',
-          section_separators = '',
-        },
-        sections = {
-          lualine_a = {
-            {
-              'mode',
-              icons_enabled = true,
-            },
-          },
-          lualine_b = { 'filename', 'branch', 'diagnostics' },
-          lualine_c = {},
-          lualine_x = {
-            {
-              function () return require('noice').api.status.mode.get() end, ---@diagnostic disable-line:undefined-field
-              cond = function () return package.loaded['noice'] and require('noice').api.status.mode.has() end, ---@diagnostic disable-line:undefined-field
-            },
-            {
-              function () return require('noice').api.status.command.get() end, ---@diagnostic disable-line:undefined-field
-              cond = function () return package.loaded['noice'] and require('noice').api.status.command.has() end, ---@diagnostic disable-line:undefined-field
-            },
-          },
-          lualine_y = { 'filetype', 'progress', 'diff' },
-          lualine_z = {},
-        },
-        inactive_sections = {
-          lualine_a = { 'filename' },
-          lualine_b = {},
-          lualine_c = {},
-          lualine_x = {},
-          lualine_y = {},
-          lualine_z = { 'location' },
-        },
-        tabline = {},
-        winbar = {},
-        inactive_winbar = {},
-        extensions = {},
-      }
-    end,
-    init = function ()
-      vim.o.laststatus = 3
-    end,
-  },
-
-  {
     'goolord/alpha-nvim',
     dependencies = {
-      'nvim-lua/plenary.nvim',
+      { 'nvim-lua/plenary.nvim', lazy = true },
     },
     config = function ()
       local alpha = require 'alpha'
       local dashboard = require 'alpha.themes.dashboard'
       require 'alpha.term'
 
-      -- math.randomseed(os.time())
-      -- local arts = vim.api.nvim_list_runtime_paths()[1] .. "/arts"
-      -- local dir = require 'plenary.scandir'.scan_dir(arts, { hidden = true, depth = 1 })
-      -- local custom_art = dir[math.random(#dir)]
-      -- vim.g.dir = dir
+      dashboard.section.terminal.type = 'terminal'
+      dashboard.section.terminal.command = 'lolcrab ~/.config/nvim/arts/dashboard.txt'
+      dashboard.section.terminal.width = 69
+      dashboard.section.terminal.height = 10
 
-      -- dashboard.section.terminal.type = 'terminal'
-      -- dashboard.section.terminal.command = "cat " .. custom_art
-      -- dashboard.section.terminal.width = 32
-      -- dashboard.section.terminal.height = 14
+      local function entry(icon, desc, key, action)
+        return dashboard.button(key, icon .. ' ' .. desc, '<cmd>' .. action .. '<cr>')
+      end
 
       dashboard.section.buttons.val = {
-        dashboard.button('e', '  New file', ':ene <BAR> startinsert <CR>'),
-        dashboard.button('s', ' Session Lens', ':Telescope session-lens<CR>'),
-        dashboard.button('f', '󰥨 Find Files', ':Telescope find_files<CR>'),
-        dashboard.button('b', '󰌱 Browse Files', ':Telescope file_browser<CR>'),
-        dashboard.button('d', ' Dotfiles', ':cd ~/dots | Oil<CR>'),
-        dashboard.button('q', '󰅚 Quit NVIM', ':qa<CR>'),
+        entry('', 'New File', 'e', 'ene | startinsert'),
+        (require('auto-session').session_exists_for_cwd()
+          and entry('󰦛', 'Restore Session', 'r', 'SessionRestore')
+          or entry('', 'Session Lens', 's', 'Telescope session-lens')),
+        entry('󰥨', 'Find Files', 'f', 'Telescope find_files'),
+        entry('󰌱', 'Browse Files', 'b', 'Telescope file_browser'),
+        entry('', 'Dotfiles', 'd', 'cd ~/dots | Oil'),
+        entry('󰅚', 'Quit NVIM', 'q', 'qa'),
       }
 
       dashboard.config.layout = {
+        dashboard.section.terminal,
         { type = 'padding', val = 2 },
         dashboard.section.buttons,
         dashboard.section.footer,
       }
 
-      --{
-      --  --"      |\\      _,,,---,,_            ",
-      --  --"ZZZzz /,`.-'`'    -.  ;-;;,_        ",
-      --  --"     |,4-  ) )-,_. ,\\ (  `'-'       ",
-      --  --"    '---''(_/--'  `-'\\_)            ",
-      --}
       alpha.setup(dashboard.opts)
+
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'LazyVimStarted',
+        desc = 'add alpha dashboard footer',
+        once = true,
+        callback = function ()
+          local stats = require('lazy').stats()
+          local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+          dashboard.section.footer.val = '󰏋 Loaded ' ..
+              stats.loaded .. ' / 󱑥 ' .. stats.count .. ' plugins (' .. ms .. 'ms)'
+
+          vim.cmd [[AlphaRedraw]]
+        end,
+      })
     end,
   },
 
+  {
+    'nvimdev/dashboard-nvim',
+    lazy = true,
+    enabled = false,
+    event = 'VimEnter',
+    dependencies = {
+      { 'nvim-tree/nvim-web-devicons', lazy = true },
+    },
+    opts = function ()
+      local function entry(icon, desc, key, action)
+        return {
+          key = key,
+          desc = desc,
+          action = action,
+          icon = icon .. ' ',
+          icon_hl = 'SpecialKey',
+          desc_hl = 'Normal',
+          key_hl = 'SpecialKey',
+          key_format = ' [%s]',
+        }
+      end
+
+      return {
+        theme = 'doom',
+        preview = {
+          command = 'lolcrab',
+          file_path = '~/.config/nvim/arts/dashboard.txt',
+          file_width = 69,
+          file_height = 10,
+        },
+        config = {
+          center = {
+            entry('', 'New File', 'e', 'ene | startinsert'),
+            (require('auto-session').session_exists_for_cwd()
+              and entry('󰦛', 'Restore Session', 'r', 'SessionRestore')
+              or entry('', 'Session Lens', 's', 'Telescope session-lens')),
+            entry('󰥨', 'Find Files', 'f', 'Telescope find_files'),
+            entry('󰌱', 'Browse Files', 'b', 'Telescope file_browser'),
+            entry('', 'Dotfiles', 'd', 'cd ~/dots | Oil'),
+            entry('󰅚', 'Quit NVIM', 'q', 'qa'),
+          },
+          footer = function ()
+            local stats = require('lazy').stats()
+            local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+            return { '󰏋 Loaded ' .. stats.loaded .. ' / 󱑥 ' .. stats.count .. ' plugins (' .. ms .. 'ms)' }
+          end,
+        },
+      }
+    end,
+  },
   {
     'akinsho/bufferline.nvim',
     version = '*',

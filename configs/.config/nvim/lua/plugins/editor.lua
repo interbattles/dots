@@ -3,7 +3,7 @@ return {
     'folke/which-key.nvim',
     event = 'VeryLazy',
     dependencies = {
-      'nvim-tree/nvim-web-devicons',
+      { 'nvim-tree/nvim-web-devicons', lazy = true },
     },
     opts = {
       plugins = { spelling = true },
@@ -66,7 +66,7 @@ return {
   {
     'echasnovski/mini.files',
     dependencies = {
-      'nvim-tree/nvim-web-devicons',
+      { 'nvim-tree/nvim-web-devicons', lazy = true },
     },
     opts = {
       mappings = {
@@ -216,7 +216,6 @@ return {
   },
   {
     'norcalli/nvim-colorizer.lua',
-    config = true,
     keys = {
       { '<leader>cc', '<cmd>ColorizerToggle<cr>', desc = 'toggle colorizer', noremap = true },
     },
@@ -226,53 +225,5 @@ return {
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
     ft = { 'markdown' },
     build = function () vim.fn['mkdp#util#install']() end,
-  },
-  {
-    'nvimdev/dashboard-nvim',
-    event = 'VimEnter',
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
-    config = function ()
-      local function entry(icon, desc, key, action)
-        return {
-          key = key,
-          desc = desc,
-          action = action,
-          icon = icon .. ' ',
-          icon_hl = 'SpecialKey',
-          desc_hl = 'Normal',
-          key_hl = 'SpecialKey',
-          key_format = ' [%s]',
-        }
-      end
-
-      require('dashboard').setup {
-        theme = 'doom',
-        preview = {
-          command = 'lolcrab',
-          file_path = '~/.config/nvim/arts/dashboard.txt',
-          file_width = 69,
-          file_height = 10,
-        },
-        config = {
-          center = {
-            entry('', 'New File', 'e', 'ene | startinsert'),
-            (require('auto-session').session_exists_for_cwd()
-              and entry('󰦛', 'Restore Session', 'r', 'SessionRestore')
-              or entry('', 'Session Lens', 's', 'Telescope session-lens')),
-            entry('󰥨', 'Find Files', 'f', 'Telescope find_files'),
-            entry('󰌱', 'Browse Files', 'b', 'Telescope file_browser'),
-            entry('', 'Dotfiles', 'd', 'cd ~/dots | Oil'),
-            entry('󰅚', 'Quit NVIM', 'q', 'qa'),
-          },
-          footer = function ()
-            local stats = require('lazy').stats()
-            local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-            return { '󰏋 Loaded ' .. stats.loaded .. ' / 󱑥 ' .. stats.count .. ' plugins (' .. ms .. 'ms)' }
-          end,
-        },
-      }
-    end,
   },
 }
