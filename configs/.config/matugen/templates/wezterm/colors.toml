@@ -1,0 +1,48 @@
+[colors]
+ansi = [
+  '{{colors.surface_container.default.hex}}',
+  '{{colors.color1.default.hex}}',
+  '{{colors.color2.default.hex}}',
+  '{{colors.color3.default.hex}}',
+  '{{colors.color4.default.hex}}',
+  '{{colors.color5.default.hex}}',
+  '{{colors.color6.default.hex}}',
+  '{{colors.on_surface_variant.default.hex}}',
+]
+brights = [
+  '{{colors.surface_bright.default.hex}}',
+  '{{colors.color9.default.hex}}',
+  '{{colors.color10.default.hex}}',
+  '{{colors.color11.default.hex}}',
+  '{{colors.color12.default.hex}}',
+  '{{colors.color13.default.hex}}',
+  '{{colors.color14.default.hex}}',
+  '{{colors.on_surface.default.hex}}',
+]
+
+foreground = '{{colors.on_surface.default.hex}}'
+background = '{{colors.surface.default.hex}}'
+
+cursor_bg = '{{colors.on_surface.default.hex}}'
+cursor_fg = '{{colors.surface_container.default.hex}}'
+cursor_border = '{{colors.outline_variant.default.hex}}'
+
+compose_cursor = '{{colors.secondary.default.hex}}'
+
+scrollbar_thumb = '{{colors.on_surface_variant.default.hex}}'
+selection_fg = '{{colors.inverse_on_surface.default.hex}}'
+selection_bg = '{{colors.inverse_surface.default.hex}}'
+split = '{{colors.on_surface_variant.default.hex}}'
+visual_bell = '{{colors.primary.default.hex}}'
+
+[colors.quick_select.label]
+bg_color = '{{colors.secondary_container.default.hex}}'
+fg_color = '{{colors.on_secondary_container.default.hex}}'
+
+[colors.quick_select.match]
+bg_color = '{{colors.primary_container.default.hex}}'
+fg_color = '{{colors.on_primary_container.default.hex}}'
+
+[metadata]
+aliases = []
+name = 'matugen'

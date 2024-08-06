@@ -3,6 +3,13 @@ vim.g.maplocalleader = '\\'
 
 local map = vim.keymap.set
 
+-- lazy
+map('n', '<leader>ll', '<cmd>Lazy<cr>', { desc = 'lazy' })
+map('n', '<leader>lp', '<cmd>Lazy profile<cr>', { desc = 'profiler' })
+map('n', '<leader>ld', '<cmd>Lazy debug<cr>', { desc = 'debugger' })
+map('n', '<leader>lh', '<cmd>Lazy health<cr>', { desc = 'healthcheck' })
+map('n', '<leader>lu', '<cmd>Lazy update<cr>', { desc = 'update' })
+
 -- quit
 map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'quit' })
 
@@ -23,6 +30,7 @@ map('v', '>', '>gv')
 map('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'move block down' })
 map('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'move block up' })
 
+---- replaced with smart splits
 ---- move to window using the <ctrl> hjkl keys
 --map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
 --map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
@@ -45,18 +53,19 @@ map('t', '<C-/>', '<cmd>close<cr>', { desc = 'hide terminal' })
 map('t', '<c-_>', '<cmd>close<cr>', { desc = 'which_key_ignore' })
 
 -- buffers
-map({ 'n', 'v' }, ']b', '<cmd>bnext<cr>', { desc = 'next buffer' })
-map({ 'n', 'v' }, '[b', '<cmd>bprev<cr>', { desc = 'prev buffer' })
-map({ 'n', 'v' }, '<leader>b1', '<cmd>bfirst<cr>', { desc = 'goto first' })
-map({ 'n', 'v' }, '<leader>b0', '<cmd>blast<cr>', { desc = 'goto last' })
-map({ 'n', 'v' }, '<leader>bq', '<cmd>bdelete<cr>', { desc = 'close current' })
-map({ 'n', 'v' }, '<leader>bc', '<cmd>%bd<cr>', { desc = 'clear buffers' })
+map('n', ']b', '<cmd>bnext<cr>', { desc = 'next buffer' })
+map('n', '[b', '<cmd>bprev<cr>', { desc = 'prev buffer' })
+map('n', '<leader>b0', '<cmd>blast<cr>', { desc = 'goto last' })
+map('n', '<leader>b1', '<cmd>bfirst<cr>', { desc = 'goto first' })
+map('n', '<leader>bb', '<cmd>ene <bar> startinsert<cr>', { desc = 'new buffer' })
+map('n', '<leader>bq', '<cmd>bdelete<cr>', { desc = 'close current' })
+map('n', '<leader>bc', '<cmd>%bd<cr>', { desc = 'clear buffers' })
 
 -- tabs
 map('n', '<leader><tab>0', '<cmd>tablast<cr>', { desc = 'last tab' })
-map('n', '<leader><tab>o', '<cmd>tabonly<cr>', { desc = 'close other tabs' })
 map('n', '<leader><tab>1', '<cmd>tabfirst<cr>', { desc = 'first tab' })
 map('n', '<leader><tab><tab>', '<cmd>tabnew<cr>', { desc = 'new tab' })
 map('n', ']<tab>', '<cmd>tabnext<cr>', { desc = 'next tab' })
 map('n', '[<tab>', '<cmd>tabprevious<cr>', { desc = 'previous tab' })
 map('n', '<leader><tab>q', '<cmd>tabclose<cr>', { desc = 'close tab' })
+map('n', '<leader><tab>o', '<cmd>tabonly<cr>', { desc = 'close other tabs' })

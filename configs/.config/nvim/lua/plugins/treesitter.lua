@@ -2,6 +2,15 @@ return {
   'nvim-treesitter/nvim-treesitter',
   version = false,
   build = ':TSUpdate',
+
+  lazy = vim.fn.argc(-1) == 0,
+  event = { 'BufReadPost', 'BufWritePost', 'BufNewFile', 'VeryLazy' },
+  cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
+  keys = {
+    { '<c-space>', desc = 'increment selection' },
+    { '<bs>',      desc = 'decrement selection', mode = 'x' },
+  },
+
   opts_extend = { 'ensure_installed' },
   opts = {
     highlight = { enable = true },
@@ -45,9 +54,6 @@ return {
       },
     },
   },
-  config = function (_, opts)
-    require('nvim-treesitter.configs').setup(opts)
-  end,
   init = function ()
     vim.filetype.add({
       pattern = { ['.*/hypr/.*%.conf'] = 'hyprlang' },

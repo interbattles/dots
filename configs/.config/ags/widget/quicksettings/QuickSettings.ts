@@ -7,6 +7,7 @@ import { NetworkToggle, WifiSelection } from "./widgets/Network"
 import { BluetoothToggle, BluetoothDevices } from "./widgets/Bluetooth"
 import { DND } from "./widgets/DND"
 import { DarkModeToggle } from "./widgets/DarkMode"
+import { RecordingToggle } from "./widgets/ScreenRecord"
 import { MicMute } from "./widgets/MicMute"
 import { Media } from "./widgets/Media"
 import PopupWindow from "widget/PopupWindow"
@@ -56,8 +57,7 @@ const Settings = () => Widget.Box({
             [WifiSelection, BluetoothDevices],
         ),
         Row(
-            [ProfileToggle, DarkModeToggle],
-            [ProfileSelector],
+            [RecordingToggle, DarkModeToggle],
         ),
         Row([MicMute, DND]),
         Widget.Box({

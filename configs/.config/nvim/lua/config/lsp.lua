@@ -15,18 +15,19 @@ local configs = {
         return
       end
 
-      local lazy = require('lazy.core.config')
+      -- local lazy = require('lazy.core.config')
       client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
         runtime = {
           version = 'LuaJIT',
         },
         workspace = {
           checkThirdParty = false,
-          library = {
-            vim.env.VIMRUNTIME,
-            lazy.spec.plugins['wezterm-types'].dir,
-            lazy.spec.plugins['luvit-meta'].dir,
-          },
+          library = vim.api.nvim_get_runtime_file('', true),
+          -- library = {
+          --   vim.env.VIMRUNTIME,
+          --   lazy.spec.plugins['wezterm-types'].dir,
+          --   lazy.spec.plugins['luvit-meta'].dir,
+          -- },
         },
       })
     end,
@@ -35,6 +36,11 @@ local configs = {
       Lua = {
         format = {
           enable = true,
+          defaultConfig = {
+            indent_style = 'space',
+            indent_size = '2',
+            quote_style = 'single',
+          },
         },
       },
     },
@@ -54,6 +60,12 @@ local configs = {
         },
       }
     ),
+  },
+
+  rust_analyzer = {
+    on_attach = function (_, bufnr)
+      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    end,
   },
 }
 

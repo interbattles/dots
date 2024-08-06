@@ -1,40 +1,52 @@
 return {
-  { 'Bilal2453/luvit-meta',        lazy = true },
-  { 'justinsgithub/wezterm-types', lazy = true },
+  { 'gpanders/nvim-parinfer' },
+  {
+    'pmizio/typescript-tools.nvim',
+    lazy = true,
+    ft = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact' },
+    dependencies = {
+      { 'nvim-lua/plenary.nvim', lazy = true },
+      { 'neovim/nvim-lspconfig' },
+    },
+  },
   {
     'neovim/nvim-lspconfig',
+    lazy = vim.fn.argc(-1) == 0,
+    event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
     dependencies = {
-      { 'williamboman/mason.nvim',      dependencies = { 'williamboman/mason-lspconfig.nvim' } },
-      { 'pmizio/typescript-tools.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
-      { 'hrsh7th/cmp-nvim-lsp',         dependencies = { 'hrsh7th/nvim-cmp' } },
+      { 'hrsh7th/cmp-nvim-lsp',        dependencies = { 'hrsh7th/nvim-cmp' } },
+      { 'Bilal2453/luvit-meta',        lazy = true },
+      { 'justinsgithub/wezterm-types', lazy = true },
+      {
+        'williamboman/mason-lspconfig.nvim',
+        config = function () end,
+        dependencies = { 'mason.nvim' },
+      },
     },
     config = function ()
       local lspconfig = require('lspconfig')
       local handlers = {
-        tsserver = function () end,
-        rust_analyzer = function () end,
         function (server) lspconfig[server].setup(require('config.lsp')[server]) end,
       }
-
-      require('typescript-tools').setup {}
 
       require('mason-lspconfig').setup {
         ensure_installed = {
           'rust_analyzer',
           'lua_ls',
           'vimls',
+          'tsserver',
         },
         handlers = handlers,
       }
     end,
   },
   {
-    'mrcjkb/rustaceanvim',
-    version = '^5',
-    lazy = false,
-  },
-  {
     'williamboman/mason.nvim',
+    cmd = 'Mason',
+    keys = {
+      { '<leader>cm', '<cmd>Mason<cr>', desc = 'mason' },
+    },
+    build = ':MasonUpdate',
     opts = {
       ui = {
         icons = {
@@ -55,12 +67,14 @@ return {
         function ()
           require('conform').format({ async = true })
         end,
-        mode = { 'n', 'x' },
         desc = 'format',
+        mode = { 'n', 'x' },
       },
     },
     opts = {
-      formatters_by_ft = {},
+      formatters_by_ft = {
+        rust = { 'rustfmt', lsp_format = 'fallback' },
+      },
       default_format_opts = {
         lsp_format = 'fallback',
       },

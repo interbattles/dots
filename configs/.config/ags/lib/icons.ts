@@ -96,6 +96,7 @@ export default {
   },
   recorder: {
     recording: "media-record-symbolic",
+    disabled: "camera-video-symbolic",
   },
   notifications: {
     noisy: "mail-unread",
