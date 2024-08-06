@@ -1,0 +1,15 @@
+(include "modules/bar/buttons/launcher.yuck")
+(include "modules/bar/buttons/date.yuck")
+
+(defwidget bar []
+          (box  :class "bar" 
+                :orientation "h" 
+                :space-evenly true
+                (box  :halign "start"
+                      (launcher))
+                  
+                (box  :halign "center"
+                      (date))
+
+                (box  :halign "end"
+                      (systray))))

@@ -1,0 +1,42 @@
+@import "./colors.scss";
+
+$opacity: 0.06;
+$widget-opacity: 0.94;
+
+$bg: transparentize($surface, $opacity);
+$fg: $on_surface;
+$primary-bg: $primary;
+$primary-fg: $on_primary;
+$error-bg: $error;
+$error-fg: $on_error;
+$scheme: dark;
+$padding: 7pt;
+$spacing: 5pt;
+$radius: 11px;
+$transition: 200ms;
+$shadows: false;
+$widget-bg: transparentize($fg, $widget-opacity);
+$hover-bg: transparentize($fg, $widget-opacity - $opacity);
+$hover-fg: lighten($fg, 8%);
+$border-width: 2px;
+$border-color: transparentize($outline, $widget-opacity);
+$border: $border-width solid $border-color;
+$active-gradient: linear-gradient(to right, $primary, darken($primary, 4%));
+$shadow-color: rgba(0,0,0,.6);
+$text-shadow: 2pt 2pt 2pt $shadow-color;
+$box-shadow: 2pt 2pt 2pt 0 $shadow-color, inset 0 0 0 $border-width $border-color;
+$popover-border-color: transparentize($outline, $widget-opacity);
+$popover-padding: $padding * 1.6;
+$popover-radius: $radius + $popover-padding;
+$font-size: 13pt;
+$font-name: NotoSans Nerd Font;
+$charging-bg: $primary;
+$bar-battery-blocks: 7;
+$bar-position: top;
+$hyprland-gaps-multiplier: 3;
+$screen-corner-multiplier: 0;
+
+* {
+  font-family: $font-name;
+  font-size: $font-size;
+}

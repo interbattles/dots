@@ -1,5 +1,7 @@
 #!/usr/bin/env fish
 
+sudo pacman -S base-devel --needed
+
 echo "downloading submodules"
 git submodule init
 git submodule update

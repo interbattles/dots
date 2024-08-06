@@ -1,52 +1,11 @@
 return {
   {
-    'folke/which-key.nvim',
-    event = 'VeryLazy',
-    dependencies = {
-      { 'nvim-tree/nvim-web-devicons', lazy = true },
-    },
-    opts = {
-      plugins = { spelling = true },
-      preset = 'modern',
-    },
-    config = function (_, opts)
-      local wk = require('which-key')
-      wk.setup(opts)
-
-      wk.add({
-        {
-          mode = { 'n', 'v' },
-          { '<leader><Tab>', group = 'tabs' },
-          { '<leader>b',     group = 'buffer' },
-          { '<leader>q',     group = 'quit' },
-          { '<leader>f',     group = 'file/find' },
-          { '<leader>g',     group = 'git' },
-          { '<leader>gh',    group = 'hunks' },
-          { '<leader>t',     group = 'terminal/toggleterm' },
-          { '<leader>u',     group = 'ui' },
-          { '<leader>s',     group = 'session' },
-          { '<leader>x',     group = 'diagnostics/quickfix' },
-          { '<leader>c',     group = 'code' },
-          {
-            '<leader>ct',
-            group = 'trouble',
-            icon = { icon = '󱖫', color = 'green' },
-          },
-        },
-      })
-    end,
-  },
-  {
     'cbochs/grapple.nvim',
     dependencies = {
       { 'nvim-tree/nvim-web-devicons', lazy = true },
-      'nvim-telescope/telescope.nvim',
     },
-    opts = {
-      scope = 'git',
-      icons = true,
-      status = true,
-    },
+    lazy = true,
+    cmd = 'Grapple',
     keys = {
       { '<C-t>', '<cmd>Grapple toggle<cr>',          desc = 'tag a file' },
       { ';',     '<cmd>Grapple toggle_tags<cr>',     desc = 'toggle tags menu' },
@@ -59,14 +18,20 @@ return {
       { ',',     '<cmd>Grapple cycle_tags prev<cr>', desc = 'go to previous tag' },
       { '.',     '<cmd>Grapple cycle_tags next<cr>', desc = 'go to next tag' },
     },
-    init = function ()
-      require('telescope').load_extension 'grapple'
-    end,
+    opts = {
+      scope = 'git',
+      icons = true,
+      status = true,
+    },
   },
   {
     'echasnovski/mini.files',
+    lazy = true,
     dependencies = {
       { 'nvim-tree/nvim-web-devicons', lazy = true },
+    },
+    keys = {
+      { '-', '<cmd>lua require("mini.files").open()<cr>', desc = 'files' },
     },
     opts = {
       mappings = {
@@ -87,8 +52,6 @@ return {
       local MiniFiles = require('mini.files')
       MiniFiles.setup(opts)
 
-      vim.keymap.set('n', '-', MiniFiles.open, { desc = 'open minifiles' })
-
       local files_set_cwd = function ()
         local cur_entry_path = MiniFiles.get_fs_entry().path
         local cur_directory = vim.fs.dirname(cur_entry_path)
@@ -98,7 +61,7 @@ return {
       vim.api.nvim_create_autocmd('User', {
         pattern = 'MiniFilesBufferCreate',
         callback = function (args)
-          vim.keymap.set('n', 'g~', files_set_cwd, { buffer = args.data.buf_id })
+          vim.keymap.set('n', 'g~', files_set_cwd, { buffer = args.data.buf_id, desc = ':cd mini.files dir' })
         end,
       })
 
@@ -114,7 +77,7 @@ return {
           MiniFiles.set_target_window(new_target_window)
         end
 
-        local desc = 'Split ' .. direction
+        local desc = 'split ' .. direction
         vim.keymap.set('n', lhs, rhs, { buffer = buf_id, desc = desc })
       end
 
@@ -130,57 +93,24 @@ return {
     end,
   },
   {
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      signs = {
-        add = { text = '▎' },
-        change = { text = '▎' },
-        delete = { text = '' },
-        topdelete = { text = '' },
-        changedelete = { text = '▎' },
-        untracked = { text = '▎' },
-      },
-      on_attach = function (buffer)
-        local gs = package.loaded.gitsigns
-
-        local function map(mode, l, r, desc)
-          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
-        end
-
-        -- stylua: ignore start
-        map('n', ']h', function () gs.nav_hunk('next') end, 'next hunk')
-        map('n', '[h', function () gs.nav_hunk('prev') end, 'prev hunk')
-        map('n', ']H', function () gs.nav_hunk('last') end, 'last hunk')
-        map('n', '[H', function () gs.nav_hunk('first') end, 'first hunk')
-        map({ 'n', 'v' }, '<leader>ghs', ':Gitsigns stage_hunk<CR>', 'stage hunk')
-        map({ 'n', 'v' }, '<leader>ghr', ':Gitsigns reset_hunk<CR>', 'reset hunk')
-        map('n', '<leader>ghS', gs.stage_buffer, 'stage buffer')
-        map('n', '<leader>ghu', gs.undo_stage_hunk, 'undo stage hunk')
-        map('n', '<leader>ghR', gs.reset_buffer, 'reset buffer')
-        map('n', '<leader>ghp', gs.preview_hunk_inline, 'preview hunk inline')
-        map('n', '<leader>ghb', function () gs.blame_line({ full = true }) end, 'blame line')
-        map('n', '<leader>ghd', gs.diffthis, 'diff this')
-        map('n', '<leader>ghD', function () gs.diffthis('~') end, 'diff this ~')
-        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'gitsigns select hunk')
-      end,
-    },
-  },
-  {
     'NeogitOrg/neogit',
+    lazy = true,
+    cmd = 'Neogit',
     keys = {
       { '<leader>gg', '<cmd>Neogit<cr>', desc = 'open neogit' },
     },
     dependencies = {
-      'nvim-lua/plenary.nvim',
-      'sindrets/diffview.nvim',
-      'nvim-telescope/telescope.nvim',
+      { 'nvim-lua/plenary.nvim',        lazy = true },
+      { 'sindrets/diffview.nvim' },
+      { 'nvim-telescope/telescope.nvim' },
     },
     config = true,
   },
   {
     'folke/trouble.nvim',
-    opts = {},
+    lazy = true,
     cmd = 'Trouble',
+    opts = {},
     keys = {
       {
         '<leader>xx',
@@ -226,4 +156,66 @@ return {
     ft = { 'markdown' },
     build = function () vim.fn['mkdp#util#install']() end,
   },
+  {
+    'goolord/alpha-nvim',
+    event = 'VimEnter',
+    dependencies = {
+      { 'nvim-lua/plenary.nvim', lazy = true },
+    },
+    config = function ()
+      local alpha = require 'alpha'
+      local dashboard = require 'alpha.themes.dashboard'
+
+      -- dashboard.section.terminal.type = 'terminal'
+      -- dashboard.section.terminal.command = 'lolcrab ~/.config/nvim/arts/dashboard.txt'
+      -- dashboard.section.terminal.width = 69
+      -- dashboard.section.terminal.height = 10
+
+      local function entry(icon, desc, key, action)
+        return dashboard.button(key, icon .. ' ' .. desc, '<cmd>' .. action .. '<cr>')
+      end
+
+      dashboard.section.buttons.val = {
+        entry('', 'new file', 'e', 'ene | startinsert'),
+        entry('󰦛', 'restore session', 's', 'SessionManager load_session'),
+        entry('󰥨', 'find files', 'f', 'Telescope find_files'),
+        entry('󱎫', 'recent files', 'r', 'Telescope oldfiles'),
+        entry('󰅚', 'quit nvim', 'q', 'qa'),
+      }
+
+      dashboard.config.layout = {
+        -- dashboard.section.terminal,
+        -- { type = 'padding', val = 2 },
+        dashboard.section.buttons,
+        dashboard.section.footer,
+      }
+
+      alpha.setup(dashboard.opts)
+
+      if vim.o.filetype == 'lazy' then
+        vim.cmd.close()
+        vim.api.nvim_create_autocmd('User', {
+          pattern = 'AlphaReady',
+          callback = function ()
+            require('lazy').show()
+          end,
+        })
+      end
+
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'LazyVimStarted',
+        desc = 'add alpha dashboard footer',
+        once = true,
+        callback = function ()
+          local stats = require('lazy').stats()
+          local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+          dashboard.section.footer.val = '󰏋 loaded ' ..
+              stats.loaded .. ' / 󱑥 ' .. stats.count .. ' plugins (' .. ms .. 'ms)'
+
+          vim.cmd 'AlphaRedraw'
+        end,
+      })
+    end,
+  },
+
 }

@@ -1,0 +1,132 @@
+/*****-----MainWindow-----*****/
+window {
+  transparency: "real";
+  location: center;
+  anchor: center;
+  fullscreen: true;
+  x-offset: 0px;
+  y-offset: 0px;
+
+  enabled: true;
+  margin: 0px;
+  padding: 0px;
+  background-color: {{colors.surface.default.hex}};
+  cursor: "default";
+}
+
+/*****-----MainBox-----*****/
+mainbox {
+  enabled: true;
+  spacing: 100px;
+  margin: 0px;
+  padding: 10px200px;
+  background-color: transparent;
+  children: ["inputbar","listview"];
+}
+
+/*****-----Inputbar-----*****/
+inputbar {
+  enabled: true;
+  spacing: 10px;
+  margin: 1%18%;
+  padding: 10px;
+  border: 2pxsolid;
+  border-radius: 10px;
+  border-color: {{colors.outline.default.hex}};
+  background-color: black/5%;
+  text-color: {{colors.on_surface.default.hex}};
+  children: ["textbox-prompt-colon","entry"];
+}
+
+textbox-prompt-colon {
+  enabled: true;
+  expand: false;
+  padding: 2px11px;
+  border-radius: 100%;
+  str: "";
+  background-color: transparent;
+  text-color: inherit;
+}
+entry {
+  enabled: true;
+  background-color: transparent;
+  text-color: inherit;
+  cursor: text;
+  placeholder: "Search";
+  placeholder-color: inherit;
+}
+
+/*****-----Listview-----*****/
+listview {
+  enabled: true;
+  columns: 5;
+  lines: 5;
+  cycle: true;
+  dynamic: true;
+  scrollbar: false;
+  layout: vertical;
+  reverse: false;
+  fixed-height: true;
+  fixed-columns: true;
+
+  spacing: 0px;
+  margin: 0px;
+  padding: 0px;
+  background-color: transparent;
+  text-color: {{colors.on_surface.default.hex}};
+  cursor: "default";
+}
+
+/*****-----Elements-----*****/
+element {
+  enabled: true;
+  spacing: 15px;
+  margin: 0px;
+  padding: 20px10px;
+  border-radius: 10px;
+  background-color: transparent;
+  text-color: {{colors.on_surface.default.hex}};
+  orientation: vertical;
+  cursor: pointer;
+}
+element normal.normal {
+  background-color: transparent;
+  text-color: {{colors.on_surface.default.hex}};
+}
+element selected.normal {
+  border: 2pxsolid;
+  border-color: {{colors.outline.default.hex}};
+  background-color: white/5%;
+  text-color: {{colors.on_surface.default.hex}};
+}
+element-icon {
+  background-color: transparent;
+  text-color: inherit;
+  size: 55px;
+  cursor: inherit;
+}
+element-text {
+  background-color: transparent;
+  text-color: inherit;
+  highlight: inherit;
+  cursor: inherit;
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
+}
+
+/*****-----Message-----*****/
+error-message {
+  padding: 15px;
+  border: 2pxsolid;
+  border-radius: 10px;
+  border-color: {{colors.outline.default.hex}};
+  background-color: black/10%;
+  text-color: {{colors.on_surface.default.hex}};
+}
+textbox {
+  background-color: transparent;
+  text-color: {{colors.on_surface.default.hex}};
+  vertical-align: 0.5;
+  horizontal-align: 0.0;
+  highlight: none;
+}

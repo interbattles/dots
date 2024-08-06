@@ -135,108 +135,51 @@ local disabled = {
     end,
   },
   {
-    'goolord/alpha-nvim',
-    dependencies = {
-      { 'nvim-lua/plenary.nvim', lazy = true },
-    },
-    config = function ()
-      local alpha = require 'alpha'
-      local dashboard = require 'alpha.themes.dashboard'
-      require 'alpha.term'
-
-      dashboard.section.terminal.type = 'terminal'
-      dashboard.section.terminal.command = 'lolcrab ~/.config/nvim/arts/dashboard.txt'
-      dashboard.section.terminal.width = 69
-      dashboard.section.terminal.height = 10
-
-      local function entry(icon, desc, key, action)
-        return dashboard.button(key, icon .. ' ' .. desc, '<cmd>' .. action .. '<cr>')
-      end
-
-      dashboard.section.buttons.val = {
-        entry('', 'New File', 'e', 'ene | startinsert'),
-        (require('auto-session').session_exists_for_cwd()
-          and entry('󰦛', 'Restore Session', 'r', 'SessionRestore')
-          or entry('', 'Session Lens', 's', 'Telescope session-lens')),
-        entry('󰥨', 'Find Files', 'f', 'Telescope find_files'),
-        entry('󰌱', 'Browse Files', 'b', 'Telescope file_browser'),
-        entry('', 'Dotfiles', 'd', 'cd ~/dots | Oil'),
-        entry('󰅚', 'Quit NVIM', 'q', 'qa'),
-      }
-
-      dashboard.config.layout = {
-        dashboard.section.terminal,
-        { type = 'padding', val = 2 },
-        dashboard.section.buttons,
-        dashboard.section.footer,
-      }
-
-      alpha.setup(dashboard.opts)
-
-      vim.api.nvim_create_autocmd('User', {
-        pattern = 'LazyVimStarted',
-        desc = 'add alpha dashboard footer',
-        once = true,
-        callback = function ()
-          local stats = require('lazy').stats()
-          local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          dashboard.section.footer.val = '󰏋 Loaded ' ..
-              stats.loaded .. ' / 󱑥 ' .. stats.count .. ' plugins (' .. ms .. 'ms)'
-
-          vim.cmd [[AlphaRedraw]]
-        end,
-      })
-    end,
-  },
-
-  {
     'nvimdev/dashboard-nvim',
-    lazy = true,
-    enabled = false,
     event = 'VimEnter',
-    dependencies = {
-      { 'nvim-tree/nvim-web-devicons', lazy = true },
-    },
     opts = function ()
-      local function entry(icon, desc, key, action)
-        return {
-          key = key,
-          desc = desc,
-          action = action,
-          icon = icon .. ' ',
-          icon_hl = 'SpecialKey',
-          desc_hl = 'Normal',
-          key_hl = 'SpecialKey',
-          key_format = ' [%s]',
-        }
-      end
-
-      return {
+      local opts = {
         theme = 'doom',
-        preview = {
-          command = 'lolcrab',
-          file_path = '~/.config/nvim/arts/dashboard.txt',
-          file_width = 69,
-          file_height = 10,
+        hide = {
+          -- this is taken care of by lualine
+          -- enabling this messes up the actual laststatus setting after loading a file
+          statusline = false,
         },
         config = {
+          header = {},
           center = {
-            entry('', 'New File', 'e', 'ene | startinsert'),
-            (require('auto-session').session_exists_for_cwd()
-              and entry('󰦛', 'Restore Session', 'r', 'SessionRestore')
-              or entry('', 'Session Lens', 's', 'Telescope session-lens')),
-            entry('󰥨', 'Find Files', 'f', 'Telescope find_files'),
-            entry('󰌱', 'Browse Files', 'b', 'Telescope file_browser'),
-            entry('', 'Dotfiles', 'd', 'cd ~/dots | Oil'),
-            entry('󰅚', 'Quit NVIM', 'q', 'qa'),
+            { action = 'ene | startinsert', desc = ' new file', icon = ' ', key = 'e' },
+            { action = 'Telescope find_files', desc = ' find file', icon = ' ', key = 'f' },
+            { action = 'Telescope oldfiles', desc = ' recent files', icon = ' ', key = 'r' },
+            { action = 'SessionManager load_session', desc = ' restore session', icon = ' ', key = 's' },
+            { action = 'qa', desc = ' quit', icon = ' ', key = 'q' },
           },
           footer = function ()
             local stats = require('lazy').stats()
             local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-            return { '󰏋 Loaded ' .. stats.loaded .. ' / 󱑥 ' .. stats.count .. ' plugins (' .. ms .. 'ms)' }
+            return { '󰒲 lazy.nvim loaded ' .. stats.loaded .. '/' .. stats.count .. ' plugins in ' .. ms .. 'ms' }
           end,
         },
       }
+
+      for _, button in ipairs(opts.config.center) do
+        button.desc = button.desc .. string.rep(' ', 43 - #button.desc)
+        button.key_format = '  %s'
+        button.key_format = string.gsub(button.key, '<space>', '   SPC ')
+      end
+
+      -- close Lazy and re-open when the dashboard is ready
+      if vim.o.filetype == 'lazy' then
+        vim.cmd.close()
+        vim.api.nvim_create_autocmd('User', {
+          pattern = 'DashboardLoaded',
+          callback = function ()
+            require('lazy').show()
+          end,
+        })
+      end
+
+      return opts
     end,
   },
   {
@@ -358,6 +301,62 @@ local disabled = {
       vim.keymap.set('n', ',', function () harpoon:list():prev() end)
       vim.keymap.set('n', '.', function () harpoon:list():next() end)
     end,
+  },
+  {
+    'ms-jpq/coq_nvim',
+    branch = 'coq',
+    lazy = false,
+    dependencies = {
+      { 'neovim/nvim-lspconfig' },
+      { 'ms-jpq/coq.artifacts',  branch = 'artifacts' },
+      { 'ms-jpq/coq.thirdparty', branch = '3p' },
+    },
+    init = function ()
+      vim.g.coq_settings = {
+        auto_start = true,
+        display = {
+          ghost_text = {
+            context = { '', '' },
+          },
+        },
+      }
+    end,
+  },
+  {
+    'lewis6991/gitsigns.nvim',
+    opts = {
+      signs = {
+        add = { text = '▎' },
+        change = { text = '▎' },
+        delete = { text = '' },
+        topdelete = { text = '' },
+        changedelete = { text = '▎' },
+        untracked = { text = '▎' },
+      },
+      on_attach = function (buffer)
+        local gs = package.loaded.gitsigns
+
+        local function map(mode, l, r, desc)
+          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+        end
+
+        -- stylua: ignore start
+        map('n', ']h', function () gs.nav_hunk('next') end, 'next hunk')
+        map('n', '[h', function () gs.nav_hunk('prev') end, 'prev hunk')
+        map('n', ']H', function () gs.nav_hunk('last') end, 'last hunk')
+        map('n', '[H', function () gs.nav_hunk('first') end, 'first hunk')
+        map({ 'n', 'v' }, '<leader>ghs', ':Gitsigns stage_hunk<CR>', 'stage hunk')
+        map({ 'n', 'v' }, '<leader>ghr', ':Gitsigns reset_hunk<CR>', 'reset hunk')
+        map('n', '<leader>ghS', gs.stage_buffer, 'stage buffer')
+        map('n', '<leader>ghu', gs.undo_stage_hunk, 'undo stage hunk')
+        map('n', '<leader>ghR', gs.reset_buffer, 'reset buffer')
+        map('n', '<leader>ghp', gs.preview_hunk_inline, 'preview hunk inline')
+        map('n', '<leader>ghb', function () gs.blame_line({ full = true }) end, 'blame line')
+        map('n', '<leader>ghd', gs.diffthis, 'diff this')
+        map('n', '<leader>ghD', function () gs.diffthis('~') end, 'diff this ~')
+        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'gitsigns select hunk')
+      end,
+    },
   },
 
 }

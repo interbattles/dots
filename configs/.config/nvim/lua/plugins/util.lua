@@ -1,6 +1,7 @@
 return {
   {
     'lambdalisue/vim-suda',
+    cmd = { 'SudaWrite', 'SudaRead' },
   },
   {
     'akinsho/toggleterm.nvim',
@@ -10,49 +11,48 @@ return {
       { '<leader>th',     '<cmd>ToggleTerm direction=horizontal<cr>', desc = 'horizontal' },
       { '<leader>tv',     '<cmd>ToggleTerm direction=vertical<cr>',   desc = 'vertical' },
       { '<leader>t<tab>', '<cmd>ToggleTerm direction=tab<cr>',        desc = 'tab' },
-      { '<A-t>',          '<cmd>ToggleTerm<cr>',                      desc = 'toggle' },
+      { '<A-t>',          desc = 'toggle' },
     },
+    lazy = true,
     opts = {
       open_mapping = '<A-t>',
     },
   },
   {
     'mrjones2014/smart-splits.nvim',
-    event = 'VeryLazy',
-    config = true,
     keys = {
-      { '<A-h>',   '<cmd>lua require("smart-splits").resize_left()<cr>' },
-      { '<A-j>',   '<cmd>lua require("smart-splits").resize_down()<cr>' },
-      { '<A-k>',   '<cmd>lua require("smart-splits").resize_up()<cr>' },
-      { '<A-l>',   '<cmd>lua require("smart-splits").resize_right()<cr>' },
-      { '<C-h>',   '<cmd>lua require("smart-splits").move_cursor_left()<cr>' },
-      { '<C-j>',   '<cmd>lua require("smart-splits").move_cursor_down()<cr>' },
-      { '<C-k>',   '<cmd>lua require("smart-splits").move_cursor_up()<cr>' },
-      { '<C-l>',   '<cmd>lua require("smart-splits").move_cursor_right()<cr>' },
-      { '<C-\\>',  '<cmd>lua require("smart-splits").move_cursor_previous' },
-      { '<C-S-H>', '<cmd>lua require("smart-splits").swap_buf_left()<cr>',    desc = 'swap left' },
-      { '<C-S-J>', '<cmd>lua require("smart-splits").swap_buf_down()<cr>',    desc = 'swap down' },
-      { '<C-S-K>', '<cmd>lua require("smart-splits").swap_buf_up()<cr>',      desc = 'swap up' },
-      { '<C-S-L>', '<cmd>lua require("smart-splits").swap_buf_right()<cr>',   desc = 'swap right' },
+      { '<A-h>',   '<cmd>lua require("smart-splits").resize_left()<cr>',       desc = 'resize left' },
+      { '<A-j>',   '<cmd>lua require("smart-splits").resize_down()<cr>',       desc = 'resize down' },
+      { '<A-k>',   '<cmd>lua require("smart-splits").resize_up()<cr>',         desc = 'resize up' },
+      { '<A-l>',   '<cmd>lua require("smart-splits").resize_right()<cr>',      desc = 'resize right' },
+      { '<C-h>',   '<cmd>lua require("smart-splits").move_cursor_left()<cr>',  desc = 'move left' },
+      { '<C-j>',   '<cmd>lua require("smart-splits").move_cursor_down()<cr>',  desc = 'move down' },
+      { '<C-k>',   '<cmd>lua require("smart-splits").move_cursor_up()<cr>',    desc = 'move up' },
+      { '<C-l>',   '<cmd>lua require("smart-splits").move_cursor_right()<cr>', desc = 'move right' },
+      { '<C-\\>',  '<cmd>lua require("smart-splits").move_cursor_previous',    desc = 'previous' },
+      { '<C-S-H>', '<cmd>lua require("smart-splits").swap_buf_left()<cr>',     desc = 'swap left' },
+      { '<C-S-J>', '<cmd>lua require("smart-splits").swap_buf_down()<cr>',     desc = 'swap down' },
+      { '<C-S-K>', '<cmd>lua require("smart-splits").swap_buf_up()<cr>',       desc = 'swap up' },
+      { '<C-S-L>', '<cmd>lua require("smart-splits").swap_buf_right()<cr>',    desc = 'swap right' },
     },
+    opts = {},
   },
   {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.6',
     dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-file-browser.nvim',
+      { 'nvim-lua/plenary.nvim', lazy = true },
     },
     cmd = 'Telescope',
     keys = {
-      { '<leader>ff', '<cmd>Telescope file_browser<cr>',                                      desc = 'files' },
-      { '<leader>fg', '<cmd>Telescope live_grep<cr>',                                         desc = 'grep' },
-      { '<leader>fb', '<cmd>Telescope buffers<cr>',                                           desc = 'buffers' },
-      { '<leader>ff', '<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>', desc = 'find all' },
-      { '<leader>fh', '<cmd>Telescope help_tags<CR>',                                         desc = 'help tags' },
-      { '<leader>fc', '<cmd>Telescope command_history<CR>',                                   desc = 'command history' },
-      { '<leader>fo', '<cmd>Telescope oldfiles<CR>',                                          desc = 'old files' },
-      { '<leader>ft', '<cmd>Telescope colorscheme<CR>',                                       desc = 'colorschemes' },
+      { '<leader>fg', '<cmd>Telescope live_grep<cr>',                          desc = 'grep' },
+      { '<leader>fb', '<cmd>Telescope buffers<cr>',                            desc = 'buffers' },
+      { '<leader>fh', '<cmd>Telescope help_tags<CR>',                          desc = 'help tags' },
+      { '<leader>fc', '<cmd>Telescope command_history<CR>',                    desc = 'command history' },
+      { '<leader>fo', '<cmd>Telescope oldfiles<CR>',                           desc = 'old files' },
+      { '<leader>ft', '<cmd>Telescope colorscheme<CR>',                        desc = 'colorschemes' },
+      { '<leader>ff', '<cmd>Telescope find_files follow=true hidden=true<cr>', desc = 'find files' },
+      { '<leader>f/', '<cmd>Telescope current_buffer_fuzzy_find',              desc = 'fuzzy find in buffer' },
     },
     opts = function ()
       local config = require('telescope.config')
@@ -78,31 +78,30 @@ return {
         },
       }
     end,
-
     config = function (_, opts)
       require('telescope').setup(opts)
     end,
   },
   {
-    'rmagatti/auto-session',
+    'Shatur/neovim-session-manager',
     dependencies = {
-      'nvim-telescope/telescope.nvim', -- Only needed if you want to use sesssion lens
+      { 'nvim-lua/plenary.nvim', lazy = true },
     },
-    config = function ()
-      require('auto-session').setup({
-        auto_session_suppress_dirs = { '~/', '~/Downloads', '/' },
-        auto_save_enabled = true,
-        auto_restore_enabled = false,
-        auto_session_use_git_branch = true,
-        auto_session_create_enabled = function ()
-          local cmd = 'git rev-parse --is-inside-work-tree'
-          return vim.fn.system(cmd) == 'true\n'
-        end,
-      })
-    end,
-    init = function ()
-      vim.keymap.set('n', '<leader>sl', '<cmd>Telescope session-lens<cr>', { desc = 'session lens' })
-      vim.keymap.set('n', '<leader>fs', '<cmd>Telescope session-lens<cr>', { desc = 'sessions' })
+    keys = {
+      { '<leader>sm', '<cmd>SessionManager<cr>',                          desc = 'open session manager' },
+      { '<leader>ss', '<cmd>SessionManager save_current_session<cr>',     desc = 'save/create' },
+      { '<leader>sl', '<cmd>SessionManager load_session<cr>',             desc = 'select session' },
+      { '<leader>sg', '<cmd>SessionManager load_git_session<cr>',         desc = 'load git' },
+      { '<leader>sc', '<cmd>SessionManager load_current_dir_session<cr>', desc = 'load cwd' },
+      { '<leader>sd', '<cmd>SessionManager delete_session	<cr>',          desc = 'delete/select' },
+    },
+    cmd = 'SessionManager',
+    opts = function ()
+      local config = require('session_manager.config')
+      return {
+        autoload_mode = { config.AutoloadMode.GitSession, config.AutoloadMode.CurrentDir },
+        autosave_only_in_session = true,
+      }
     end,
   },
 }

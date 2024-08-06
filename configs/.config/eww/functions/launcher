@@ -1,0 +1,9 @@
+#!/usr/bin/env fish
+
+set launcher glimpse
+
+if pidof $launcher then
+  killall $launcher &
+else
+  $launcher &
+end

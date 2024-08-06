@@ -1,13 +1,28 @@
 return {
   {
-    'nvim-lualine/lualine.nvim',
+    'folke/noice.nvim',
+    event = 'VeryLazy',
+    opts = {},
     dependencies = {
-      'nvim-tree/nvim-web-devicons',
-      'folke/noice.nvim',
-      'cbochs/grapple.nvim',
+      { 'MunifTanjim/nui.nvim', lazy = true },
+      { 'rcarriga/nvim-notify' },
+    },
+  },
+  {
+    'stevearc/dressing.nvim',
+    event = 'VeryLazy',
+    opts = {},
+  },
+  {
+    'nvim-lualine/lualine.nvim',
+    event = 'VeryLazy',
+    dependencies = {
+      { 'nvim-tree/nvim-web-devicons', lazy = true },
+      { 'cbochs/grapple.nvim',         lazy = true },
     },
     opts = function ()
-      vim.cmd [[ source ~/.cache/matugen/colors.vim ]]
+      vim.cmd.source '~/.cache/matugen/colors.vim'
+
       local background = vim.g.alpha < 1 and 'NONE' or vim.g.surface_variant
       local theme = {
         normal = {
@@ -58,16 +73,7 @@ return {
           },
           lualine_b = { 'branch', 'diagnostics' },
           lualine_c = { '%=', 'grapple' },
-          lualine_x = {
-            {
-              function () return require('noice').api.status.mode.get() end, ---@diagnostic disable-line:undefined-field
-              cond = function () return package.loaded['noice'] and require('noice').api.status.mode.has() end, ---@diagnostic disable-line:undefined-field
-            },
-            {
-              function () return require('noice').api.status.command.get() end, ---@diagnostic disable-line:undefined-field
-              cond = function () return package.loaded['noice'] and require('noice').api.status.command.has() end, ---@diagnostic disable-line:undefined-field
-            },
-          },
+          lualine_x = {},
           lualine_y = { 'filetype', 'progress', 'diff' },
           lualine_z = {},
         },
@@ -126,17 +132,5 @@ return {
         extensions = {},
       }
     end,
-  },
-  {
-    'nvim-zh/colorful-winsep.nvim',
-    opts = function ()
-      vim.cmd [[ source ~/.cache/matugen/colors.vim ]]
-      return {
-        hi = {
-          fg = vim.g.primary,
-        },
-      }
-    end,
-    event = { 'WinLeave' },
   },
 }

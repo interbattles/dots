@@ -1,0 +1,10 @@
+#!/usr/bin/env fish
+
+set current (hyprctl activeworkspace -j)
+set all (hyprctl workspaces -j)
+
+set count (echo $all | jq length)
+
+for i in (seq $count)
+  
+end
