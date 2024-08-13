@@ -1,4 +1,5 @@
 return {
+  { 'nvim-lua/plenary.nvim', lazy = true },
   {
     'lambdalisue/vim-suda',
     cmd = { 'SudaWrite', 'SudaRead' },
@@ -13,7 +14,6 @@ return {
       { '<leader>t<tab>', '<cmd>ToggleTerm direction=tab<cr>',        desc = 'tab' },
       { '<A-t>',          desc = 'toggle' },
     },
-    lazy = true,
     opts = {
       open_mapping = '<A-t>',
     },
@@ -40,9 +40,6 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.6',
-    dependencies = {
-      { 'nvim-lua/plenary.nvim', lazy = true },
-    },
     cmd = 'Telescope',
     keys = {
       { '<leader>fg', '<cmd>Telescope live_grep<cr>',                          desc = 'grep' },
@@ -52,7 +49,8 @@ return {
       { '<leader>fo', '<cmd>Telescope oldfiles<CR>',                           desc = 'old files' },
       { '<leader>ft', '<cmd>Telescope colorscheme<CR>',                        desc = 'colorschemes' },
       { '<leader>ff', '<cmd>Telescope find_files follow=true hidden=true<cr>', desc = 'find files' },
-      { '<leader>f/', '<cmd>Telescope current_buffer_fuzzy_find',              desc = 'fuzzy find in buffer' },
+      { '<leader>fk', '<cmd>Telescope keymaps<cr>',                            desc = 'find keymaps' },
+      { '<leader>f/', '<cmd>Telescope current_buffer_fuzzy_find<cr>',          desc = 'fuzzy find in buffer' },
     },
     opts = function ()
       local config = require('telescope.config')
@@ -84,9 +82,6 @@ return {
   },
   {
     'Shatur/neovim-session-manager',
-    dependencies = {
-      { 'nvim-lua/plenary.nvim', lazy = true },
-    },
     keys = {
       { '<leader>sm', '<cmd>SessionManager<cr>',                          desc = 'open session manager' },
       { '<leader>ss', '<cmd>SessionManager save_current_session<cr>',     desc = 'save/create' },

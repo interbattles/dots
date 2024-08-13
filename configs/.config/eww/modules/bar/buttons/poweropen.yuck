@@ -1,0 +1,6 @@
+(defwidget poweropen []
+  (button
+    :onclick "fish functions/powermenu"
+    :class {flatbuttons ? "panel-button flat" : "panel-button"}
+    (image :icon "system-shutdown-symbolic")))  
+                        

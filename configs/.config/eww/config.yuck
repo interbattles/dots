@@ -1,0 +1,6 @@
+(defvar flatbuttons
+  true)
+(defvar opentray 
+  false)
+(defvar showpercent 
+  false)

@@ -1,0 +1,7 @@
+# vi: ft=fish
+
+while true
+  curl 'wttr.in?format=1' --connect-timeout 1 \
+  || echo ''
+  sleep 300
+end

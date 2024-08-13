@@ -1,0 +1,6 @@
+(include "modules/powermenu/powerbutton.yuck")
+
+(defwidget suspend []
+  (powerbutton :icon "weather-clear-night-symbolic" 
+               :action "fish functions/powerbutton suspend" 
+               :text "Suspend"))

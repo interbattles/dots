@@ -1,0 +1,15 @@
+(deflisten battery
+  :initial '{ "battery": "BAT1", "icon": "battery-missing-symbolic", "capacity": 0 }'
+  `fish functions/battery`)
+
+(deflisten workspaces 
+  :initial '{ "workspaces": [], "current": { "id": 0 }, "count": 0 }'
+  `fish functions/workspaces`)
+
+(deflisten weather 
+  :initial ''
+  `fish functions/weather`)
+
+(deflisten notification
+  :initial 'false'
+  `fish functions/notification`)

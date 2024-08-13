@@ -1,0 +1,4 @@
+(defwidget weather []
+  (box
+    :class {flatbuttons ? "panel-button flat" : "panel-button"}
+    {weather}))

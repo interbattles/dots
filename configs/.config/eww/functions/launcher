@@ -1,9 +1,9 @@
-#!/usr/bin/env fish
+# vi: ft=fish
 
-set launcher glimpse
+set launcher rofi
 
 if pidof $launcher then
   killall $launcher &
 else
-  $launcher &
+  $launcher -show drun &
 end

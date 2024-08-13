@@ -1,13 +1,9 @@
-(include "./modules/bar/bar.yuck")
+(include "config.yuck")
 
-(defwindow bar :monitor 0 
-               :exclusive "true"
-               :focusable "false"
-               :stacking "fg"
-               :namespace "eww"
-               :geometry (geometry :x "50%"
-                                   :y "0"
-                                   :width "100%"
-                                   :height "5%"
-                                   :anchor "top center")
-  (bar))
+(include "modules/global.yuck")
+(include "modules/bar/bar.yuck")
+(include "modules/powermenu/powermenu.yuck")
+(include "modules/calendar/calendar.yuck")
+(include "modules/quicksettings/quicksettings.yuck")
+;; todo:
+; (include "modules/notification/notification.yuck")

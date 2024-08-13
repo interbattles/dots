@@ -1,132 +1,20 @@
-/*****-----MainWindow-----*****/
-window {
-  transparency: "real";
-  location: center;
-  anchor: center;
-  fullscreen: true;
-  x-offset: 0px;
-  y-offset: 0px;
+/* 
+# vi: ft=rasi
+*/
 
-  enabled: true;
-  margin: 0px;
-  padding: 0px;
-  background-color: {{colors.surface.default.hex}};
-  cursor: "default";
+* {
+    background:     {{colors.surface.default.hex}}ff;
+    background-alt: {{colors.surface_bright.default.hex}}ff;
+    foreground:     {{colors.on_surface.default.hex}}ff;
+    selected:       {{colors.primary.default.hex}}ff;
+    active:         {{colors.secondary.default.hex}}ff;
+    urgent:         {{colors.error.default.hex}}ff;
 }
 
-/*****-----MainBox-----*****/
-mainbox {
-  enabled: true;
-  spacing: 100px;
-  margin: 0px;
-  padding: 10px200px;
-  background-color: transparent;
-  children: ["inputbar","listview"];
-}
+// background:     #323D43 FF;
+// background-alt: #3C474D FF;
+// foreground:     #DAD1BE FF;
+// selected:       #7FBBB3 FF;
+// active:         #A7C080 FF;
+// urgent:         #E67E80 FF;
 
-/*****-----Inputbar-----*****/
-inputbar {
-  enabled: true;
-  spacing: 10px;
-  margin: 1%18%;
-  padding: 10px;
-  border: 2pxsolid;
-  border-radius: 10px;
-  border-color: {{colors.outline.default.hex}};
-  background-color: black/5%;
-  text-color: {{colors.on_surface.default.hex}};
-  children: ["textbox-prompt-colon","entry"];
-}
-
-textbox-prompt-colon {
-  enabled: true;
-  expand: false;
-  padding: 2px11px;
-  border-radius: 100%;
-  str: "";
-  background-color: transparent;
-  text-color: inherit;
-}
-entry {
-  enabled: true;
-  background-color: transparent;
-  text-color: inherit;
-  cursor: text;
-  placeholder: "Search";
-  placeholder-color: inherit;
-}
-
-/*****-----Listview-----*****/
-listview {
-  enabled: true;
-  columns: 5;
-  lines: 5;
-  cycle: true;
-  dynamic: true;
-  scrollbar: false;
-  layout: vertical;
-  reverse: false;
-  fixed-height: true;
-  fixed-columns: true;
-
-  spacing: 0px;
-  margin: 0px;
-  padding: 0px;
-  background-color: transparent;
-  text-color: {{colors.on_surface.default.hex}};
-  cursor: "default";
-}
-
-/*****-----Elements-----*****/
-element {
-  enabled: true;
-  spacing: 15px;
-  margin: 0px;
-  padding: 20px10px;
-  border-radius: 10px;
-  background-color: transparent;
-  text-color: {{colors.on_surface.default.hex}};
-  orientation: vertical;
-  cursor: pointer;
-}
-element normal.normal {
-  background-color: transparent;
-  text-color: {{colors.on_surface.default.hex}};
-}
-element selected.normal {
-  border: 2pxsolid;
-  border-color: {{colors.outline.default.hex}};
-  background-color: white/5%;
-  text-color: {{colors.on_surface.default.hex}};
-}
-element-icon {
-  background-color: transparent;
-  text-color: inherit;
-  size: 55px;
-  cursor: inherit;
-}
-element-text {
-  background-color: transparent;
-  text-color: inherit;
-  highlight: inherit;
-  cursor: inherit;
-  vertical-align: 0.5;
-  horizontal-align: 0.5;
-}
-
-/*****-----Message-----*****/
-error-message {
-  padding: 15px;
-  border: 2pxsolid;
-  border-radius: 10px;
-  border-color: {{colors.outline.default.hex}};
-  background-color: black/10%;
-  text-color: {{colors.on_surface.default.hex}};
-}
-textbox {
-  background-color: transparent;
-  text-color: {{colors.on_surface.default.hex}};
-  vertical-align: 0.5;
-  horizontal-align: 0.0;
-  highlight: none;
-}

@@ -1,11 +1,13 @@
 (defwidget launcher []
-  (box :class "launcher" 
-       (button :class "panel-button"
-               :onclick "functions/launcher"
-               (box  :space-evenly "false"
-                     :spacing "5" 
-                     :class "launcher"
-                     (label  :text "" 
-                             :class "colored")
-                                                      
-                     (label  :text "Applications")))))
+  (button
+    :onclick "fish functions/launcher"
+    :class {flatbuttons ? "panel-button flat" : "panel-button"}
+    (box 
+      :space-evenly "false"
+      :spacing "5" 
+      :class "launcher"
+      (label 
+        :text "" 
+        :class "colored")
+
+      (label :text "Applications"))))

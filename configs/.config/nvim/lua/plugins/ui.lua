@@ -1,11 +1,13 @@
 return {
   {
-    'folke/noice.nvim',
+    'j-hui/fidget.nvim',
     event = 'VeryLazy',
-    opts = {},
-    dependencies = {
-      { 'MunifTanjim/nui.nvim', lazy = true },
-      { 'rcarriga/nvim-notify' },
+    opts = {
+      notification = {
+        window = {
+          winblend = 0,
+        },
+      },
     },
   },
   {
@@ -17,8 +19,8 @@ return {
     'nvim-lualine/lualine.nvim',
     event = 'VeryLazy',
     dependencies = {
-      { 'nvim-tree/nvim-web-devicons', lazy = true },
-      { 'cbochs/grapple.nvim',         lazy = true },
+      { 'nvim-tree/nvim-web-devicons' },
+      { 'cbochs/grapple.nvim' },
     },
     opts = function ()
       vim.cmd.source '~/.cache/matugen/colors.vim'

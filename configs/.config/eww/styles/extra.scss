@@ -1,9 +1,10 @@
-@import "./colors.scss";
+@import "../../../.cache/matugen/colors.scss";
 
 $opacity: 0.06;
 $widget-opacity: 0.94;
 
 $bg: transparentize($surface, $opacity);
+$flat: true;
 $fg: $on_surface;
 $primary-bg: $primary;
 $primary-fg: $on_primary;
@@ -22,7 +23,7 @@ $border-width: 2px;
 $border-color: transparentize($outline, $widget-opacity);
 $border: $border-width solid $border-color;
 $active-gradient: linear-gradient(to right, $primary, darken($primary, 4%));
-$shadow-color: rgba(0,0,0,.6);
+$shadow-color: rgba(0, 0, 0, .6);
 $text-shadow: 2pt 2pt 2pt $shadow-color;
 $box-shadow: 2pt 2pt 2pt 0 $shadow-color, inset 0 0 0 $border-width $border-color;
 $popover-border-color: transparentize($outline, $widget-opacity);
@@ -30,8 +31,7 @@ $popover-padding: $padding * 1.6;
 $popover-radius: $radius + $popover-padding;
 $font-size: 13pt;
 $font-name: NotoSans Nerd Font;
-$charging-bg: $primary;
-$bar-battery-blocks: 7;
+// $charging-bg: $primary;
 $bar-position: top;
 $hyprland-gaps-multiplier: 3;
 $screen-corner-multiplier: 0;

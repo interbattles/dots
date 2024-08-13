@@ -1,6 +1,13 @@
-@import "./styles/mixins/a11y-button.scss";
-@import "./styles/mixins/spacing.scss";
-@import "./styles/mixins/unset.scss";
-@import "./styles/mixins/widget.scss";
+@import "styles/mixins/a11y-button.scss";
+@import "styles/mixins/spacing.scss";
+@import "styles/mixins/unset.scss";
+@import "styles/mixins/widget.scss";
+@import "styles/mixins/floating-widget.scss";
+@import "styles/mixins/slider.scss";
+@import "styles/mixins/switch.scss";
+@import "styles/mixins/media.scss";
 
-@import "./styles/widgets/bar.scss";
+@import "styles/widgets/bar.scss";
+@import "styles/widgets/quicksettings.scss";
+@import "styles/widgets/powermenu.scss";
+@import "styles/widgets/notification.scss";

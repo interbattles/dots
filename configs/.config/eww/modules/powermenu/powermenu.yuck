@@ -1,0 +1,30 @@
+(include "modules/powermenu/buttons/suspend.yuck")
+(include "modules/powermenu/buttons/lock.yuck")
+(include "modules/powermenu/buttons/shutdown.yuck")
+(include "modules/powermenu/buttons/reboot.yuck")
+
+(defwidget powermenu []
+  (box :class "powermenu"
+    (suspend)
+    (lock)
+    (shutdown)
+    (reboot)))
+
+
+; :exclusive "false"
+; :focusable "true"
+; :stacking "overlay"
+; :namespace "eww"
+(defwindow powermenu 
+  :monitor 0 
+  :stacking "fg"
+  :windowtype "dialog"
+  :wm-ignore "true"
+  :geometry
+  (geometry 
+    :x "0%"
+    :y "0%"
+    :width "80%"
+    :height "30%"
+    :anchor "center")
+  (powermenu))

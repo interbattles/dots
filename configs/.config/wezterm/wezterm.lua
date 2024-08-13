@@ -1,9 +1,10 @@
-local extra = require('extra')
-local wezterm = require('wezterm')
+local extra = require 'extra'
+local wezterm = require 'wezterm'
 
 local config = {
   enable_wayland = true,
   font = require('wezterm').font('JetBrainsMono Nerd Font'),
+  font_size = 13,
   color_scheme_dirs = { wezterm.home_dir .. '/.cache/matugen/wezterm' },
   color_scheme = 'matugen',
   default_cursor_style = 'BlinkingBar',

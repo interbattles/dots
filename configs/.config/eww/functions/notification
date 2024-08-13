@@ -1,0 +1,8 @@
+# vi: ft=fish
+
+eww close notification
+
+tiramisu -j -s | while read -L notification
+  echo $notification
+  eww open notification
+end

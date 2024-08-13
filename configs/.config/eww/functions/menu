@@ -1,0 +1,26 @@
+# vi: ft=fish
+
+eww close quicksettings
+
+set active_windows (eww active-windows)
+
+function reload_daemon
+  wait && eww reload
+end
+
+switch $argv[1]
+case 'wallpaper'
+  set wallpaper (find ~/walls -type f \( -name '*.png' -o -name '*.jpg' \) | shuf -n 1)
+
+  matugen image $wallpaper &
+  swww img $wallpaper &
+
+  reload_daemon &
+case 'theme'
+  set wallpaper (swww query | string match -rg '(?:image: )(.+)')
+
+  matugen image $wallpaper &
+  reload_daemon &
+case '*'
+  exit 1
+end

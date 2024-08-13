@@ -1,3 +1,6 @@
 (defwidget date [] 
-  (box :class "panel-button"
-       (label :text "${formattime(EWW_TIME, "%r")}"))) 
+  (eventbox
+    :onhover "eww open calendar"
+    :onhoverlost "eww close calendar"
+    :class {flatbuttons ? "panel-button flat" : "panel-button"}
+    (label :text "${formattime(EWW_TIME, "%r - %a %b %d")}"))) 

@@ -1,11 +1,35 @@
 return {
-  { 'gpanders/nvim-parinfer' },
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    dependencies = {
+      { 'hrsh7th/nvim-cmp' },
+      { 'neovim/nvim-lspconfig' },
+
+      { 'Bilal2453/luvit-meta' },
+      { 'justinsgithub/wezterm-types' },
+    },
+    opts = {
+      library = {
+        'lazy.nvim',
+        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        { path = 'wezterm-types',      mods = { 'wezterm' } },
+      },
+    },
+  },
+  {
+    'eraserhd/parinfer-rust',
+    ft = { 'yuck' },
+    build = 'cargo build --release',
+    init = function ()
+      vim.g.parinfer_mode = 'smart'
+      vim.g.parinfer_force_balance = 1
+    end,
+  },
   {
     'pmizio/typescript-tools.nvim',
-    lazy = true,
     ft = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact' },
     dependencies = {
-      { 'nvim-lua/plenary.nvim', lazy = true },
       { 'neovim/nvim-lspconfig' },
     },
   },
@@ -14,9 +38,7 @@ return {
     lazy = vim.fn.argc(-1) == 0,
     event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
     dependencies = {
-      { 'hrsh7th/cmp-nvim-lsp',        dependencies = { 'hrsh7th/nvim-cmp' } },
-      { 'Bilal2453/luvit-meta',        lazy = true },
-      { 'justinsgithub/wezterm-types', lazy = true },
+      { 'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } },
       {
         'williamboman/mason-lspconfig.nvim',
         config = function () end,
@@ -74,6 +96,8 @@ return {
     opts = {
       formatters_by_ft = {
         rust = { 'rustfmt', lsp_format = 'fallback' },
+        bash = { 'shfmt', lsp_format = 'fallback' },
+        sh = { 'shfmt', lsp_format = 'fallback' },
       },
       default_format_opts = {
         lsp_format = 'fallback',

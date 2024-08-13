@@ -1,0 +1,16 @@
+(defwidget simpletoggle [action timeout label icon]
+  (button 
+    :class "simple-toggle"
+    :onclick {action}
+    :timeout {timeout}
+    (box 
+      :space-evenly false
+      :spacing "12"
+      (image 
+        :icon {icon}
+        :halign "start"
+        :valign "center")
+      (label 
+        :text {label}
+        :halign "center"
+        :valign "center"))))

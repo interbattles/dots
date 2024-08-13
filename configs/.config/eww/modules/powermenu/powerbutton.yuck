@@ -1,0 +1,11 @@
+(defwidget powerbutton [icon text action]
+  (button :onclick {action}
+          (box :orientation "v"
+               :space-evenly false
+               (image :icon {icon}
+                      :vexpand "true"
+                      :valign "center")
+
+               (label :text {text}
+                      :vexpand "false"
+                      :valign "end"))))

@@ -1,0 +1,19 @@
+(defwidget notification []
+  (box
+    (label :text {notification?.source})
+    (label :text {notification?.summary})
+    (label :text {notification?.body})))
+
+(defwindow notification
+  :monitor 0
+  :stacking "fg"
+  :windowtype "dock"
+  :wm-ignore "true"
+  :geometry
+  (geometry 
+    :x "0" ;; 50%
+    :y "5%" ;; 5%
+    :width "20%" 
+    :height "20%" 
+    :anchor "top right")
+  (notification))

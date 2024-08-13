@@ -1,0 +1,23 @@
+(defwidget battery []
+  (button
+    :onclick {showpercent ? 'eww update showpercent=false' : 'eww update showpercent=true'} 
+    :class {flatbuttons ? "panel-button flat" : "panel-button"}
+    (box 
+      :spacing "2"
+      :space-evenly "false"
+      (image :icon {battery.icon})
+
+      (revealer 
+        :reveal {showpercent}
+        :transition "slideleft"
+        (label :text "${battery.capacity}%"))
+
+      (box 
+        :hexpand "false"
+        :valign "center"
+        (progress 
+          :class "battery-bar"
+          :valign "center"
+          :width "50"
+          :value {battery.capacity}
+          :orientation "h")))))

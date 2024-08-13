@@ -13,7 +13,10 @@ return {
 
   opts_extend = { 'ensure_installed' },
   opts = {
-    highlight = { enable = true },
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = false,
+    },
     indent = { enable = true },
     ensure_installed = {
       'bash',
@@ -54,6 +57,9 @@ return {
       },
     },
   },
+  config = function (_, opts)
+    require('nvim-treesitter.configs').setup(opts)
+  end,
   init = function ()
     vim.filetype.add({
       pattern = { ['.*/hypr/.*%.conf'] = 'hyprlang' },

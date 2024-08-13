@@ -1,0 +1,84 @@
+# vi: ft=fish
+
+function get_battery
+  set battery (ls /sys/class/power_supply/ | grep -x 'BAT[[:digit:]]')
+
+  if not test -n "$battery"
+    exit 1
+  end
+
+  echo "$battery"
+end
+
+function get_icon
+  set battery $argv[1]
+
+  set battery_dir "/sys/class/power_supply/$battery"
+  read capacity_level < "$battery_dir/capacity_level"
+  read state < "$battery_dir/status"
+
+  set icon "battery"
+
+  switch $capacity_level 
+    case 'Full'
+      set icon "$icon-full"
+    case 'High'
+      set icon "$icon-full"
+    case 'Normal'
+      set icon "$icon-good"
+    case 'Low'
+      set icon "$icon-caution"
+    case 'Critical'
+      set icon "$icon-empty"
+    case 'Unknown'
+      set icon "battery-missing"
+      echo "$icon-symbolic"
+      exit 1
+    case '*'
+      set icon "battery-missing"
+      echo "$icon-symbolic"
+      exit 1
+  end
+
+  switch $state
+    case 'Charging'
+      set icon "$icon-charging"
+    case 'Full'
+      set icon "$icon-charging"
+    case 'Discharging'
+      set icon "$icon"
+    case 'Not charging'
+      set icon "$icon"
+    case 'Unknown'
+      set icon 'battery-missing'
+      echo "$icon-symbolic"
+      exit 1
+    case '*'
+      set icon 'battery-missing'
+      echo "$icon-symbolic"
+      exit 1
+  end
+
+  set icon "$icon-symbolic"
+
+  echo "$icon"
+end
+
+function get_capacity
+  set battery $argv[1]
+
+  set battery_dir "/sys/class/power_supply/$battery"
+  read -g capacity < "$battery_dir/capacity"
+
+  echo "$capacity"
+end
+
+while true
+  set -l battery (get_battery)
+  set -l icon (get_icon $battery)
+  set -l capacity (get_capacity $battery)
+
+  echo "{ \"battery\": \"$battery\", \"icon\": \"$icon\", \"capacity\": $capacity }"
+
+  sleep 5
+end
