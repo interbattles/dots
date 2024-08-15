@@ -17,18 +17,16 @@
  	helper = 
  	helper = !/usr/bin/gh auth git-credential
 [diff]
-    tool = nvimdiff
+    tool = meld
 [difftool]
-	prompt = false
-[difftool "nvimdiff"]
-    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
-
+    prompt = false
+[difftool "meld"]
+    cmd = meld "$LOCAL" "$REMOTE"
 [merge]
-  tool = nvimdiff
-[mergetool]
-  prompt = false
-  keepBackup = false
-[mergetool "nvimdiff"]
-  cmd = nvim -n -c "DiffviewOpen" "$MERGE"
+    tool = meld
+[mergetool "meld"]
+    # Choose one of these two lines (not both!) explained below.
+    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+    cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
 [core]
 	editor = nvim
