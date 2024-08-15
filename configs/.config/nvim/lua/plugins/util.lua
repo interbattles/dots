@@ -1,4 +1,5 @@
 return {
+  { 'nvim-lua/plenary.nvim', lazy = true },
   {
     'lambdalisue/vim-suda',
     cmd = { 'SudaWrite', 'SudaRead' },
@@ -40,9 +41,12 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.6',
+<<<<<<< HEAD
     dependencies = {
       { 'nvim-lua/plenary.nvim', lazy = true },
     },
+=======
+>>>>>>> eww
     cmd = 'Telescope',
     keys = {
       { '<leader>fg', '<cmd>Telescope live_grep<cr>',                          desc = 'grep' },
@@ -52,7 +56,12 @@ return {
       { '<leader>fo', '<cmd>Telescope oldfiles<CR>',                           desc = 'old files' },
       { '<leader>ft', '<cmd>Telescope colorscheme<CR>',                        desc = 'colorschemes' },
       { '<leader>ff', '<cmd>Telescope find_files follow=true hidden=true<cr>', desc = 'find files' },
+<<<<<<< HEAD
       { '<leader>f/', '<cmd>Telescope current_buffer_fuzzy_find',              desc = 'fuzzy find in buffer' },
+=======
+      { '<leader>fk', '<cmd>Telescope keymaps<cr>',                            desc = 'find keymaps' },
+      { '<leader>f/', '<cmd>Telescope current_buffer_fuzzy_find<cr>',          desc = 'fuzzy find in buffer' },
+>>>>>>> eww
     },
     opts = function ()
       local config = require('telescope.config')
@@ -84,6 +93,7 @@ return {
   },
   {
     'Shatur/neovim-session-manager',
+<<<<<<< HEAD
     dependencies = {
       { 'nvim-lua/plenary.nvim', lazy = true },
     },
@@ -95,6 +105,16 @@ return {
       { '<leader>sc', '<cmd>SessionManager load_current_dir_session<cr>', desc = 'load cwd' },
       { '<leader>sd', '<cmd>SessionManager delete_session	<cr>',          desc = 'delete/select' },
     },
+=======
+    keys = {
+      { '<leader>sm', '<cmd>SessionManager<cr>',                          desc = 'open session manager' },
+      { '<leader>ss', '<cmd>SessionManager save_current_session<cr>',     desc = 'save/create' },
+      { '<leader>sl', '<cmd>SessionManager load_session<cr>',             desc = 'select session' },
+      { '<leader>sg', '<cmd>SessionManager load_git_session<cr>',         desc = 'load git' },
+      { '<leader>sc', '<cmd>SessionManager load_current_dir_session<cr>', desc = 'load cwd' },
+      { '<leader>sd', '<cmd>SessionManager delete_session	<cr>',          desc = 'delete/select' },
+    },
+>>>>>>> eww
     cmd = 'SessionManager',
     opts = function ()
       local config = require('session_manager.config')

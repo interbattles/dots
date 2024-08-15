@@ -34,19 +34,19 @@ end
 echo "symlinking configurations"
 stow configs misc
 
+sudo pacman -S --needed socat
+
 # ags setup
-sudo pacman -S --needed nodejs npm gnome-bluetooth-3.0 power-profiles-daemon
-
-if ! test -d configs/.config/ags/node_modules
-    npm --prefix configs/.config/ags install configs/.config/ags
-end
-
-if ! npm list -g esbuild &>/dev/null
-    sudo npm install -g esbuild
-end
-
-if ! npm list -g sass &>/dev/null
-    sudo npm install -g sass
-end
-
-pgrep -x ags || ags
+# sudo pacman -S --needed nodejs npm gnome-bluetooth-3.0 power-profiles-daemon
+# 
+# if ! test -d configs/.config/ags/node_modules
+#     npm --prefix configs/.config/ags install configs/.config/ags
+# end
+# 
+# if ! npm list -g esbuild &>/dev/null
+#     sudo npm install -g esbuild
+# end
+# 
+# if ! npm list -g sass &>/dev/null
+#     sudo npm install -g sass
+# end

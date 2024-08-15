@@ -3,6 +3,17 @@ vim.g.maplocalleader = '\\'
 
 local map = vim.keymap.set
 
+<<<<<<< HEAD
+=======
+if vim.g.neovide == true then
+  map('n', '<C-=>', function () vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1 end,
+    { silent = true })
+  map('n', '<C-->', function () vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1 end,
+    { silent = true })
+  map('n', '<C-0>', function () vim.g.neovide_scale_factor = 1 end, { silent = true })
+end
+
+>>>>>>> eww
 -- lazy
 map('n', '<leader>ll', '<cmd>Lazy<cr>', { desc = 'lazy' })
 map('n', '<leader>lp', '<cmd>Lazy profile<cr>', { desc = 'profiler' })
@@ -69,3 +80,17 @@ map('n', ']<tab>', '<cmd>tabnext<cr>', { desc = 'next tab' })
 map('n', '[<tab>', '<cmd>tabprevious<cr>', { desc = 'previous tab' })
 map('n', '<leader><tab>q', '<cmd>tabclose<cr>', { desc = 'close tab' })
 map('n', '<leader><tab>o', '<cmd>tabonly<cr>', { desc = 'close other tabs' })
+<<<<<<< HEAD
+=======
+
+-- clipboard
+map('n', '<leader>y', '"+y', { noremap = true, silent = true, desc = 'yank to clipboard' })
+map({ 'v', 'x' }, '<leader>y', '"+y', { noremap = true, silent = true, desc = 'yank to clipboard' })
+map({ 'n', 'v', 'x' }, '<leader>yy', '"+yy', { noremap = true, silent = true, desc = 'yank line to clipboard' })
+map({ 'n', 'v', 'x' }, '<leader>Y', '"+yy', { noremap = true, silent = true, desc = 'yank line to clipboard' })
+map({ 'n', 'v', 'x' }, '<C-a>', 'gg0vG$', { noremap = true, silent = true, desc = 'select all' })
+map({ 'n', 'v', 'x' }, '<leader>p', '"+p', { noremap = true, silent = true, desc = 'paste from clipboard' })
+map('i', '<C-p>', '<C-r>+', { noremap = true, silent = true, desc = 'paste from clipboard from within insert mode' })
+map('x', '<leader>P', '"_dP',
+  { noremap = true, silent = true, desc = 'paste over selection without erasing unnamed register' })
+>>>>>>> eww

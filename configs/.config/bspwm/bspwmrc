@@ -1,0 +1,34 @@
+#! /bin/sh
+
+## config
+
+#workspaces
+for monitor in $(xrandr -q | grep -w 'connected' | cut -d' ' -f1); do
+  bspc monitor "$monitor" -d '1' '2' '3' '4' '5' '6' '7' '8' '9' '0'
+done
+
+# general
+bspc config border_width 2
+bspc config window_gap 12
+bspc config split_ratio 0.52
+bspc config gapless_monocle true
+bspc config borderless_monocle true
+bspc config focus_follows_pointer true
+bspc config pointer_follows_focus true
+
+# colors
+source "$HOME/.cache/matugen/colors.sh"
+bspc config normal_border_color "$outline"
+bspc config active_border_color "$secondary"
+bspc config focused_border_color "$primary"
+
+## autostart
+
+# daemon
+pgrep -x sxhkd >/dev/null || sxhkd &
+pgrep -x picom >/dev/null || picom &
+pgrep -x greenclip >/dev/null || greenclip daemon &
+pgrep -x eww >/dev/null || eww open-many bar &
+
+# wallpaper
+source $HOME/.fehbg &

@@ -2,10 +2,17 @@ return {
   {
     'cbochs/grapple.nvim',
     dependencies = {
+<<<<<<< HEAD
       { 'nvim-tree/nvim-web-devicons', lazy = true },
     },
     lazy = true,
     cmd = 'Grapple',
+=======
+      { 'nvim-tree/nvim-web-devicons' },
+    },
+    cmd = 'Grapple',
+    event = 'VeryLazy',
+>>>>>>> eww
     keys = {
       { '<C-t>', '<cmd>Grapple toggle<cr>',          desc = 'tag a file' },
       { ';',     '<cmd>Grapple toggle_tags<cr>',     desc = 'toggle tags menu' },
@@ -25,29 +32,46 @@ return {
     },
   },
   {
+<<<<<<< HEAD
     'echasnovski/mini.files',
     lazy = true,
+=======
+    'folke/flash.nvim',
+    event = 'VeryLazy',
+    opts = {},
+    keys = {
+      { 's',     mode = { 'n', 'x', 'o' }, function () require('flash').jump() end,              desc = 'flash' },
+      { 'S',     mode = { 'n', 'x', 'o' }, function () require('flash').treesitter() end,        desc = 'flash treesitter' },
+      { 'r',     mode = 'o',               function () require('flash').remote() end,            desc = 'remote flash' },
+      { 'R',     mode = { 'o', 'x' },      function () require('flash').treesitter_search() end, desc = 'treesitter search' },
+      { '<c-s>', mode = { 'c' },           function () require('flash').toggle() end,            desc = 'toggle flash search' },
+    },
+  },
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    lazy = vim.fn.argc(-1) == 0,
+>>>>>>> eww
     dependencies = {
-      { 'nvim-tree/nvim-web-devicons', lazy = true },
+      { 'nvim-tree/nvim-web-devicons' },
+      { 'MunifTanjim/nui.nvim' },
+    },
+    cmd = 'Neotree',
+    keys = {
+      { '-', '<cmd>Neotree toggle<cr>' },
     },
     keys = {
       { '-', '<cmd>lua require("mini.files").open()<cr>', desc = 'files' },
     },
     opts = {
-      mappings = {
-        close       = 'q',
-        go_in       = '',
-        go_in_plus  = '<CR>',
-        go_out      = '-',
-        go_out_plus = '_',
-        reset       = '<BS>',
-        reveal_cwd  = '@',
-        show_help   = 'g?',
-        synchronize = '=',
-        trim_left   = '<',
-        trim_right  = '>',
+      filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,
+          hide_gitignored = true,
+        },
       },
     },
+<<<<<<< HEAD
     config = function (_, opts)
       local MiniFiles = require('mini.files')
       MiniFiles.setup(opts)
@@ -95,12 +119,20 @@ return {
   {
     'NeogitOrg/neogit',
     lazy = true,
+=======
+  },
+  {
+    'NeogitOrg/neogit',
+>>>>>>> eww
     cmd = 'Neogit',
     keys = {
       { '<leader>gg', '<cmd>Neogit<cr>', desc = 'open neogit' },
     },
     dependencies = {
+<<<<<<< HEAD
       { 'nvim-lua/plenary.nvim',        lazy = true },
+=======
+>>>>>>> eww
       { 'sindrets/diffview.nvim' },
       { 'nvim-telescope/telescope.nvim' },
     },
@@ -108,7 +140,10 @@ return {
   },
   {
     'folke/trouble.nvim',
+<<<<<<< HEAD
     lazy = true,
+=======
+>>>>>>> eww
     cmd = 'Trouble',
     opts = {},
     keys = {
@@ -159,9 +194,12 @@ return {
   {
     'goolord/alpha-nvim',
     event = 'VimEnter',
+<<<<<<< HEAD
     dependencies = {
       { 'nvim-lua/plenary.nvim', lazy = true },
     },
+=======
+>>>>>>> eww
     config = function ()
       local alpha = require 'alpha'
       local dashboard = require 'alpha.themes.dashboard'

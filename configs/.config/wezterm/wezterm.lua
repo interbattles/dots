@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 local extra = require('extra')
 local wezterm = require('wezterm')
+=======
+local extra = require 'extra'
+local wezterm = require 'wezterm'
+>>>>>>> eww
 
 local config = {
   enable_wayland = true,
   font = require('wezterm').font('JetBrainsMono Nerd Font'),
+<<<<<<< HEAD
+=======
+  font_size = 13,
+>>>>>>> eww
   color_scheme_dirs = { wezterm.home_dir .. '/.cache/matugen/wezterm' },
   color_scheme = 'matugen',
   default_cursor_style = 'BlinkingBar',
