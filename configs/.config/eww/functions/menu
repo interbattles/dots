@@ -13,7 +13,7 @@ case 'wallpaper'
   set wallpaper (find ~/walls -type f \( -name '*.png' -o -name '*.jpg' \) | shuf -n 1)
 
   matugen image $wallpaper &
-  swww img $wallpaper &
+  feh --bg-fill $wallpaper &
 
   reload_daemon &
 case 'theme'

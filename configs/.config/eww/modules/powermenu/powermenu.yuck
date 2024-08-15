@@ -10,16 +10,15 @@
     (shutdown)
     (reboot)))
 
-
 ; :exclusive "false"
 ; :focusable "true"
 ; :stacking "overlay"
 ; :namespace "eww"
+; :wm-ignore "true"
 (defwindow powermenu 
   :monitor 0 
   :stacking "fg"
   :windowtype "dialog"
-  :wm-ignore "true"
   :geometry
   (geometry 
     :x "0%"

@@ -1,8 +1,22 @@
 (defwidget notification []
-  (box
-    (label :text {notification?.source})
-    (label :text {notification?.summary})
-    (label :text {notification?.body})))
+  (box :class "notifications ${notification?.hints?.urgency == "0x02" ? "critical" : ""}"
+    (box 
+      :class "notification"
+      :orientation "v"
+      (box 
+        :class "content"
+        :orientation "v"
+        (label 
+          :class "title"
+          :text {notification?.summary})
+        (label 
+          :class "description"
+          :text {notification?.body}))
+      (button 
+        :class "close-button"
+        :onclick "eww close notification"
+        (image :icon "window-close-symbolic")))))
+ 
 
 (defwindow notification
   :monitor 0

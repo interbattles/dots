@@ -2,7 +2,6 @@
 (include "modules/bar/buttons/date.yuck")
 (include "modules/bar/buttons/battery.yuck")
 (include "modules/bar/buttons/poweropen.yuck")
-(include "modules/bar/buttons/workspaces.yuck")
 (include "modules/bar/buttons/weather.yuck")
 (include "modules/bar/buttons/tray.yuck")
 (include "modules/bar/buttons/settingsbutton.yuck")
@@ -14,8 +13,7 @@
     (box 
       :halign "start"
       :space-evenly "false"
-      (launcher)
-      (workspaces))
+      (launcher))
 
     (box 
       :halign "center"
@@ -38,9 +36,9 @@
 ;; :geometry)
 (defwindow bar 
   :monitor 0
-  :stacking "fg"
+  :stacking "bg"
   :windowtype "dock"
-  :wm-ignore "false"
+  :wm-ignore false
   :geometry
   (geometry 
     :x "0" 
@@ -53,3 +51,4 @@
     :distance "5%" 
     :side "top")
   (bar))
+

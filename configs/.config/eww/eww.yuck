@@ -5,5 +5,4 @@
 (include "modules/powermenu/powermenu.yuck")
 (include "modules/calendar/calendar.yuck")
 (include "modules/quicksettings/quicksettings.yuck")
-;; todo:
-; (include "modules/notification/notification.yuck")
+(include "modules/notification/notification.yuck")

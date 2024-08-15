@@ -46,7 +46,7 @@ return {
     },
     cmd = 'Neotree',
     keys = {
-      { '-', '<cmd>Neotree<cr>' },
+      { '-', '<cmd>Neotree toggle<cr>' },
     },
     opts = {
       filesystem = {
