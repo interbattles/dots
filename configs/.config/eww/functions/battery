@@ -1,7 +1,7 @@
 # vi: ft=fish
 
 function get_battery
-  set battery (ls /sys/class/power_supply/ | grep -x 'BAT[[:digit:]]')
+  set battery (ls /sys/class/power_supply/ | grep -x 'BAT[[:digit:]]' | head -n 1)
 
   if not test -n "$battery"
     exit 1

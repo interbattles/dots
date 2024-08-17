@@ -1,5 +1,7 @@
 (include "modules/quicksettings/buttons/refreshwallpaper.yuck")
 (include "modules/quicksettings/buttons/refreshtheme.yuck")
+(include "modules/quicksettings/buttons/volume.yuck")
+(include "modules/quicksettings/buttons/brightness.yuck")
 (include "modules/quicksettings/row.yuck")
 
 (defwidget quicksettings []
@@ -7,12 +9,16 @@
     (box 
       :class "quicksettings vertical"
       :orientation "v"
+      (box 
+        :class "sliders-box"
+        :orientation "v"
+        (row
+          (volume))
+        (row
+          (brightness)))
       (row
         (refreshwallpaper)
-        (refreshtheme))
-      (row
-        (refreshwallpaper)
-        (refreshwallpaper)))))
+        (refreshtheme)))))
 
 (defwindow quicksettings
   :monitor 0

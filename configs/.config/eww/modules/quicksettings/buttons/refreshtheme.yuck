@@ -4,5 +4,5 @@
   (simpletoggle 
     :action "fish functions/menu theme"
     :timeout 2000
-    :label "Refresh Theme"
+    :label "Theme"
     :icon "preferences-desktop-theme-symbolic"))

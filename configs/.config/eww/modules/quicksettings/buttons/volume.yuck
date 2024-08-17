@@ -1,0 +1,12 @@
+(defwidget volume []
+  (box 
+    :class "volume"
+    :space-evenly false
+    (image :icon "audio-volume-high-symbolic")
+    (scale 
+      :hexpand true
+      :max 100
+      :min 0
+      :round-digits 0
+      :onchange `fish functions/volume set {}`
+      :value {volume})))

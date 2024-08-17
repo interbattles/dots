@@ -1,0 +1,17 @@
+# vi: ft=fish
+
+switch $argv[1]
+case 'set'
+  pactl set-sink-volume @DEFAULT_SINK@ "$argv[2]%"
+case 'listen'
+  pactl get-sink-volume @DEFAULT_SINK@ | string match -rg '/(?:\s+)(\d+)%(?:\s+)/'
+
+  pactl subscribe | while read event
+    if string match -rq 'Event \'change\'' $event
+      pactl get-sink-volume @DEFAULT_SINK@ | string match -rg '/(?:\s+)(\d+)%(?:\s+)/'
+    end
+  end
+case '*'
+  exit 1
+end
+

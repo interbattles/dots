@@ -17,7 +17,7 @@ case 'wallpaper'
 
   reload_daemon &
 case 'theme'
-  set wallpaper (swww query | string match -rg '(?:image: )(.+)')
+  set wallpaper ( string match -rg '\'(.+)\''< ~/.fehbg )
 
   matugen image $wallpaper &
   reload_daemon &

@@ -8,6 +8,7 @@
       :spacing "12"
       (image 
         :icon {icon}
+        :size "button"
         :halign "start"
         :valign "center")
       (label 

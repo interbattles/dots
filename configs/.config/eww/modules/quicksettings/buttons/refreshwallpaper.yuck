@@ -4,5 +4,5 @@
   (simpletoggle 
     :action "fish functions/menu wallpaper"
     :timeout 2000
-    :label "Refresh Wallpaper"
+    :label "Wallpaper"
     :icon "view-refresh-symbolic"))

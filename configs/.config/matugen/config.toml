@@ -2,7 +2,7 @@
 reload_apps = false
 
 [config.custom_keywords]
-alpha = "0.88"
+alpha = "0.78"
 
 [config.custom_colors]
 color1 = { color = "#f07178", blend = true }
@@ -31,6 +31,7 @@ wezterm_config = { input_path = '~/.config/matugen/templates/wezterm/config.lua'
 ags = { input_path = '~/.config/matugen/templates/desktop/ags.json', output_path = '~/.cache/matugen/ags.json' }
 scss = { input_path = '~/.config/matugen/templates/colors.scss', output_path = '~/.cache/matugen/colors.scss' }
 hyprland = { input_path = '~/.config/matugen/templates/desktop/hyprcolors.conf', output_path = '~/.cache/matugen/hyprcolors.conf' }
+i3 = { input_path = '~/.config/matugen/templates/desktop/i3', output_path = '~/.cache/matugen/i3' }
 gtk-colors = { input_path = '~/.config/matugen/templates/desktop/gtk-colors.css', output_path = '~/.cache/matugen/gtk-colors.css' }
 rofi = { input_path = '~/.config/matugen/templates/desktop/rofi.rasi', output_path = '~/.cache/matugen/rofi.rasi' }
 qt5-colors = { input_path = '~/.config/matugen/templates/desktop/qt5ct-colors.conf', output_path = '~/.config/qt5ct/colors/matugen.conf' }

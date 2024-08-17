@@ -167,3 +167,5 @@ bindsym $mod+Mod1+$right exec "i3-msg resize grow right 3 px or 3 ppt || i3-msg 
 # }
 
 gaps inner 15px
+
+include ~/.cache/matugen/i3

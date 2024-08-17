@@ -9,3 +9,12 @@
 (deflisten notification
   :initial false
   `fish functions/notification`)
+
+(deflisten volume
+  :initial 0
+  `fish functions/volume listen`)
+
+(deflisten brightness
+  :initial 0
+  `fish functions/brightness listen`)
+
