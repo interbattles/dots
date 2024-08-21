@@ -1,24 +1,19 @@
 # hi!! my dotfiles!!!! :smirk_cat:
-beautiful hyprland catppuccin dotfiles mostly for myself
+beautiful material you `i3` dotfiles mostly for myself and for reference
 
-### required:
+### uses:
 - `stow`
-- `git-lfs`
-- `fzf`
-- `nvim`
-- `hyprland`
-- `hyprpaper`
-- `hyprlock`
-- `aylurs-gtk-shell`
-- `nodejs`
-- `npm`
 - `fish`
-- `fisher`
+- `git`
 
----
-
-### install:
-`yay -S stow git-lfs fzf nvim hyprland hyprpaper hyprlock aylurs-gtk-shell nodejs npm fish fisher`
+### optional
+- `i3` / `bspwm` / `hyprland`
+- `alacritty` / `wezterm` / `foot`
+- `keepassxc`
+- `eww`
+- `starship`
+- `matugen`
+- `neovim`
 
 ---
 

@@ -27,7 +27,8 @@
     .icon {
       border-radius: $radius*0.8;
       margin-right: $spacing;
-
+      min-width: 78px;
+      min-height: 78px;
       &.img {
         border: $border;
       }
@@ -64,16 +65,12 @@
   }
 }
 
-.notifications {
-  @include unset;
+.notification {
+  @include notification;
+  @include floating-widget;
+  border-radius: $radius;
 
-  .notification {
-    @include notification;
-    @include floating-widget;
-    border-radius: $radius;
-
-    .description {
-      min-width: 350px;
-    }
+  .description {
+    min-width: 350px;
   }
 }

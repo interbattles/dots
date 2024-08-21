@@ -1,0 +1,32 @@
+.calendar {
+  @include floating-widget;
+  padding: $popover-padding * 0.4;
+
+  calendar {
+    @include unset;
+
+    &:indeterminate {
+      color: $bg;
+    }
+
+    &:selected {
+      @include button;
+      color: $primary-fg;
+      background-color: $primary-bg;
+    }
+
+    .highlight {
+      color: $fg;
+      font-weight: bold;
+    }
+
+    .button {
+      color: $primary-bg;
+    }
+
+    .header {
+      color: $fg;
+      font-weight: bold;
+    }
+  }
+}

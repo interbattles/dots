@@ -1,0 +1,9 @@
+(include "modules/quicksettings/menubutton.yuck")
+
+(defwidget darkmode []
+  (simpletoggle 
+    :action "fish functions/menu darkmode"
+    :timeout 2000
+    :label {darkmode ? "Dark Mode" : "Light Mode"}
+    :active {!darkmode}
+    :icon {darkmode ? "weather-clear-night-symbolic" : "weather-clear-symbolic"}))

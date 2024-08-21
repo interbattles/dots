@@ -1,23 +1,48 @@
 (defwidget notification []
-  (box :class "notifications ${notification?.hints?.urgency == "0x02" ? "critical" : ""}"
+  (box 
+    :class "notification ${notification?.hints?.urgency == "0x02" ? "critical" : ""}"
+    :orientation "v"
     (box 
-      :class "notification"
-      :orientation "v"
-      (box 
-        :class "content"
+      :class "content"
+      :space-evenly false
+      (box
+        :class "icon"
+        :hexpand false
+        :halign "start"
+        (image 
+          :halign "center"
+          :valign "center"
+          :hexpand true
+          :vexpand true
+          :icon {notification?.icon == "" ? "dialog-information-symbolic" : notification?.icon}
+          :icon-size "dialog"))
+
+      (box
         :orientation "v"
+        :hexpand true
         (label 
           :class "title"
-          :text {notification?.summary})
+          :xalign 0
+          :justify "left"
+          :hexpand true
+          :limit-width 24
+          :show-truncated false
+          :markup {notification?.summary})
         (label 
           :class "description"
-          :text {notification?.body}))
-      (button 
-        :class "close-button"
-        :onclick "eww close notification"
-        (image :icon "window-close-symbolic")))))
- 
+          :xalign 0
+          :justify "left"
+          :hexpand true
+          :limit-width 24
+          :show-truncated false
+          :wrap true
+          :markup {notification?.body})
 
+        (button
+          :class "close-button"
+          :onclick "eww close notification"
+          (label :text "Close"))))))
+  ; (image :icon "window-close-symbolic")))))))
 (defwindow notification
   :monitor 0
   :stacking "fg"

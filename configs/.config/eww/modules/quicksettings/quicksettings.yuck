@@ -1,7 +1,9 @@
-(include "modules/quicksettings/buttons/refreshwallpaper.yuck")
-(include "modules/quicksettings/buttons/refreshtheme.yuck")
-(include "modules/quicksettings/buttons/volume.yuck")
-(include "modules/quicksettings/buttons/brightness.yuck")
+(include "modules/quicksettings/widgets/refreshwallpaper.yuck")
+(include "modules/quicksettings/widgets/refreshtheme.yuck")
+(include "modules/quicksettings/widgets/volume.yuck")
+(include "modules/quicksettings/widgets/brightness.yuck")
+(include "modules/quicksettings/widgets/dnd.yuck")
+(include "modules/quicksettings/widgets/darkmode.yuck")
 (include "modules/quicksettings/row.yuck")
 
 (defwidget quicksettings []
@@ -18,13 +20,16 @@
           (brightness)))
       (row
         (refreshwallpaper)
-        (refreshtheme)))))
+        (refreshtheme))
+      (row
+        (dnd)
+        (darkmode)))))
 
 (defwindow quicksettings
   :monitor 0
   :stacking "fg"
   :windowtype "dock"
-  :wm-ignore "true"
+  :wm-ignore true
   :geometry
   (geometry 
     :x "0%"

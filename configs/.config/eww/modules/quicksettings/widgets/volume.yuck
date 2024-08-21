@@ -2,11 +2,11 @@
   (box 
     :class "volume"
     :space-evenly false
-    (image :icon "audio-volume-high-symbolic")
+    (image :icon {volume.icon})
     (scale 
       :hexpand true
       :max 100
       :min 0
       :round-digits 0
       :onchange `fish functions/volume set {}`
-      :value {volume})))
+      :value {volume.value})))

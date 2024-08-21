@@ -6,10 +6,6 @@
   :initial ''
   `fish functions/weather`)
 
-(deflisten notification
-  :initial false
-  `fish functions/notification`)
-
 (deflisten volume
   :initial 0
   `fish functions/volume listen`)
@@ -18,3 +14,5 @@
   :initial 0
   `fish functions/brightness listen`)
 
+(deflisten notification
+  `fish functions/notification`)

@@ -1,14 +1,31 @@
 # vi: ft=fish
 
+function get_volume
+  set -g volume (pactl get-sink-volume @DEFAULT_SINK@ | string match -rg '/(?:\s+)(\d+)%(?:\s+)/')
+end
+
+function get_icon
+  if test $volume -le 0; echo 'audio-volume-muted-symbolic'; return; end
+  if test $volume -le 33; echo 'audio-volume-low-symbolic'; return; end
+  if test $volume -le 66; echo 'audio-volume-medium-symbolic'; return; end
+  if test $volume -le 100; echo 'audio-volume-high-symbolic'; return; end
+  if test $volume -ge 100; echo 'audio-volume-high-symbolic'; return; end
+end
+
+function update
+  set icon (get_icon)
+  echo "{ \"value\": $volume, \"icon\": \"$icon\" }"
+end
+
 switch $argv[1]
 case 'set'
   pactl set-sink-volume @DEFAULT_SINK@ "$argv[2]%"
 case 'listen'
-  pactl get-sink-volume @DEFAULT_SINK@ | string match -rg '/(?:\s+)(\d+)%(?:\s+)/'
+  get_volume && update
 
   pactl subscribe | while read event
     if string match -rq 'Event \'change\'' $event
-      pactl get-sink-volume @DEFAULT_SINK@ | string match -rg '/(?:\s+)(\d+)%(?:\s+)/'
+      get_volume && update
     end
   end
 case '*'

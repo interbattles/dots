@@ -1,0 +1,10 @@
+(include "modules/quicksettings/menubutton.yuck")
+
+(defwidget dnd []
+  (simpletoggle 
+    :action "fish functions/menu dnd"
+    :timeout 2000
+    :label "Do Not Disturb"
+    :active {dnd}
+    :icon {dnd ? "weather-clear-night-symbolic" : "dialog-information-symbolic"}))
+

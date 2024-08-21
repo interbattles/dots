@@ -5,4 +5,4 @@
     :action "fish functions/menu wallpaper"
     :timeout 2000
     :label "Wallpaper"
-    :icon "view-refresh-symbolic"))
+    :icon "preferences-desktop-wallpaper-symbolic"))

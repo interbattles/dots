@@ -5,22 +5,58 @@ eww close quicksettings
 set active_windows (eww active-windows)
 
 function reload_daemon
-  wait && eww reload
+  wait
+  fish -c "eww reload && eww update darkmode=$darkmode" &
+end
+
+function theme_reload 
+  set -q darkmode || get_darkmode
+  set -q wallpaper || set wallpaper (string match -rg '\'(.+)\'' < ~/.fehbg)
+
+  if $darkmode
+    matugen --mode dark image $wallpaper &
+  else
+    matugen --mode light image $wallpaper &
+  end
+
+  reload_daemon &
+  i3-msg reload &
+end
+
+function get_darkmode
+  set -l darkmode (eww get darkmode)
+  if test "$darkmode" = "true"
+    set -g darkmode true
+  else
+    set -g darkmode false
+  end
 end
 
 switch $argv[1]
 case 'wallpaper'
-  set wallpaper (find ~/walls -type f \( -name '*.png' -o -name '*.jpg' \) | shuf -n 1)
+  set -g wallpaper (find ~/walls -type f \( -name '*.png' -o -name '*.jpg' \) | shuf -n 1)
 
-  matugen image $wallpaper &
   feh --bg-fill $wallpaper &
-
-  reload_daemon &
+  theme_reload &
 case 'theme'
-  set wallpaper ( string match -rg '\'(.+)\''< ~/.fehbg )
-
-  matugen image $wallpaper &
-  reload_daemon &
+  theme_reload &
+case 'dnd'
+  set active (eww get dnd)
+  if test "$active" = "true"
+    eww update dnd=false
+  else if test "$active" = "false"
+    eww update dnd=true
+  end
+case 'darkmode'
+  get_darkmode
+  if $darkmode 
+    eww update darkmode=false
+    set -g darkmode false
+  else
+    eww update darkmode=true
+    set -g darkmode true
+  end
+  theme_reload &
 case '*'
   exit 1
 end

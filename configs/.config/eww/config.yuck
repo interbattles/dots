@@ -1,6 +1,12 @@
 (defvar flatbuttons
   true)
+(defvar darkmode
+  true)
 (defvar opentray 
   false)
 (defvar showpercent 
+  false)
+(defvar calendartoggled
+  false)
+(defvar dnd
   false)
