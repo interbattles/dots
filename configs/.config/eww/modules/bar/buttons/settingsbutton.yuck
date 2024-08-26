@@ -1,9 +1,15 @@
 (defwidget settingsbutton []
   (button 
-    :onclick "fish functions/quicksettings"
+    :onclick "fish functions/toggle quicksettings"
     :class {flatbuttons ? "panel-button flat" : "panel-button"}
     (box 
       :spacing "6"
       (image :icon {volume.icon})
       (image :icon "network-wireless-symbolic")
-      (image :icon {dnd ? "weather-clear-night-symbolic" : "dialog-information-symbolic"}))))
+      (image 
+        :visible {dnd}
+        :icon "weather-clear-night-symbolic")
+      (box 
+        :visible {notification ?: false && dnd != true}
+        (image :icon "mail-unread-symbolic")))))  
+     

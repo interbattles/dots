@@ -1,11 +1,11 @@
 # vi: ft=i3config
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #81d5cc #81d5cc #003733 #81d5cc   #9df2e8
-client.focused_inactive #b1ccc8 #b1ccc8 #1c3532 #b1ccc8   #cce8e4
-client.unfocused        #899391 #1a2120 #dde4e2 #899391   #3f4947
+client.focused          #a0d39a #a0d39a #093910 #a0d39a   #bcf0b5
+client.focused_inactive #b9ccb4 #b9ccb4 #253423 #b9ccb4   #d5e8cf
+client.unfocused        #8c9388 #1c211b #e0e4db #8c9388   #424940
 client.urgent           #ffb4ab #93000a #690005 #ffb4ab   #ffb4ab
-client.placeholder      #3f4947 #1a2120 #dde4e2 #343a39   #343a39
+client.placeholder      #424940 #1c211b #e0e4db #363a34   #363a34
 
-client.background       #0e1514
+client.background       #10140f
 

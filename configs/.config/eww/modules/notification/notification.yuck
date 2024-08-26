@@ -1,7 +1,9 @@
 (defwidget notification []
-  (box 
+  (eventbox
     :class "notification ${notification?.hints?.urgency == "0x02" ? "critical" : ""}"
     :orientation "v"
+    :onhoverlost "fish functions/notification dismiss"
+    :onclick "fish functions/notification dismiss"
     (box 
       :class "content"
       :space-evenly false
@@ -40,9 +42,10 @@
 
         (button
           :class "close-button"
-          :onclick "eww close notification"
+          :onclick "fish functions/notification dismiss"
           (label :text "Close"))))))
   ; (image :icon "window-close-symbolic")))))))
+
 (defwindow notification
   :monitor 0
   :stacking "fg"

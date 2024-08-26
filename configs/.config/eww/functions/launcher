@@ -1,9 +1,0 @@
-# vi: ft=fish
-
-set launcher rofi
-
-if pidof $launcher then
-  killall $launcher &
-else
-  $launcher -show drun &
-end

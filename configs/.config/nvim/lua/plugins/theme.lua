@@ -4,37 +4,56 @@ return {
     name = 'catppuccin',
     lazy = false,
     priority = 1000,
-    opts = function ()
-      vim.cmd.source '~/.cache/matugen/colors.vim'
-      local c = vim.g
+    config = function ()
+      local path = '/home/allison/.cache/matugen/colors.vim'
 
-      return {
-        transparent_background = true,
-        color_overrides = {
-          all = {},
-          latte = {},
-          frappe = {},
-          macchiato = {},
-          mocha = {
-            text = c.on_surface,
-            subtext1 = c.primary_fixed,
-            subtext0 = c.secondary,
-            overlay2 = c.tertiary,
-            overlay1 = c.secondary_container,
-            overlay0 = c.primary_container,
-            surface2 = c.surface_container_highest,
-            surface1 = c.surface_container_high,
-            surface0 = c.surface_container,
+      local load = function ()
+        vim.cmd.source(path)
+        local c = vim.g
 
-            base = c.surface_container_low,
-            mantle = c.surface_container_lowest,
-            crust = c.surface,
+        require('catppuccin').setup({
+          transparent_background = true,
+          color_overrides = {
+            all = {},
+            latte = {},
+            frappe = {},
+            macchiato = {},
+            mocha = {
+              text = c.on_surface,
+              subtext1 = c.primary_fixed,
+              subtext0 = c.secondary,
+              overlay2 = c.tertiary,
+              overlay1 = c.secondary_container,
+              overlay0 = c.primary_container,
+              surface2 = c.surface_container_highest,
+              surface1 = c.surface_container_high,
+              surface0 = c.surface_container,
+
+              base = c.surface_container_low,
+              mantle = c.surface_container_lowest,
+              crust = c.surface,
+            },
           },
+        })
+        vim.cmd 'silent CatppuccinCompile'
+        -- vim.cmd.colorscheme 'catppuccin'
+      end
+
+      local handle = vim.uv.new_fs_event()
+      if handle == nil then
+        return
+      end
+
+      handle:start(path, {
+          watch_entry = true,
+          stat = false,
+          recursive = false,
         },
-      }
-    end,
-    config = function (_, opts)
-      require('catppuccin').setup(opts)
+        function (_, _, _)
+          vim.schedule_wrap(load)()
+        end)
+
+      load()
       vim.cmd.colorscheme 'catppuccin'
     end,
   },

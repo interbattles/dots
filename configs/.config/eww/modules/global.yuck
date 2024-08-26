@@ -15,4 +15,4 @@
   `fish functions/brightness listen`)
 
 (deflisten notification
-  `fish functions/notification`)
+  `fish functions/notification listen`)

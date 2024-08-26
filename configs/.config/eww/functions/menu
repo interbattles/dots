@@ -2,8 +2,6 @@
 
 eww close quicksettings
 
-set active_windows (eww active-windows)
-
 function reload_daemon
   wait
   fish -c "eww reload && eww update darkmode=$darkmode" &

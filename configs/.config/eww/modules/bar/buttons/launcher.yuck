@@ -1,6 +1,6 @@
 (defwidget launcher []
   (button
-    :onclick "fish functions/launcher"
+    :onclick "fish functions/toggle launcher"
     :class {flatbuttons ? "panel-button flat" : "panel-button"}
     (box 
       :space-evenly "false"

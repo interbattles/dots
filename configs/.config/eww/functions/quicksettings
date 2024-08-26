@@ -1,9 +1,0 @@
-# vi: ft=fish
-
-# set active_windows (eww active-windows)
-# 
-# string match -r -q '^quicksettings: (\w+)$' $active_windows \
-#   && eww close quicksettings \
-#   || eww open quicksettings \
-
-eww open --toggle quicksettings
