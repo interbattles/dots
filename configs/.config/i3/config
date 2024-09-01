@@ -28,6 +28,8 @@ font pango:NotoSans Nerd Font 8
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 # exec --no-startup-id dex --autostart --environment i3
 
+# systemd user services
+exec --no-startup-id dbus-update-activation-environment --systemd --all
 # lock
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # tray

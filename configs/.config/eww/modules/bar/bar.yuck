@@ -5,6 +5,7 @@
 (include "modules/bar/buttons/weather.yuck")
 (include "modules/bar/buttons/tray.yuck")
 (include "modules/bar/buttons/settingsbutton.yuck")
+(include "modules/bar/buttons/workspaces.yuck")
 
 (defwidget bar []
   (box 
@@ -13,7 +14,8 @@
     (box 
       :halign "start"
       :space-evenly "false"
-      (launcher))
+      (launcher)
+      (workspaces))
 
     (box 
       :halign "center"

@@ -1,6 +1,30 @@
 #!/usr/bin/env fish
 
-sudo pacman -S base-devel cmake --needed
+function query_package
+  pacman -Qi $argv >/dev/null
+end
+
+function query_or_install
+  for package in $argv
+    if not query_package $package
+      echo "installing missing package $package"
+      sudo pacman -S $package --needed 1>/dev/null
+      echo "installed $package"
+    end
+  end
+end
+
+function query_or_install_dep
+  for package in $argv
+    if not query_package $package
+      echo "installing missing dependency $package"
+      sudo pacman -S --asdeps $package --needed 1>/dev/null
+      echo "installed dependency $package"
+    end
+  end
+end
+
+query_or_install base-devel cmake
 
 echo "downloading submodules"
 git submodule init
@@ -15,7 +39,6 @@ end
 
 set dependencies bat eza fd-find zoxide ripgrep starship matugen zellij
 for dep in $dependencies
-  echo "checking $dep"
   set command $dep
 
   switch $dep
@@ -26,8 +49,8 @@ for dep in $dependencies
   end
 
   if ! command -sq $command
-    echo "installing $dep"
-    cargo install $dep
+    echo "installing rust binary $dep"
+    cargo install --quiet $dep
   end
 end
 
@@ -35,7 +58,7 @@ echo "symlinking configurations"
 stow configs misc
 
 # fonts
-sudo pacman -S ttf-jetbrains-mono-nerd ttf-noto-nerd noto-fonts-emoji --needed
+query_or_install ttf-jetbrains-mono-nerd ttf-noto-nerd noto-fonts-emoji
 
 # generate matugen defaults
 test -d ~/.cache/matugen || matugen color hex FFFFFF
@@ -44,8 +67,9 @@ argparse 'm/minimal' -- $argv
 
 if not test -n "$_flag_m" && not test -n "$_flag_minimal"
   echo 'installing extras :)'
-  sudo pacman -S chromium keepassxc nemo rofi neovim adw-gtk-theme qt5ct nodejs --needed
-  sudo pacman -S --asdeps npm --needed
+  query_or_install chromium keepassxc nemo rofi neovim adw-gtk-theme qt5ct nodejs
+
+  query_or_install_dep npm
 
   # paru > yay sorry
   if ! command -sq paru
@@ -56,8 +80,8 @@ if not test -n "$_flag_m" && not test -n "$_flag_minimal"
   end
 
   # aur
-  paru -S adwaita-qt5 bibata-cursor-theme-bin vesktop-bin --needed
-  paru -S eww tiramisu-git --needed && eww open bar
+  paru -S adwaita-qt5 bibata-cursor-theme-bin vesktop-bin --needed 1>/dev/null
+  paru -S eww tiramisu-git --needed && eww open bar 1>/dev/null
 else
   echo 'skipped extras :('
 end

@@ -5,7 +5,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function ()
-      local path = '/home/allison/.cache/matugen/colors.vim'
+      local path = '~/.cache/matugen/colors.vim'
 
       local load = function ()
         vim.cmd.source(path)
@@ -35,7 +35,6 @@ return {
             },
           },
         })
-        vim.cmd 'silent CatppuccinCompile'
         -- vim.cmd.colorscheme 'catppuccin'
       end
 
@@ -50,10 +49,15 @@ return {
           recursive = false,
         },
         function (_, _, _)
-          vim.schedule_wrap(load)()
+          -- this is ugly but not as ugly as an extra 70ms startup time
+          vim.schedule(function ()
+            load()
+            vim.cmd 'CatppuccinCompile'
+          end)
         end)
 
       load()
+
       vim.cmd.colorscheme 'catppuccin'
     end,
   },

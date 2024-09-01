@@ -1,7 +1,7 @@
 fish_add_path -P $HOME/.cargo/bin
 
 set fish_greeting
-set EDITOR nvim
+set -x EDITOR nvim
 
 alias v=nvim
 

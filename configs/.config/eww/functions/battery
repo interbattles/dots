@@ -14,32 +14,19 @@ function get_icon
   set battery $argv[1]
 
   set battery_dir "/sys/class/power_supply/$battery"
-  read capacity_level < "$battery_dir/capacity_level"
+  read capacity < "$battery_dir/capacity"
   read state < "$battery_dir/status"
 
   set icon "battery"
 
-  switch $capacity_level 
-    case 'Full'
-      set icon "$icon-full"
-    case 'High'
-      set icon "$icon-full"
-    case 'Normal'
-      set icon "$icon-good"
-    case 'Low'
-      set icon "$icon-caution"
-    case 'Critical'
-      set icon "$icon-empty"
-    case 'Unknown'
-      set icon "battery-missing"
-      echo "$icon-symbolic"
-      exit 1
-    case '*'
-      set icon "battery-missing"
-      echo "$icon-symbolic"
-      exit 1
-  end
+  test $capacity -ge 100 && set level "full"
+  test $capacity -le 100 && set level "full"
+  test $capacity -le 75 && set level "good"
+  test $capacity -le 50 && set level "caution"
+  test $capacity -le 25 && set level "empty"
 
+  set icon "$icon-$level"
+  
   switch $state
     case 'Charging'
       set icon "$icon-charging"
@@ -78,7 +65,10 @@ while true
   set -l icon (get_icon $battery)
   set -l capacity (get_capacity $battery)
 
-  echo "{ \"battery\": \"$battery\", \"icon\": \"$icon\", \"capacity\": $capacity }"
-
-  sleep 5
+  jq -n -r -c \
+  --arg battery $battery \
+  --arg icon $icon \
+  --arg capacity $capacity \
+  '{ battery: $ARGS.named.battery, icon: $ARGS.named.icon, capacity: $ARGS.named.capacity|tonumber }'
+  sleep 2
 end

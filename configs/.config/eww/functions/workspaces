@@ -1,0 +1,27 @@
+# vi: ft=fish
+
+function i3_listen
+  i3-msg -t get_workspaces | jq -r -c '[.[] | { id: .num, active: .focused}]'
+
+  i3-msg -t subscribe -m '[ "workspace" ]' | while read msg
+    set current (echo $msg | jq -r '.current.num')
+
+    i3-msg -t get_workspaces | jq -r -c \
+    '[.[] | {
+    id: .num, 
+    active: .focused}]'
+  end
+end
+
+function i3_switch
+  i3-msg -t command workspace $argv[1]
+end
+
+switch "$argv[1]"
+case "listen"
+  test "$XDG_CURRENT_DESKTOP" = "i3" && i3_listen
+case "switch"
+  test "$XDG_CURRENT_DESKTOP" = "i3" && i3_switch $argv[2]
+case "*"
+  exit 1
+end
