@@ -79,34 +79,4 @@ return {
       },
     },
   },
-  {
-    'stevearc/conform.nvim',
-    event = { 'BufWritePre' },
-    cmd = { 'ConformInfo' },
-    keys = {
-      {
-        '<leader>cf',
-        function ()
-          require('conform').format({ async = true })
-        end,
-        desc = 'format',
-        mode = { 'n', 'x' },
-      },
-    },
-    opts = {
-      formatters_by_ft = {
-        rust = { 'rustfmt', lsp_format = 'fallback' },
-        bash = { 'shfmt', lsp_format = 'fallback' },
-        sh = { 'shfmt', lsp_format = 'fallback' },
-      },
-      default_format_opts = {
-        lsp_format = 'fallback',
-      },
-      format_on_save = { timeout_ms = 500 },
-      formatters = {},
-    },
-    init = function ()
-      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-    end,
-  },
 }
