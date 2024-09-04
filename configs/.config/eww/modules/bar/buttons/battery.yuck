@@ -2,6 +2,7 @@
   (button
     :onclick {showpercent ? 'eww update showpercent=false' : 'eww update showpercent=true'} 
     :class {flatbuttons ? "panel-button flat" : "panel-button"}
+    :visible {battery ?: false}
     (box 
       :spacing "2"
       :space-evenly "false"

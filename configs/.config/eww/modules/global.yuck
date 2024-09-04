@@ -1,5 +1,4 @@
 (deflisten battery
-  :initial '{ "battery": "BAT1", "icon": "battery-missing-symbolic", "capacity": 0 }'
   `fish functions/battery`)
 
 (deflisten weather 
