@@ -4,7 +4,10 @@
 (include "modules/powermenu/buttons/reboot.yuck")
 
 (defwidget powermenu []
-  (box :class "powermenu"
+  (box 
+    :class "powermenu"
+    :space-evenly true
+    :spacing 15
     (suspend)
     (lock)
     (shutdown)

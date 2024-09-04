@@ -49,6 +49,7 @@ return {
       local lspconfig = require('lspconfig')
       local handlers = {
         function (server) lspconfig[server].setup(require('config.lsp')[server]) end,
+        ['gleam'] = lspconfig.gleam.setup(require('config.lsp')['gleam']),
       }
 
       require('mason-lspconfig').setup {

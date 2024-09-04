@@ -8,6 +8,10 @@ local default_config = {
 }
 
 local configs = {
+  gleam = {
+    cmd = { 'gleam', 'lsp' },
+    filetype = { 'gleam' },
+  },
   lua_ls = {
     -- on_init = function (client)
     --  local path = client.workspace_folders[1].name

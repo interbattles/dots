@@ -1,8 +1,8 @@
 (defwidget battery []
   (button
-    :onclick {showpercent ? 'eww update showpercent=false' : 'eww update showpercent=true'} 
+    :onclick {showpercent ? "eww update showpercent=false" : "eww update showpercent=true"} 
     :class {flatbuttons ? "panel-button flat" : "panel-button"}
-    :visible {battery ?: false}
+    :visible {battery ? true : false}
     (box 
       :spacing "2"
       :space-evenly "false"
