@@ -3,15 +3,17 @@
 set info (brightnessctl info -m | string split ',')
 
 switch $argv[1]
-case 'listen'
-  while true
-    string match -rg '(\d+)(?:.*)' $info[4]
+    case listen
+        while true
+            string match -rg '(\d+)(?:.*)' $info[4]
 
-    sleep 1
-    set info (brightnessctl info -m | string split ',')
-  end
-case 'set'
-  brightnessctl set "$argv[2]%"
-case '*'
-  exit 1
+            sleep 1
+            set info (brightnessctl info -m | string split ',')
+        end
+    case set
+        brightnessctl set "$argv[2]%"
+    case '*'
+        exit 1
 end
+
+# vi: tabstop=4 shiftwidth=4

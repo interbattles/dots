@@ -7,7 +7,7 @@
 
   margin: max($spacing, 8px);
   border: $border-width solid $popover-border-color;
-  background-color: $bg;
+  background-color: $widget-bg;
   color: $fg;
   border-radius: $popover-radius;
   padding: $popover-padding;

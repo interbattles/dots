@@ -1,4 +1,5 @@
 (deflisten battery
+  :initial false
   `fish functions/battery`)
 
 (deflisten weather 
@@ -13,8 +14,8 @@
   :initial 0
   `fish functions/brightness listen`)
 
-(deflisten notification
-  `fish functions/notification listen`)
-
 (deflisten workspaces
   `fish functions/workspaces listen`)
+
+;(deflisten notification
+;  `fish functions/notification listen`)

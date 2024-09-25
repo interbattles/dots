@@ -7,10 +7,13 @@
 (include "modules/quicksettings/row.yuck")
 
 (defwidget quicksettings []
-  (eventbox :onhoverlost "eww close quicksettings"
+  (eventbox 
+    :onhoverlost "eww close quicksettings"
+    :class "quicksettings"
     (box 
-      :class "quicksettings vertical"
+      :class "inner"
       :orientation "v"
+      :spacing 8
       (box 
         :class "sliders-box"
         :orientation "v"

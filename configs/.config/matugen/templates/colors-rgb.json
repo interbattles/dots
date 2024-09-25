@@ -1,0 +1,242 @@
+{
+  "background": {
+    "red": {{colors.background.default.red}},
+    "green": {{colors.background.default.green}},
+    "blue": {{colors.background.default.blue}}
+  },
+  "error": {
+    "red": {{colors.error.default.red}},
+    "green": {{colors.error.default.green}},
+    "blue": {{colors.error.default.blue}}
+  },
+  "error_container": {
+    "red": {{colors.error_container.default.red}},
+    "green": {{colors.error_container.default.green}},
+    "blue": {{colors.error_container.default.blue}}
+  },
+  "inverse_on_surface": {
+    "red": {{colors.inverse_on_surface.default.red}},
+    "green": {{colors.inverse_on_surface.default.green}},
+    "blue": {{colors.inverse_on_surface.default.blue}}
+  },
+  "inverse_primary": {
+    "red": {{colors.inverse_primary.default.red}},
+    "green": {{colors.inverse_primary.default.green}},
+    "blue": {{colors.inverse_primary.default.blue}}
+  },
+  "inverse_surface": {
+    "red": {{colors.inverse_surface.default.red}},
+    "green": {{colors.inverse_surface.default.green}},
+    "blue": {{colors.inverse_surface.default.blue}}
+  },
+  "on_background": {
+    "red": {{colors.on_background.default.red}},
+    "green": {{colors.on_background.default.green}},
+    "blue": {{colors.on_background.default.blue}}
+  },
+  "on_error": {
+    "red": {{colors.on_error.default.red}},
+    "green": {{colors.on_error.default.green}},
+    "blue": {{colors.on_error.default.blue}}
+  },
+  "on_error_container": {
+    "red": {{colors.on_error_container.default.red}},
+    "green": {{colors.on_error_container.default.green}},
+    "blue": {{colors.on_error_container.default.blue}}
+  },
+  "on_primary": {
+    "red": {{colors.on_primary.default.red}},
+    "green": {{colors.on_primary.default.green}},
+    "blue": {{colors.on_primary.default.blue}}
+  },
+  "on_primary_container": {
+    "red": {{colors.on_primary_container.default.red}},
+    "green": {{colors.on_primary_container.default.green}},
+    "blue": {{colors.on_primary_container.default.blue}}
+  },
+  "on_primary_fixed": {
+    "red": {{colors.on_primary_fixed.default.red}},
+    "green": {{colors.on_primary_fixed.default.green}},
+    "blue": {{colors.on_primary_fixed.default.blue}}
+  },
+  "on_primary_fixed_variant": {
+    "red": {{colors.on_primary_fixed_variant.default.red}},
+    "green": {{colors.on_primary_fixed_variant.default.green}},
+    "blue": {{colors.on_primary_fixed_variant.default.blue}}
+  },
+  "on_secondary": {
+    "red": {{colors.on_secondary.default.red}},
+    "green": {{colors.on_secondary.default.green}},
+    "blue": {{colors.on_secondary.default.blue}}
+  },
+  "on_secondary_container": {
+    "red": {{colors.on_secondary_container.default.red}},
+    "green": {{colors.on_secondary_container.default.green}},
+    "blue": {{colors.on_secondary_container.default.blue}}
+  },
+  "on_secondary_fixed": {
+    "red": {{colors.on_secondary_fixed.default.red}},
+    "green": {{colors.on_secondary_fixed.default.green}},
+    "blue": {{colors.on_secondary_fixed.default.blue}}
+  },
+  "on_secondary_fixed_variant": {
+    "red": {{colors.on_secondary_fixed_variant.default.red}},
+    "green": {{colors.on_secondary_fixed_variant.default.green}},
+    "blue": {{colors.on_secondary_fixed_variant.default.blue}}
+  },
+  "on_surface": {
+    "red": {{colors.on_surface.default.red}},
+    "green": {{colors.on_surface.default.green}},
+    "blue": {{colors.on_surface.default.blue}}
+  },
+  "on_surface_variant": {
+    "red": {{colors.on_surface_variant.default.red}},
+    "green": {{colors.on_surface_variant.default.green}},
+    "blue": {{colors.on_surface_variant.default.blue}}
+  },
+  "on_tertiary": {
+    "red": {{colors.on_tertiary.default.red}},
+    "green": {{colors.on_tertiary.default.green}},
+    "blue": {{colors.on_tertiary.default.blue}}
+  },
+  "on_tertiary_container": {
+    "red": {{colors.on_tertiary_container.default.red}},
+    "green": {{colors.on_tertiary_container.default.green}},
+    "blue": {{colors.on_tertiary_container.default.blue}}
+  },
+  "on_tertiary_fixed": {
+    "red": {{colors.on_tertiary_fixed.default.red}},
+    "green": {{colors.on_tertiary_fixed.default.green}},
+    "blue": {{colors.on_tertiary_fixed.default.blue}}
+  },
+  "on_tertiary_fixed_variant": {
+    "red": {{colors.on_tertiary_fixed_variant.default.red}},
+    "green": {{colors.on_tertiary_fixed_variant.default.green}},
+    "blue": {{colors.on_tertiary_fixed_variant.default.blue}}
+  },
+  "outline": {
+    "red": {{colors.outline.default.red}},
+    "green": {{colors.outline.default.green}},
+    "blue": {{colors.outline.default.blue}}
+  },
+  "outline_variant": {
+    "red": {{colors.outline_variant.default.red}},
+    "green": {{colors.outline_variant.default.green}},
+    "blue": {{colors.outline_variant.default.blue}}
+  },
+  "primary": {
+    "red": {{colors.primary.default.red}},
+    "green": {{colors.primary.default.green}},
+    "blue": {{colors.primary.default.blue}}
+  },
+  "primary_container": {
+    "red": {{colors.primary_container.default.red}},
+    "green": {{colors.primary_container.default.green}},
+    "blue": {{colors.primary_container.default.blue}}
+  },
+  "primary_fixed": {
+    "red": {{colors.primary_fixed.default.red}},
+    "green": {{colors.primary_fixed.default.green}},
+    "blue": {{colors.primary_fixed.default.blue}}
+  },
+  "primary_fixed_dim": {
+    "red": {{colors.primary_fixed_dim.default.red}},
+    "green": {{colors.primary_fixed_dim.default.green}},
+    "blue": {{colors.primary_fixed_dim.default.blue}}
+  },
+  "scrim": {
+    "red": {{colors.scrim.default.red}},
+    "green": {{colors.scrim.default.green}},
+    "blue": {{colors.scrim.default.blue}}
+  },
+  "secondary": {
+    "red": {{colors.secondary.default.red}},
+    "green": {{colors.secondary.default.green}},
+    "blue": {{colors.secondary.default.blue}}
+  },
+  "secondary_container": {
+    "red": {{colors.secondary_container.default.red}},
+    "green": {{colors.secondary_container.default.green}},
+    "blue": {{colors.secondary_container.default.blue}}
+  },
+  "secondary_fixed": {
+    "red": {{colors.secondary_fixed.default.red}},
+    "green": {{colors.secondary_fixed.default.green}},
+    "blue": {{colors.secondary_fixed.default.blue}}
+  },
+  "secondary_fixed_dim": {
+    "red": {{colors.secondary_fixed_dim.default.red}},
+    "green": {{colors.secondary_fixed_dim.default.green}},
+    "blue": {{colors.secondary_fixed_dim.default.blue}}
+  },
+  "shadow": {
+    "red": {{colors.shadow.default.red}},
+    "green": {{colors.shadow.default.green}},
+    "blue": {{colors.shadow.default.blue}}
+  },
+  "surface": {
+    "red": {{colors.surface.default.red}},
+    "green": {{colors.surface.default.green}},
+    "blue": {{colors.surface.default.blue}}
+  },
+  "surface_bright": {
+    "red": {{colors.surface_bright.default.red}},
+    "green": {{colors.surface_bright.default.green}},
+    "blue": {{colors.surface_bright.default.blue}}
+  },
+  "surface_container": {
+    "red": {{colors.surface_container.default.red}},
+    "green": {{colors.surface_container.default.green}},
+    "blue": {{colors.surface_container.default.blue}}
+  },
+  "surface_container_high": {
+    "red": {{colors.surface_container_high.default.red}},
+    "green": {{colors.surface_container_high.default.green}},
+    "blue": {{colors.surface_container_high.default.blue}}
+  },
+  "surface_container_highest": {
+    "red": {{colors.surface_container_highest.default.red}},
+    "green": {{colors.surface_container_highest.default.green}},
+    "blue": {{colors.surface_container_highest.default.blue}}
+  },
+  "surface_container_low": {
+    "red": {{colors.surface_container_low.default.red}},
+    "green": {{colors.surface_container_low.default.green}},
+    "blue": {{colors.surface_container_low.default.blue}}
+  },
+  "surface_container_lowest": {
+    "red": {{colors.surface_container_lowest.default.red}},
+    "green": {{colors.surface_container_lowest.default.green}},
+    "blue": {{colors.surface_container_lowest.default.blue}}
+  },
+  "surface_dim": {
+    "red": {{colors.surface_dim.default.red}},
+    "green": {{colors.surface_dim.default.green}},
+    "blue": {{colors.surface_dim.default.blue}}
+  },
+  "surface_variant": {
+    "red": {{colors.surface_variant.default.red}},
+    "green": {{colors.surface_variant.default.green}},
+    "blue": {{colors.surface_variant.default.blue}}
+  },
+  "tertiary": {
+    "red": {{colors.tertiary.default.red}},
+    "green": {{colors.tertiary.default.green}},
+    "blue": {{colors.tertiary.default.blue}}
+  },
+  "tertiary_container": {
+    "red": {{colors.tertiary_container.default.red}},
+    "green": {{colors.tertiary_container.default.green}},
+    "blue": {{colors.tertiary_container.default.blue}}
+  },
+  "tertiary_fixed": {
+    "red": {{colors.tertiary_fixed.default.red}},
+    "green": {{colors.tertiary_fixed.default.green}},
+    "blue": {{colors.tertiary_fixed.default.blue}}
+  },
+  "tertiary_fixed_dim": {
+    "red": {{colors.tertiary_fixed_dim.default.red}},
+    "green": {{colors.tertiary_fixed_dim.default.green}},
+    "blue": {{colors.tertiary_fixed_dim.default.blue}}
+  }
+}

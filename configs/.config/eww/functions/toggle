@@ -3,16 +3,18 @@
 set launcher rofi
 
 switch $argv[1]
-case 'powermenu'
-  eww open --toggle powermenu
-case 'quicksettings'
-  eww open --toggle quicksettings
-case 'launcher'
-  if pidof $launcher then
-    killall $launcher &
-  else
-    $launcher -show drun &
-  end
-case '*'
-  exit 1
+    case powermenu
+        eww open --toggle powermenu
+    case quicksettings
+        eww open --toggle quicksettings
+    case launcher
+        if pidof $launcher then
+            killall $launcher &
+        else
+            $launcher -show drun &
+        end
+    case '*'
+        exit 1
 end
+
+# vi: tabstop=4 shiftwidth=4

@@ -38,7 +38,7 @@ return {
         },
         performance = {
           debounce = 10,
-          max_view_entries = 25,
+          max_view_entries = 50,
         },
         completion = {
           keyword_length = 3,
@@ -126,6 +126,7 @@ return {
         rust = { 'rustfmt', lsp_format = 'fallback' },
         bash = { 'shfmt', lsp_format = 'fallback' },
         sh = { 'shfmt', lsp_format = 'fallback' },
+        json = { 'jq' },
         fish = { 'fish_indent' },
       },
       default_format_opts = {
@@ -136,6 +137,37 @@ return {
     },
     init = function ()
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
+  },
+  {
+    'mfussenegger/nvim-lint',
+    event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
+    keys = {
+      {
+        '<leader>cl',
+        function ()
+          require('lint').try_lint()
+        end,
+        desc = 'lint',
+        mode = { 'n', 'x' },
+      },
+    },
+    opts = {
+      events = { 'BufWritePost', 'BufReadPost', 'InsertLeave' },
+      linters_by_ft = {
+        golangcilint = { 'go' },
+      },
+    },
+    config = function (_, opts)
+      local lint = require('lint')
+      lint.linters_by_ft = opts.linters_by_ft
+
+      vim.api.nvim_create_autocmd(opts.events, {
+        group = vim.api.nvim_create_augroup('nvim-lint', { clear = true }),
+        callback = function ()
+          require('lint').try_lint()
+        end,
+      })
     end,
   },
 }

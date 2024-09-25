@@ -1,5 +1,38 @@
 return {
   {
+    'klen/nvim-config-local',
+    lazy = false,
+    opts = {},
+  },
+  {
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
+    opts = function ()
+      local wk = require('which-key')
+      wk.add({
+        { '<leader>f',     group = 'find' },
+        { '<leader>b',     group = 'buffer' },
+        { '<leader>c',     group = 'code' },
+        { '<leader>g',     group = 'git' },
+        { '<leader><tab>', group = 'tabs' },
+        { '<leader>x',     group = 'trouble' },
+        { '<leader>s',     group = 'sessions' },
+        { '<leader>l',     group = 'lazy' },
+        { '<leader>t',     group = 'terminal' },
+        { '<leader>q',     group = 'quit' },
+      })
+    end,
+    keys = {
+      {
+        '<leader>?',
+        function ()
+          require('which-key').show({ global = false })
+        end,
+        desc = 'local keymaps',
+      },
+    },
+  },
+  {
     'cbochs/grapple.nvim',
     dependencies = {
       { 'nvim-tree/nvim-web-devicons' },
@@ -22,18 +55,6 @@ return {
       scope = 'git',
       icons = true,
       status = true,
-    },
-  },
-  {
-    'folke/flash.nvim',
-    event = 'VeryLazy',
-    opts = {},
-    keys = {
-      { '<cr>',  mode = { 'n', 'x', 'o' }, function () require('flash').jump() end,              desc = 'flash' },
-      { '<c-q>', mode = { 'n', 'x', 'o' }, function () require('flash').treesitter() end,        desc = 'flash treesitter',   noremap = false },
-      { 'r',     mode = 'o',               function () require('flash').remote() end,            desc = 'remote flash' },
-      { 'R',     mode = { 'o', 'x' },      function () require('flash').treesitter_search() end, desc = 'treesitter search' },
-      { '<c-s>', mode = { 'c' },           function () require('flash').toggle() end,            desc = 'toggle flash search' },
     },
   },
   {
@@ -107,9 +128,9 @@ return {
     },
   },
   {
-    'norcalli/nvim-colorizer.lua',
+    'chrisbra/Colorizer',
     keys = {
-      { '<leader>cc', '<cmd>ColorizerToggle<cr>', desc = 'toggle colorizer', noremap = true },
+      { '<leader>cc', '<cmd>ColorToggle<cr>', desc = 'toggle colorizer', noremap = true },
     },
   },
   {
@@ -117,6 +138,18 @@ return {
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
     ft = { 'markdown' },
     build = function () vim.fn['mkdp#util#install']() end,
+  },
+  {
+    'kndndrj/nvim-dbee',
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+    },
+    build = function ()
+      require('dbee').install()
+    end,
+    config = function (_, opts)
+      require('dbee').setup(opts)
+    end,
   },
   {
     'goolord/alpha-nvim',

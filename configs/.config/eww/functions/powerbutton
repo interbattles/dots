@@ -3,17 +3,19 @@
 set active_windows (eww active-windows)
 
 string match -r -q '^powermenu: (\w+)$' $active_windows \
-  && eww close powermenu
+    && eww close powermenu
 
 switch $argv[1]
-  case 'suspend'
-    systemctl suspend
-  case 'lock'
-    loginctl lock-session
-  case 'shutdown'
-    systemctl poweroff
-  case 'reboot'
-    systemctl reboot
-  case '*'
-    exit 1
+    case suspend
+        systemctl suspend
+    case lock
+        loginctl lock-session
+    case shutdown
+        systemctl poweroff
+    case reboot
+        systemctl reboot
+    case '*'
+        exit 1
 end
+
+# vi: tabstop=4 shiftwidth=4

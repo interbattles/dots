@@ -1,10 +1,21 @@
 @import "colors.scss";
 
-$opacity: 0.06;
-$widget-opacity: 0.94;
+$opacity: 1;
+$widget-opacity: 0.1;
+
+$border-width: 2px;
+$border-color: transparentize($outline, 1-$widget-opacity);
+$border: $border-width solid $border-color;
+$popover-border-color: transparentize($outline, 1-$widget-opacity);
+
+$flat: true;
+
+@if $flat {
+  $border-width: 0px;
+  $border: 0px solid $border-color;
+}
 
 $bg: transparentize($surface, $opacity);
-$flat: true;
 $fg: $on_surface;
 $primary-bg: $primary;
 $primary-fg: $on_primary;
@@ -16,17 +27,14 @@ $spacing: 5pt;
 $radius: 11px;
 $transition: 200ms;
 $shadows: false;
-$widget-bg: transparentize($fg, $widget-opacity);
-$hover-bg: transparentize($fg, $widget-opacity - $opacity);
-$hover-fg: lighten($fg, 8%);
-$border-width: 2px;
-$border-color: transparentize($outline, $widget-opacity);
-$border: $border-width solid $border-color;
+$widget-bg: transparentize($surface_container, $widget-opacity);
+$hover-bg: transparentize($surface_variant, $widget-opacity);
+$hover-fg: $on_surface_variant;
+
 $active-gradient: linear-gradient(to right, $primary, darken($primary, 4%));
-$shadow-color: rgba(0, 0, 0, .6);
+$shadow-color: $shadow;
 $text-shadow: 2pt 2pt 2pt $shadow-color;
 $box-shadow: 2pt 2pt 2pt 0 $shadow-color, inset 0 0 0 $border-width $border-color;
-$popover-border-color: transparentize($outline, $widget-opacity);
 $popover-padding: $padding * 1.6;
 $popover-radius: $radius + $popover-padding;
 $font-size: 13pt;

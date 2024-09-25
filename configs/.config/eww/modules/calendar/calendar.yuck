@@ -10,6 +10,7 @@
     :width "20%" 
     :height "20%" 
     :anchor "top center")
-  (box
-    :class "calendar"
-    (calendar)))
+  (calendar
+    :class "calendar"))
+
+

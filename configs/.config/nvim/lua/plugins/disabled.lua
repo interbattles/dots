@@ -425,6 +425,12 @@ local disabled = {
       })
     end,
   },
+  {
+    'norcalli/nvim-colorizer.lua',
+    keys = {
+      { '<leader>cc', '<cmd>ColorizerToggle<cr>', desc = 'toggle colorizer', noremap = true },
+    },
+  },
 
 }
 

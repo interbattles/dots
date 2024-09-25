@@ -65,6 +65,9 @@ return {
           theme = theme, -- theme,
           component_separators = '',
           section_separators = { left = '', right = '' },
+          disabled_filetypes = {
+            statusline = { 'neo-tree' },
+          },
         },
         sections = {
           lualine_a = {
@@ -76,7 +79,7 @@ return {
           lualine_b = { 'branch', 'diagnostics' },
           lualine_c = { '%=', 'grapple' },
           lualine_x = {},
-          lualine_y = { 'filetype', 'progress', 'diff' },
+          lualine_y = { 'searchcount', 'filetype', 'progress', 'diff' },
           lualine_z = {},
         },
         inactive_sections = {

@@ -1,5 +1,11 @@
 [config]
-reload_apps = false
+reload_apps = true
+
+[config.reload_apps_list]
+waybar = false
+kitty = false
+gtk_theme = true
+dunst = false
 
 [config.custom_keywords]
 alpha = "0.78"
@@ -32,6 +38,7 @@ ags = { input_path = '~/.config/matugen/templates/desktop/ags.json', output_path
 eww = { input_path = '~/.config/matugen/templates/colors.scss', output_path = '~/.config/eww/styles/colors.scss' }
 hyprland = { input_path = '~/.config/matugen/templates/desktop/hyprcolors.conf', output_path = '~/.cache/matugen/hyprcolors.conf' }
 i3 = { input_path = '~/.config/matugen/templates/desktop/i3', output_path = '~/.cache/matugen/i3' }
+dunst = { input_path = '~/.config/matugen/templates/desktop/dunst.conf', output_path = '~/.config/dunst/dunstrc.d/theme.conf' }
 gtk-colors = { input_path = '~/.config/matugen/templates/desktop/gtk-colors.css', output_path = '~/.cache/matugen/gtk-colors.css' }
 rofi = { input_path = '~/.config/matugen/templates/desktop/rofi.rasi', output_path = '~/.cache/matugen/rofi.rasi' }
 qt5-colors = { input_path = '~/.config/matugen/templates/desktop/qt5ct-colors.conf', output_path = '~/.config/qt5ct/colors/matugen.conf' }
@@ -47,6 +54,11 @@ vim = { input_path = '~/.config/matugen/templates/colors.vim', output_path = '~/
 sh = { input_path = '~/.config/matugen/templates/colors.sh', output_path = '~/.cache/matugen/colors.sh' }
 neovim = { input_path = '~/.config/matugen/templates/colors.lua', output_path = '~/.cache/matugen/colors.lua' }
 tmux = { input_path = '~/.config/matugen/templates/tmux-colors.conf', output_path = '~/.cache/matugen/tmux.conf' }
+json = { input_path = "~/.config/matugen/templates/colors-rgb.json", output_path = '~/.cache/matugen/colors-rgb.json' }
+
+#kvantum
+svg = { input_path = '~/.config/matugen/templates/kvantum/matugen.svg', output_path = '~/.config/Kvantum/matugen/matugen.svg' }
+kvconfig = { input_path = "~/.config/matugen/templates/kvantum/matugen.kvconfig", output_path = '~/.config/Kvantum/matugen/matugen.kvconfig' }
 
 # zellij
 zellij_layout = { input_path = '~/.config/matugen/templates/zellij/layout.kdl', output_path = '~/.config/zellij/layouts/default.kdl' }

@@ -8,8 +8,8 @@
       (image :icon "network-wireless-symbolic")
       (image 
         :visible {dnd}
-        :icon "weather-clear-night-symbolic")
-      (box 
-        :visible {notification ?: false && dnd != true}
-        (image :icon "mail-unread-symbolic")))))  
+        :icon "weather-clear-night-symbolic"))))
+      ;(box 
+      ;  :visible {dnd != true}
+      ;  (image :icon "mail-unread-symbolic")))))  
      

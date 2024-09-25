@@ -37,6 +37,7 @@ return {
     'neovim/nvim-lspconfig',
     lazy = vim.fn.argc(-1) == 0,
     event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
+    after = 'folke/neoconf.nvim',
     dependencies = {
       { 'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } },
       {

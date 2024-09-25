@@ -3,58 +3,70 @@
 eww close quicksettings
 
 function reload_daemon
-  wait
-  fish -c "eww reload && eww update darkmode=$darkmode" &
+    wait
+    fish -c "eww reload && eww update darkmode=$darkmode" &
 end
 
-function theme_reload 
-  set -q darkmode || get_darkmode
-  set -q wallpaper || set wallpaper (string match -rg '\'(.+)\'' < ~/.fehbg)
+function theme_reload
+    set -q darkmode || get_darkmode
+    set -q wallpaper || set wallpaper (string match -rg '\'(.+)\'' < ~/.fehbg)
 
-  if $darkmode
-    matugen --mode dark image $wallpaper &
-  else
-    matugen --mode light image $wallpaper &
-  end
+    if $darkmode
+        matugen --mode dark image $wallpaper &
+    else
+        matugen --mode light image $wallpaper &
+    end
 
-  reload_daemon &
-  i3-msg reload &
+    reload_daemon &
+    wait
+    betterlockscreen -u $wallpaper &
+    dunstctl reload &
+    i3-msg reload &
 end
 
 function get_darkmode
-  set -l darkmode (eww get darkmode)
-  if test "$darkmode" = "true"
-    set -g darkmode true
-  else
-    set -g darkmode false
-  end
+    set -l darkmode (eww get darkmode)
+    if test "$darkmode" = true
+        set -g darkmode true
+    else
+        set -g darkmode false
+    end
+end
+
+function random_wallpaper
+    find ~/walls -type f \( -name '*.png' -o -name '*.jpg' \) \
+        | grep -v walls/ignore/ \
+        | shuf -n 1
 end
 
 switch $argv[1]
-case 'wallpaper'
-  set -g wallpaper (find ~/walls -type f \( -name '*.png' -o -name '*.jpg' \) | shuf -n 1)
+    case wallpaper
+        set -g wallpaper (random_wallpaper)
 
-  feh --bg-fill $wallpaper &
-  theme_reload &
-case 'theme'
-  theme_reload &
-case 'dnd'
-  set active (eww get dnd)
-  if test "$active" = "true"
-    eww update dnd=false
-  else if test "$active" = "false"
-    eww update dnd=true
-  end
-case 'darkmode'
-  get_darkmode
-  if $darkmode 
-    eww update darkmode=false
-    set -g darkmode false
-  else
-    eww update darkmode=true
-    set -g darkmode true
-  end
-  theme_reload &
-case '*'
-  exit 1
+        feh --bg-fill $wallpaper &
+        theme_reload &
+    case theme
+        theme_reload &
+    case dnd
+        set active (eww get dnd)
+        if test "$active" = true
+            eww update dnd=false
+        else if test "$active" = false
+            eww update dnd=true
+        end
+    case darkmode
+        get_darkmode
+        if test "$darkmode" = true
+            eww update darkmode=false
+            set -g darkmode false
+        else
+            eww update darkmode=true
+            set -g darkmode true
+        end
+
+        theme_reload &
+    case '*'
+        exit 1
 end
+
+# vi: tabstop=4 shiftwidth=4

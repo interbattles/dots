@@ -8,6 +8,6 @@
       :class "launcher"
       (label 
         :text "" 
-        :class "colored")
+        :class "colored"))))
 
-      (label :text "Applications"))))
+      ; (label :text "Applications"))))
