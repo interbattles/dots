@@ -46,6 +46,9 @@ return {
         dependencies = { 'mason.nvim' },
       },
     },
+    keys = {
+      { '<leader>cR', '<cmd>LspRestart<cr>', desc = 'reload LSP' },
+    },
     config = function ()
       local lspconfig = require('lspconfig')
       local handlers = {

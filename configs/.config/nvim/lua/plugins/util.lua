@@ -81,6 +81,14 @@ return {
     end,
   },
   {
+    'nosduco/remote-sshfs.nvim',
+    cmd = 'RemoteSSHFSConnect',
+    keys = {
+      { '<leader>fs', '<cmd>RemoteSSHFSConnect<cr>', desc = 'connect to sshfs' },
+    },
+    opts = {},
+  },
+  {
     'Shatur/neovim-session-manager',
     keys = {
       { '<leader>sm', '<cmd>SessionManager<cr>',                          desc = 'open session manager' },

@@ -17,5 +17,8 @@
 (deflisten workspaces
   `fish functions/workspaces listen`)
 
+(deflisten dnd
+  `fish functions/dnd listen`)
+
 ;(deflisten notification
 ;  `fish functions/notification listen`)

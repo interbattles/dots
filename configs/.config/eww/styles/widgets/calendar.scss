@@ -2,7 +2,6 @@
 
 .calendar {
   @include floating-widget;
-  padding: $popover-padding * 1.4;
 
   calendar {
     @include unset;

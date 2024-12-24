@@ -2,7 +2,7 @@
 
 (defwidget dnd []
   (simpletoggle 
-    :action "fish functions/menu dnd"
+    :action "fish functions/dnd set toggle"
     :timeout 2000
     :label "Do Not Disturb"
     :active {dnd}

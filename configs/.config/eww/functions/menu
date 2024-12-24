@@ -47,13 +47,6 @@ switch $argv[1]
         theme_reload &
     case theme
         theme_reload &
-    case dnd
-        set active (eww get dnd)
-        if test "$active" = true
-            eww update dnd=false
-        else if test "$active" = false
-            eww update dnd=true
-        end
     case darkmode
         get_darkmode
         if test "$darkmode" = true

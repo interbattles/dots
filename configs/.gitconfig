@@ -1,32 +1,42 @@
 [user]
-	name = interbattles
-	email = 88935519+interbattles@users.noreply.github.com
+  name = allison
+  email = me@allison.lol
+
 [init]
-	defaultBranch = main
+  defaultBranch = main
+
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+
+[credential]
+  helper = store
+
 [credential "https://dev.azure.com"]
-	useHttpPath = true
+  useHttpPath = true
+
 [credential "https://github.com"]
-	helper = 
- 	helper = !/usr/bin/gh auth git-credential
+  helper = 
+  helper = !/usr/bin/gh auth git-credential
+
 [credential "https://gist.github.com"]
- 	helper = 
- 	helper = !/usr/bin/gh auth git-credential
+  helper = 
+  helper = !/usr/bin/gh auth git-credential
+  
 [diff]
-    tool = meld
-[difftool]
-    prompt = false
+  tool = meld
 [difftool "meld"]
-    cmd = meld "$LOCAL" "$REMOTE"
+  cmd = meld "$LOCAL" "$REMOTE"
+
 [merge]
-    tool = meld
+  tool = meld
 [mergetool "meld"]
-    # Choose one of these two lines (not both!) explained below.
-    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
-    cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+  cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+
 [core]
-	editor = nvim
+  editor = nvim
+
+[url "ssh://git@git.allison.lol:2222"]
+    insteadOf = https://git.allison.lol

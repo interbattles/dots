@@ -1,5 +1,3 @@
-import = ["~/.cache/matugen/alacritty.toml"]
-
 [env]
 TERM = "alacritty"
 WINIT_X11_SCALE_FACTOR = "1.0"
@@ -10,3 +8,12 @@ bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
 italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
 bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
 size = 12
+
+[bell]
+command = { program = "paplay", args=["/usr/share/sounds/freedesktop/stereo/bell.oga"] }
+
+[selection]
+save_to_clipboard = true
+
+[general]
+import = ["~/.cache/matugen/alacritty.toml"]

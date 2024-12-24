@@ -28,6 +28,7 @@ color14 = { color = "#86e1fc", blend = true }
 # terminals
 alacritty = { input_path = '~/.config/matugen/templates/terminals/alacritty.toml', output_path = '~/.cache/matugen/alacritty.toml' }
 foot = { input_path = '~/.config/matugen/templates/terminals/foot.ini', output_path = '~/.cache/matugen/foot.ini' }
+sequences = { input_path = '~/.config/matugen/templates/terminals/sequences', output_path = '~/.cache/matugen/sequences' }
 
 # wezterm
 wezterm_colors = { input_path = '~/.config/matugen/templates/wezterm/colors.toml', output_path = '~/.cache/matugen/wezterm/matugen.toml' }
@@ -44,6 +45,8 @@ rofi = { input_path = '~/.config/matugen/templates/desktop/rofi.rasi', output_pa
 qt5-colors = { input_path = '~/.config/matugen/templates/desktop/qt5ct-colors.conf', output_path = '~/.config/qt5ct/colors/matugen.conf' }
 qt6-colors = { input_path = '~/.config/matugen/templates/desktop/qt5ct-colors.conf', output_path = '~/.config/qt6ct/colors/matugen.conf' }
 glimpse = { input_path = '~/.config/matugen/templates/desktop/glimpse.css', output_path = '~/.config/glimpse/style.css' }
+halloy = { input_path = '~/.config/matugen/templates/desktop/halloy.toml', output_path = '~/.config/halloy/themes/matugen.toml' }
+
 
 # apps
 starship = { input_path = '~/.config/matugen/templates/starship.toml', output_path = '~/.config/starship.toml' }

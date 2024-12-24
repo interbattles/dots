@@ -8,5 +8,3 @@
   false)
 (defvar calendartoggled
   false)
-(defvar dnd
-  false)

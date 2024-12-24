@@ -30,6 +30,8 @@ font pango:NotoSans Nerd Font 8
 
 # systemd user services
 exec --no-startup-id dbus-update-activation-environment --systemd --all
+#polkit-gnome
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # lock
 exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen --nofork
 # tray
@@ -55,7 +57,6 @@ floating_modifier $mod
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
-tiling_drag modifier titlebar
 
 # start a terminal
 bindsym $mod+Return exec alacritty
@@ -164,10 +165,10 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exit
 
-bindsym $mod+Mod1+$left exec "i3-msg resize grow left 3 px or 3 ppt || i3-msg resize shrink right 3 px or 3 ppt"
-bindsym $mod+Mod1+$down exec "i3-msg resize grow down 3 px or 3 ppt || i3-msg resize shrink up 3 px or 3 ppt"
-bindsym $mod+Mod1+$up exec "i3-msg resize grow up 3 px or 3 ppt || i3-msg resize shrink down 3 px or 3 ppt"
-bindsym $mod+Mod1+$right exec "i3-msg resize grow right 3 px or 3 ppt || i3-msg resize shrink left 3 px or 3 ppt"
+bindsym $mod+Mod1+$left exec "i3-msg resize grow left 10 px or 10 ppt || i3-msg resize shrink right 10 px or 10 ppt"
+bindsym $mod+Mod1+$down exec "i3-msg resize grow down 10 px or 10 ppt || i3-msg resize shrink up 10 px or 10 ppt"
+bindsym $mod+Mod1+$up exec "i3-msg resize grow up 10 px or 10 ppt || i3-msg resize shrink down 10 px or 10 ppt"
+bindsym $mod+Mod1+$right exec "i3-msg resize grow right 10 px or 10 ppt || i3-msg resize shrink left 10 px or 10 ppt"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -175,6 +176,13 @@ bindsym $mod+Mod1+$right exec "i3-msg resize grow right 3 px or 3 ppt || i3-msg 
 #   status_command i3status
 # }
 
-gaps inner 15px
+bindsym $mod+Shift+p exec fish ~/.config/i3/functions/scratchpad.fish "proton-pass" "Proton Pass"
+bindsym $mod+Shift+g exec fish ~/.config/i3/functions/scratchpad.fish "kleopatra" "kleopatra"
+bindsym $mod+Shift+w exec fish ~/.config/i3/functions/scratchpad.fish "exodus" "Exodus"
+
+# default_border pixel 2
+# default_floating_border pixel 2
+
+gaps inner 7px
 
 include ~/.cache/matugen/i3

@@ -7,26 +7,23 @@
 (include "modules/quicksettings/row.yuck")
 
 (defwidget quicksettings []
-  (eventbox 
-    :onhoverlost "eww close quicksettings"
+  (box 
     :class "quicksettings"
+    :orientation "v"
+    :spacing 8
     (box 
-      :class "inner"
+      :class "sliders-box"
       :orientation "v"
-      :spacing 8
-      (box 
-        :class "sliders-box"
-        :orientation "v"
-        (row
-          (volume))
-        (row
-          (brightness)))
       (row
-        (refreshwallpaper)
-        (refreshtheme))
+        (volume))
       (row
-        (dnd)
-        (darkmode)))))
+        (brightness)))
+    (row
+      (refreshwallpaper)
+      (refreshtheme))
+    (row
+      (dnd)
+      (darkmode))))
 
 (defwindow quicksettings
   :monitor 0
