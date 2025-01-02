@@ -11,27 +11,27 @@ st.borderpx: 20
 !-- values between 0.1  - 1.0 --! 
 
 st.alpha: 1.0 
-st.font: JetBrainsMono Nerd Font:style:medium:pixelsize=15
+st.font:           JetBrainsMono Nerd Font:style:medium:pixelsize=15
 
-#define base00 #1e2122
-#define base01 #2c2f30
-#define base02 #36393a
-#define base03 #404344
-#define base04 #d4be98
-#define base05 #c0b196
-#define base06 #c3b499
-#define base07 #c7b89d
-#define base08 #ec6b64
-#define base09 #e78a4e
-#define base0A #e0c080
-#define base0B #a9b665
-#define base0C #86b17f
-#define base0D #7daea3
-#define base0E #d3869b
-#define base0F #d65d0e
+#define base00 #282c34
+#define base01 #353b45
+#define base02 #3e4451
+#define base03 #545862
+#define base04 #565c64
+#define base05 #abb2bf
+#define base06 #b6bdca
+#define base07 #c8ccd4
+#define base08 #e06c75
+#define base09 #d19a66
+#define base0A #e5c07b
+#define base0B #98c379
+#define base0C #56b6c2
+#define base0D #61afef
+#define base0E #c678dd
+#define base0F #be5046
 
 *foreground:   base07
-*background:   #1e2122
+*background:   #1e222a
 *cursorColor:  base05
 
 *color0:       base00
@@ -59,6 +59,3 @@ tabbed.selbgcolor:   #1e222a
 
 tabbed.normfgcolor:  #9294a8
 tabbed.normbgcolor:  #282c34
-
-Xcursor.theme: Bibata-Modern-Classic
-Xcursor.size: 24

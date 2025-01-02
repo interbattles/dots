@@ -1,6 +1,0 @@
-(include "modules/powermenu/powerbutton.yuck")
-
-(defwidget lock []
-  (powerbutton :icon "system-lock-screen-symbolic" 
-               :action "fish functions/powerbutton lock" 
-               :text "Lock"))

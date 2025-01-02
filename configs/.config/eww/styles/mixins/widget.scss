@@ -1,9 +1,0 @@
-@import "../extra";
-
-@mixin widget {
-  transition: $transition;
-  border-radius: $radius;
-  color: $fg;
-  border: $border;
-  background-color: $bg-container;
-}

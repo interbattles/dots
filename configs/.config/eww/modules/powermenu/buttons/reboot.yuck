@@ -1,6 +1,0 @@
-(include "modules/powermenu/powerbutton.yuck")
-
-(defwidget reboot []
-  (powerbutton :icon "system-reboot-symbolic" 
-               :action "fish functions/powerbutton reboot" 
-               :text "Reboot"))

@@ -1,8 +1,0 @@
-(include "modules/quicksettings/menubutton.yuck")
-
-(defwidget refreshtheme []
-  (simpletoggle 
-    :action "fish functions/menu theme"
-    :timeout 2000
-    :label "Theme"
-    :icon "applications-graphics-symbolic"))

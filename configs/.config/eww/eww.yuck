@@ -1,8 +1,27 @@
-(include "config.yuck")
+; defined ones
+(include './var.yuck')
+(include './src/widgets.yuck')
 
-(include "modules/global.yuck")
-(include "modules/bar/bar.yuck")
-(include "modules/powermenu/powermenu.yuck")
-(include "modules/calendar/calendar.yuck")
-(include "modules/quicksettings/quicksettings.yuck")
-; (include "modules/notification/notification.yuck")
+; header
+(include './src/header/fetch.yuck')
+(include './src/header/init.yuck')
+
+; focal
+(include './src/focal/widgets.yuck')
+(include './src/focal/audioSliders.yuck')
+(include './src/focal/init.yuck')
+
+; footer
+(include './src/footer/btns.yuck')
+(include './src/footer/init.yuck')
+
+; dashboard 
+(include './src/dashboard.yuck')
+
+; whole eww window
+(defwindow eww
+           :geometry (geometry :x "-1%"
+                               :y "-2%"
+                               :anchor "right bottom")
+           :wm-ignore true
+(dashboard))

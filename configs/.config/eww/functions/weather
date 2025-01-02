@@ -1,9 +1,0 @@
-# vi: ft=fish
-
-while true
-    curl 'wttr.in?format=1' --connect-timeout 10 \
-        || echo ''
-    sleep 300
-end
-
-# vi: tabstop=4 shiftwidth=4

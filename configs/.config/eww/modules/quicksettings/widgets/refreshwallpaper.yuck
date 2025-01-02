@@ -1,8 +1,0 @@
-(include "modules/quicksettings/menubutton.yuck")
-
-(defwidget refreshwallpaper []
-  (simpletoggle 
-    :action "fish functions/menu wallpaper"
-    :timeout 2000
-    :label "Wallpaper"
-    :icon "preferences-desktop-wallpaper-symbolic"))

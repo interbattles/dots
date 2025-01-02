@@ -38,5 +38,5 @@
 [core]
   editor = nvim
 
-[url "ssh://git@git.allison.lol:2222"]
-    insteadOf = https://git.allison.lol
+#[url "ssh://git@git.allison.lol:2222"]
+#    insteadOf = https://git.allison.lol

@@ -1,6 +1,0 @@
-(include "modules/powermenu/powerbutton.yuck")
-
-(defwidget shutdown []
-  (powerbutton :icon "system-shutdown-symbolic" 
-               :action "fish functions/powerbutton shutdown" 
-               :text "Shutdown"))
